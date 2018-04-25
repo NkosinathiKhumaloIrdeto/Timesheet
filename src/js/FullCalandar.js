@@ -57,7 +57,7 @@ $(document).ready(function () {
 
             //  $('#exampleModal').modal('toggle')
         },
-        events: data,
+        events: '/data/getAll',
         eventClick: function (calEvent, jsEvent, view) {
             /*                   alert('Event: ' + calEvent.title);
                       alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -73,6 +73,8 @@ $(document).ready(function () {
     });
 
     function currentDate() {
+
+
 
     }
 
