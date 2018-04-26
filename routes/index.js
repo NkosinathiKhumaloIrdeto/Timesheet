@@ -5,10 +5,13 @@ let _ = require('lodash');
 let logModal = require('../modals/log');
 
 
-router.get('/getAll', (req, res) => {
+router.get('/getAll/:username', (req, res) => {
 
-    logModal.find({}, (err, data) => {
-
+    var searchQuery = {
+        employee: new RegExp("^" + req.params.username)
+    }
+    logModal.find(searchQuery, (err, data) => {
+ 
         if (err) {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
@@ -21,7 +24,7 @@ router.get('/getAll', (req, res) => {
 
 
 router.post('/log', (req, res) => {
-console.log(req.body)
+
     var newLogModal = new logModal(req.body);
 
     newLogModal.save(function (err) {

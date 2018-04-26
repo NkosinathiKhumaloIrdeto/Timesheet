@@ -1,12 +1,26 @@
-angular.module('app', [])
+angular.module('app', ['login-app'])
     .controller('contr', function ($scope, $http) {
 
-        setUpCal();
+
+        $scope.enableCalandar = false;
+   
+        $scope.obj = {username:""};
+        var url = "/data/getAll";
+        var queryUrl = "";
+        $scope.displayCal = function(){
+            queryUrl = url + "/" + $scope.obj.username
+            $scope.enableCalandar = true;
+
+            setUpCal();
+           
+        }
+
+        $scope.txtDescription = "";
 
         function clearFields() {
             $scope.uiObj = {
                 worktype: "",
-                employee: "",
+                employee: $scope.obj.username,
                 category: "",
                 start: "",
                 end: "",
@@ -29,6 +43,12 @@ angular.module('app', [])
 
         $scope.saveEvent = function () {
 
+            if($scope.txtDescription.length == 0){
+                alert("Please add description");
+                return;
+            }
+
+            $scope.uiObj.employee = $scope.obj.username;
             $scope.uiObj.title = $('#txtDescription').val();
             $scope.uiObj.category = $('#selectCategory').val();
             $scope.uiObj.worktype = $('#selectWorkType').val();
@@ -124,7 +144,7 @@ angular.module('app', [])
 
                         //  $('#exampleModal').modal('toggle')
                     },
-                    events: '/data/getAll',
+                    events: queryUrl,
                     eventClick: function (calEvent, jsEvent, view) {
 
                         /*                   alert('Event: ' + calEvent.title);
@@ -150,6 +170,8 @@ angular.module('app', [])
                     return []
 
                 }
+
+                $scope.enableCalandar = true;
 
             });
 

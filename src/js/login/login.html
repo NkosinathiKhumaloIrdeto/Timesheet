@@ -1,0 +1,32 @@
+<br>
+<h4>Please select your name</h4>
+<hr>
+<form>
+    <div class="row">
+
+        <div class="col">
+            <select id="selectCategory"  name="selectmultiple" class="form-control">
+                <option value="Nkosinathi Khumalo">Nkosinathi Khumalo</option>
+                <option value="Vinu George">Vinu George</option>
+                <option value="Andre Louw">Andre Louw</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" ng-show="false">
+        <div class="col-4">
+            <label>Password:</label>
+        </div>
+        <div class="col-8">
+            <input type="password" class="form-control" placeholder="...">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+
+        <div class="col-12">
+            <input type="button" ng-click="loginContr.proceed()" class="btn btn-login" value="Proceeed">
+        </div>
+    </div>
+
+</form>

@@ -8,10 +8,10 @@ let Logs = new Schema({
     category: String,
     start: String,
     end: String,
-    hours:String,
-    title:String,
+    hours: String,
+    title: String,
     projectname: String
-  
+
 })
 
 module.exports = mongoose.model('logs', Logs);

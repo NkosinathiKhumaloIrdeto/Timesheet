@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var routes = require('./routes/index');
 var mongoose = require('mongoose');
-let morgan = require('morgan'); 
+let morgan = require('morgan');
 
 app.use(bodyParser.json());
 app.use(express.static('src'))

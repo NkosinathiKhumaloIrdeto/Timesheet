@@ -19,6 +19,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+    <script src="js/login/login.js"></script>
+
     <!--<script src="js/FullCalandar.js"></script>-->
     <style>
         .fc-event,
@@ -30,10 +32,10 @@
 
         .fc-content {
             color: white;
-          
+
         }
 
-        .fc-time-grid-event{
+        .fc-time-grid-event {
             border: 1px solid #fff
         }
 
@@ -66,13 +68,82 @@
             max-width: 900px;
             margin: 0 auto;
         } */
+
+        .login-div {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .login-div h1 {
+            color: #5c0055;
+        }
+
+        .btn-login {
+            background: #5c0055;
+            color: #fff;
+            width: 100px;
+        }
+
+        @media all and (max-width: 412px) {
+            .login-div {
+                width: 100%;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 
 <body ng-app="app">
+
+
+
     <div ng-controller="contr">
+
+        <div class="login-div">
+            <div ng-if="enableCalandar == true">
+                Hi,
+                <b>{{obj.username}}</b>
+            </div>
+            <div ng-if="enableCalandar != true">
+                <br>
+                <h4>Please select your name</h4>
+                <hr>
+
+                <form>
+                    <div class="row">
+
+                        <div class="col">
+                            <select id="selectCategory" ng-model="obj.username" name="selectmultiple" class="form-control">
+                                <option value="Nkosinathi Khumalo">Nkosinathi Khumalo</option>
+                                <option value="Jonas Masemola">Jonas Masemola</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show="false">
+                        <div class="col-4">
+                            <label>Password:</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="password" class="form-control" placeholder="...">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-12">
+                            <input type="button" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
         <br>
-        <div class="container">
+        <div class="container" ng-if="enableCalandar">
             <p>Beta</p>
 
             <div id="calendar" class="fc fc-unthemed fc-ltr">
@@ -81,7 +152,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,7 +171,7 @@
                             </div>
                             <div class="col-8">
 
-                                <input class="form-control" id="txtDescription" name="txtDescription">
+                                <input class="form-control" id="txtDescription" ng-model="txtDescription" name="txtDescription">
                             </div>
                         </div>
                         <br>
@@ -154,7 +224,6 @@
                                 </select>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -164,10 +233,5 @@
             </div>
         </div>
     </div>
-
-
-
-
 </body>
-
 </html>
