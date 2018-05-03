@@ -133,6 +133,7 @@ angular.module('app', ['login-app'])
                 })
 
                 var dataEntry = {
+                    
                 }
 
                 $('#calendar').fullCalendar({

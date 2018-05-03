@@ -19,6 +19,7 @@ angular.module('report-app', [])
         var currentObjs = [];
         var strDateStart = "";
 
+        //console.log("Current Date",getDayOfTheWeek(new Date('2018-05-02T11:30:00')))
 
         function determineWorkType(object, strType, hours) {
             var decHours = timeToDecimal(hours);
@@ -143,4 +144,10 @@ angular.module('report-app', [])
         return (strDate) => {
             return strDate.split("T")[0]
         }
+    }).
+    filter('dayOfTheWeek', function () {
+        return (strDate) => {
+            return getDayOfTheWeek(new Date(strDate))
+        }
     })
+    
