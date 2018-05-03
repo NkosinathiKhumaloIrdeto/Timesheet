@@ -59,7 +59,7 @@ angular.module('app', ['login-app'])
             $scope.uiObj.projectname = $('#selectProjectName').val();
             $scope.uiObj.hours = getHours($scope.uiObj.end, $scope.uiObj.start);
 
-            console.log("### - payload", $scope.uiObj);
+            console.log("### - payload - saveEvent", $scope.uiObj);
 
             //send data to server
             $http.post('/data/log', $scope.uiObj)
@@ -156,6 +156,7 @@ angular.module('app', ['login-app'])
                         $scope.uiObj.end = event.end.format();
                         $scope.uiObj._id = event._id;
                         $scope.uiObj.hours = getHours(endDate, startDate);
+                        console.log("### - payload - eventResize", $scope.uiObj);
                
                         $http.post('/data/updateLog', $scope.uiObj)
                         .then((response) => {
