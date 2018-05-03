@@ -85,10 +85,20 @@
             width: 100px;
         }
 
+        .btn-purple{
+            background: #5c0055;
+            color: #fff;
+            width: 100px;
+        }
+
         @media all and (max-width: 412px) {
             .login-div {
                 width: 100%;
                 margin: 0;
+            }
+
+            .btn-purple{
+                width: 100%;
             }
         }
     </style>
@@ -104,6 +114,10 @@
             <div ng-if="enableCalandar == true">
                 Hi,
                 <b>{{obj.username}}</b>
+                <br>
+                <div>
+                    <input type="button" value="Report" class="btn btn-purple" ng-click="genReport()">
+                </div>
             </div>
             <div ng-if="enableCalandar != true">
                 <br>
@@ -234,4 +248,5 @@
         </div>
     </div>
 </body>
+
 </html>

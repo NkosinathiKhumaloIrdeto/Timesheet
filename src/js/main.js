@@ -1,19 +1,19 @@
 angular.module('app', ['login-app'])
-    .controller('contr', function ($scope, $http) {
+    .controller('contr', function ($scope, $http, $window) {
 
 
         $scope.enableCalandar = false;
-   
-        $scope.obj = {username:""};
+
+        $scope.obj = { username: "" };
         var url = "/data/getAll";
         var queryUrl = "";
-        $scope.displayCal = function(){
+        $scope.displayCal = function () {
             queryUrl = url + "/" + $scope.obj.username
             $scope.enableCalandar = true;
-
             setUpCal();
-           
         }
+
+        $scope.action
 
         $scope.txtDescription = "";
 
@@ -26,7 +26,9 @@ angular.module('app', ['login-app'])
                 end: "",
                 hours: "",
                 title: "",
-                projectname: ""
+                projectname: "",
+                startDate:'',
+                endDate:''
             }
         }
 
@@ -38,12 +40,14 @@ angular.module('app', ['login-app'])
             end: "",
             hours: "",
             title: "",
-            projectname: ""
+            projectname: "",
+            startDate:'',
+            endDate:''
         }
 
         $scope.saveEvent = function () {
 
-            if($scope.txtDescription.length == 0){
+            if ($scope.txtDescription.length == 0) {
                 alert("Please add description");
                 return;
             }
@@ -65,12 +69,26 @@ angular.module('app', ['login-app'])
 
                     clearFields();
 
-                    console.log('success', response);
+                    //   console.log('success', response);
 
                 }, (error) => {
                     console.log(error)
                 })
 
+        }
+
+        function updateEvent() {
+
+            $http.post('/data/updateLog', $scope.uiObj)
+                .then((response) => {
+
+                }, (error) => {
+                    console.log(error)
+                })
+        }
+
+        $scope.genReport = function(){
+            $window.open('/Report/Report.html', '_blank');
         }
 
         function getHours(newDate, oldDate) {
@@ -88,6 +106,8 @@ angular.module('app', ['login-app'])
 
             $scope.uiObj.start = startDate.format()
             $scope.uiObj.end = endDate.format()
+            $scope.uiObj.startDate = startDate.format()
+            $scope.uiObj.endDate = endDate.format()
 
             $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
 
@@ -98,8 +118,6 @@ angular.module('app', ['login-app'])
         function setUpCal() {
 
             $(document).ready(function () {
-
-                var data = returData();
 
                 //save button click
                 $("#btn-save-entry").click(function () {
@@ -127,22 +145,27 @@ angular.module('app', ['login-app'])
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     selectable: true, //Allows a user to highlight multiple days or timeslots by clicking and dragging.
+                    eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
+
+                        var startDate = event.start.format();
+                        var endDate = event.end.format();
+                        
+                        $scope.uiObj.end = event.end.format();
+                        $scope.uiObj.end = event.end.format();
+                        $scope.uiObj._id = event._id;
+                        $scope.uiObj.hours = getHours(endDate, startDate);
+               
+                        $http.post('/data/updateLog', $scope.uiObj)
+                        .then((response) => {
+                            console.log(response.data)
+                        }, (error) => {
+                            console.log(error)
+                        })
+
+
+                    },
                     select: function (startDate, endDate) {
-                        onSelect(startDate, endDate);
-
-                        //console.log($('textarea#txtDescription').val());
-
-
-                        /*$('#calendar').fullCalendar('renderEvent', {
-                            title: 'dynamic event',
-                            start: startDate.format(),
-                            end: endDate.format()
-                        });*/
-
-
-                        //    $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
-
-                        //  $('#exampleModal').modal('toggle')
+                        onSelect(startDate, endDate);                      
                     },
                     events: queryUrl,
                     eventClick: function (calEvent, jsEvent, view) {
@@ -157,17 +180,21 @@ angular.module('app', ['login-app'])
 
                         //    $('#exampleModalLabel').html(calEvent.title);
                         //   $('#exampleModal').modal('toggle')
+                        console.log('event click', calEvent._id)
                     }
                 });
 
-                function currentDate() {
+                function apiCall(strUrl, objData) {
 
+                    var request = $http.post(strUrl, objData);
 
+                    return request.then((response) => {
 
-                }
+                        return response;
 
-                function returData() {
-                    return []
+                    }, (error) => {
+                        return error;
+                    })
 
                 }
 

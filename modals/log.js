@@ -8,6 +8,8 @@ let Logs = new Schema({
     category: String,
     start: String,
     end: String,
+    startDate: Date,
+    endDate: Date,
     hours: String,
     title: String,
     projectname: String
