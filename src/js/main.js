@@ -160,8 +160,9 @@ angular.module('app', ['login-app'])
                
                         $http.post('/data/updateLog', $scope.uiObj)
                         .then((response) => {
-                            console.log(response.data)
+                            delete $scope.uiObj._id
                         }, (error) => {
+                            delete $scope.uiObj._id
                             console.log(error)
                         })
 
