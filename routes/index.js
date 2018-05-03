@@ -8,10 +8,18 @@ let moment = require('moment');
 
 router.get('/getAll/:username', (req, res) => {
 
+    var startDate, endDate;
+
+    startDate = new Date(req.query.start)
+
+    endDate = new Date(req.query.end)
+
     var searchQuery = {
-        employee: new RegExp("^" + req.params.username)
+        employee: new RegExp("^" + req.params.username),
+        startDate: { $gte: startDate, $lte: endDate }
     }
-    logModal.find(searchQuery, (err, data) => {
+
+    logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
             res.status(500).send({ 'status': 500, 'msg': err });
@@ -74,7 +82,6 @@ router.get('/getUser/:name', (req, res) => {
 })
 
 router.get('/getBy/:fromDate/:toDate', (req, res) => {
-    var dateFormat = "YYYY-M-D H:m";
 
     var startDate, endDate;
 
