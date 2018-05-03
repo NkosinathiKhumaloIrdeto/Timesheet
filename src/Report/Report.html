@@ -194,7 +194,7 @@
                             <tbody>
                                 <tr ng-repeat="report in uiObj.reportData">
 
-                                    <td>Week {{$index + 1}}</td>
+                                    <td>Week {{report.start|weekAndDay}}</td>
                                     <td>{{report.start | dateOnly}}</td>
                                     <td>{{report.start | dayOfTheWeek}}</td>
                                     <td>{{report.TOTAL}}</td>

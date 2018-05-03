@@ -8,7 +8,7 @@ angular.module('report-app', [])
             fromDate: '',
             toDate: '',
             btnText: "Go!",
-            
+
         }
 
         $scope.uiForm = {}
@@ -16,13 +16,15 @@ angular.module('report-app', [])
         $scope.reportingObj = {
             totalNormal: 0
         }
+
         var currentObjs = [];
+
         var strDateStart = "";
 
-        //console.log("Current Date",getDayOfTheWeek(new Date('2018-05-02T11:30:00')))
-
         function determineWorkType(object, strType, hours) {
+
             var decHours = timeToDecimal(hours);
+
             switch (strType) {
                 case "LEAVE":
                     object.LEAVE += decHours
@@ -35,6 +37,9 @@ angular.module('report-app', [])
                     break;
                 case "OVERTIME":
                     object.OVERTIME += decHours
+                    break;
+                case "SICK":
+                    object.SICK += decHours
                     break;
                 case "SPECIAL":
                     object.SPECIAL += decHours
@@ -111,6 +116,7 @@ angular.module('report-app', [])
                             obj.OTHER = 0;
                             obj.SPECIAL = 0;
                             obj.TOTAL = 0;
+                            obj.SICK = 0;
 
                             currentObjs.push(obj);
 
@@ -149,5 +155,10 @@ angular.module('report-app', [])
         return (strDate) => {
             return getDayOfTheWeek(new Date(strDate))
         }
+    })//weekAndDay
+    .filter('weekAndDay', function () {
+        return (strDate) => {
+            return weekAndDay(new Date(strDate))
+        }
     })
-    
+
