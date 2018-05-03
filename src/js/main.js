@@ -59,12 +59,14 @@ angular.module('app', ['login-app'])
             $scope.uiObj.projectname = $('#selectProjectName').val();
             $scope.uiObj.hours = getHours($scope.uiObj.end, $scope.uiObj.start);
 
+            console.log("### - payload", $scope.uiObj);
+
             //send data to server
             $http.post('/data/log', $scope.uiObj)
                 .then((response) => {
 
                     $('#calendar').fullCalendar('renderEvent', $scope.uiObj);
-                    $('#exampleModal').modal('toggle')
+                    $('#exampleModal').modal('hide')
                     $('#txtDescription').val('')
 
                     clearFields();
@@ -125,7 +127,7 @@ angular.module('app', ['login-app'])
                     dataEntry.title = $('#txtDescription').val()
 
                     $('#calendar').fullCalendar('renderEvent', dataEntry);
-                    $('#exampleModal').modal('toggle')
+                    $('#exampleModal').modal('show')
                     $('#txtDescription').val('')
 
                 })
@@ -161,7 +163,6 @@ angular.module('app', ['login-app'])
                         }, (error) => {
                             console.log(error)
                         })
-
 
                     },
                     select: function (startDate, endDate) {
