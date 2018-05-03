@@ -61,7 +61,7 @@ router.post('/updateLog', (req, res) => {
 })
 
 router.get('/getUser/:name', (req, res) => {
-    
+
     var username = req.params.name;
 
     usersModal.findOne({ contractor: username }, (err, data) => {
@@ -84,7 +84,7 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
 
-    logModal.find(searchQuery, (err, data) => {
+    logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
             res.status(500).send({ 'status': 500, 'msg': err });
@@ -94,6 +94,17 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
         res.status(200).send(data);
 
     })
+
+    /*logModal.find(searchQuery, (err, data) => {
+
+        if (err) {
+            res.status(500).send({ 'status': 500, 'msg': err });
+            return;
+        }
+
+        res.status(200).send(data);
+
+    }) */
 })
 
 module.exports = router;
