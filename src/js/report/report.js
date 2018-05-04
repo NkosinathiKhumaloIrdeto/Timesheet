@@ -47,7 +47,9 @@ angular.module('report-app', [])
             }
 
             object.TOTAL += decHours
-            $scope.reportingObj.totalNormal += decHours
+            if(strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL'){} 
+            else{$scope.reportingObj.totalNormal += decHours}
+            
             return object;
 
         }
