@@ -131,11 +131,7 @@ angular.module('app', ['login-app'])
                     $('#txtDescription').val('')
 
                 })
-
-                var dataEntry = {
-                    
-                }
-
+                
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
@@ -184,7 +180,7 @@ angular.module('app', ['login-app'])
 
                         //    $('#exampleModalLabel').html(calEvent.title);
                         //   $('#exampleModal').modal('toggle')
-                        console.log('event click', calEvent._id)
+                       // console.log('event click', calEvent._id)
                     }
                 });
 

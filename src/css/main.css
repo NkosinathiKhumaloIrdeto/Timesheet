@@ -1,0 +1,64 @@
+.fc-event,
+.fc-dot {
+    background-color: #5c0055;
+    border: 1px #fff;
+    color: white;
+}
+
+.fc-content {
+    color: white;
+
+}
+
+.fc-time-grid-event {
+    border: 1px solid #fff
+}
+
+.fc-button-group button {
+    background: #5c0055;
+    color: white;
+}
+
+.fc-button-group button:hover {
+    background: #fff;
+    color: #5c0055;
+}
+
+button.fc-state-active {
+    background: #fff;
+    color: #5c0055;
+
+}
+
+.login-div {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-div h1 {
+    color: #5c0055;
+}
+
+.btn-login {
+    background: #5c0055;
+    color: #fff;
+    width: 100px;
+}
+
+.btn-purple {
+    background: #5c0055;
+    color: #fff;
+    width: 100px;
+}
+
+@media all and (max-width: 412px) {
+    .login-div {
+        width: 100%;
+        margin: 0;
+    }
+
+    .btn-purple {
+        width: 100%;
+    }
+}

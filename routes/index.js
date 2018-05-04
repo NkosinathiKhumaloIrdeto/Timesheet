@@ -10,9 +10,12 @@ router.get('/getAll/:username', (req, res) => {
 
     var startDate, endDate;
 
-    startDate = new Date(req.query.start)
+    startDate = moment(new Date(req.query.start));
 
-    endDate = new Date(req.query.end)
+    endDate = moment(new Date(req.query.end))
+
+    startDate.set({ h: 00, m: 00 });
+    endDate.set({ h: 11, m: 59 });
 
     var searchQuery = {
         employee: new RegExp("^" + req.params.username),
@@ -85,9 +88,12 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
 
     var startDate, endDate;
 
-    startDate = new Date(req.params.fromDate)
+    startDate = moment(new Date(req.params.fromDate));
 
-    endDate = new Date(req.params.toDate)
+    endDate = moment(new Date(req.params.toDate))
+
+    startDate.set({ h: 00, m: 00 });
+    endDate.set({ h: 11, m: 59 });
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
 
