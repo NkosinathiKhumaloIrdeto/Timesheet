@@ -108,16 +108,6 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
 
     })
 
-    /*logModal.find(searchQuery, (err, data) => {
-
-        if (err) {
-            res.status(500).send({ 'status': 500, 'msg': err });
-            return;
-        }
-
-        res.status(200).send(data);
-
-    }) */
 })
 
 module.exports = router;

@@ -23,7 +23,15 @@
         .header-div input {
             color: #fff;
             font-weight: bold;
+        }
 
+        .table-rows td {
+            font-size: 10pt;
+        }
+
+        .btn-purple{
+            background: #5c0055;
+            color: #fff;
         }
     </style>
     <script>
@@ -31,18 +39,35 @@
             .controller('contr', ($scope, $http) => {
 
                 $scope.date = new Date().toDateString();
-
+                $scope.records = []
                 var m1 = moment(new Date());
                 var m2 = moment(new Date());
-                
-                 m1.set({h:00,m:00});
-                 m2.set({h:11,m:59});
-                
+
+                m1.set({ h: 00, m: 00 });
+                m2.set({ h: 11, m: 59 });
+
                 $http.get('/data/getAll/Nkosinathi Khumalo?start=' + m1.toDate() + "&end=" + m2.toDate()).then((res) => {
                     console.log(res.data);
+                    $scope.records = res.data;
                 }, (err) => {
                     console.log(err.data);
                 })
+
+                function setDate(newDate) {
+
+                    var m1 = moment(newDate);
+                    var m2 = moment(newDate);
+
+                    m1.set({ h: 00, m: 00 });
+                    m2.set({ h: 11, m: 59 });
+
+                    $http.get('/data/getAll/Nkosinathi Khumalo?start=' + m1.toDate() + "&end=" + m2.toDate()).then((res) => {
+                        console.log(res.data);
+                    }, (err) => {
+                        console.log(err.data);
+                    })
+                }
+
 
                 $scope.updateDate = function () {
 
@@ -56,6 +81,13 @@
                 }
 
             })
+            .filter('gettimeonly', function () {
+                return (strDate) => {
+                    var dateString = strDate.split('T'); //new Date(strDate);
+                    var timeStr = dateString[1]
+                    return timeStr
+                }
+            })
     </script>
 </head>
 
@@ -63,20 +95,36 @@
     <br>
     <div class="header-div" style="text-align: center">
 
-
         <div class="row">
             <div class="col-3">
-                <input type="button" class="btn btn-warning" value="-">
+                <input type="button" class="btn btn-purple" value="-">
             </div>
             <div class="col-6">
                 <h5>{{date}}</h5>
             </div>
             <div class="col-3">
-                <input type="button" class="btn btn-warning" value="+">
+                <input type="button" class="btn btn-purple" value="+">
             </div>
 
         </div>
-        <hr>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="table-rows">
+                    <table class="table">
+                        <tr ng-repeat="record in records">
+                            <td style="width:20%">{{$index + 1}}.</td>
+                            <td style="width:20%">
+                                {{record.start | gettimeonly}} - {{record.end | gettimeonly}}
+                            </td>
+                            <td style="width:60%">
+                                {{record.title}}
+                            </td>
+                        </tr>
+                    </table>
+                </Div>
+            </div>
+        </div>
 
 
     </div>
