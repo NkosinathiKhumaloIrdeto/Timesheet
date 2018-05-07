@@ -72,8 +72,6 @@ angular.module('report-app', [])
             $http.get('/data/exportCSV/' + from + "/" + to)
                 .then((res) => {
 
-                    //wait
-                    console.log(res);
                     var anchor = angular.element('<a/>');
                     anchor.css({ display: 'none' }); // Make sure it's not visible
                     angular.element(document.body).append(anchor); // Attach to document
@@ -81,7 +79,7 @@ angular.module('report-app', [])
                     anchor.attr({
                         href: 'data:attachment/csv;charset=utf-8,' + encodeURI(res.data),
                         target: '_blank',
-                        download: 'filename.csv'
+                        download: uiObj.username + ".csv"
                     })[0].click();
 
                     anchor.remove();
