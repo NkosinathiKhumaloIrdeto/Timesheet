@@ -5,6 +5,8 @@ let _ = require('lodash');
 let logModal = require('../modals/log');
 let usersModal = require('../modals/users');
 let moment = require('moment');
+let Json2csvParser = require('json2csv').Parser;
+let fs = require('fs-extra');
 
 router.get('/getAll/:username', (req, res) => {
 
@@ -28,9 +30,70 @@ router.get('/getAll/:username', (req, res) => {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
         }
+
+   
         res.send(data);
 
     })
+
+})
+
+
+
+router.get('/get', (req, res) => {
+
+    var csvPath = "./src/Report/generated/";
+    var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
+    var fullname = csvPath + csvName
+
+    var fields = ['cars', 'color']
+
+
+    var opts = { fields, quote: '' };
+
+    myData = [{
+        "car": "Audi",
+        "price": 40000,
+        "color": "blue"
+    }, {
+        "car": "BMW",
+        "price": 35000,
+        "color": "black"
+    }, {
+        "car": "Porsche",
+        "price": 60000,
+        "color": "green"
+    }]
+
+    try {
+        const parser = new Json2csvParser(opts);
+
+        const csv = parser.parse(myData);
+
+        fs.writeFile(fullname, csv, 'utf8', function (err) {
+
+            if (err) {
+
+                res.status(500).send(err);
+
+                return console.log(err);
+
+            }
+
+            res.writeHead(200, {
+                "Content-Type": "application/octet-stream",
+                "Content-Disposition": "attachment; filename=" + csvName
+            });
+
+            fs.createReadStream(fullname).pipe(res);
+
+        });
+
+
+    } catch (err) {
+        console.error(err);
+    }
+
 
 })
 
@@ -93,6 +156,7 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
     endDate = moment(new Date(req.params.toDate))
 
     startDate.set({ h: 00, m: 00 });
+
     endDate.set({ h: 23, m: 59 });
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
@@ -109,5 +173,81 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
     })
 
 })
+
+router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
+
+    var csvPath = "./src/Report/generated/";
+    var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
+    var fullname = csvPath + csvName
+
+    var startDate, endDate;
+
+    startDate = moment(new Date(req.params.fromDate));
+
+    endDate = moment(new Date(req.params.toDate))
+
+    startDate.set({ h: 00, m: 00 });
+
+    endDate.set({ h: 23, m: 59 });
+
+    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
+
+    logModal.find(searchQuery).sort('startDate').exec((err, data) => {
+
+        if (err) {
+            res.status(500).send({ 'status': 500, 'msg': err });
+            return;
+        }
+
+        var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
+
+        var fullname = csvPath + csvName
+
+        var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title"]
+
+        var opts = { fields, quote: '' };
+
+        try {
+
+            const parser = new Json2csvParser(opts);
+
+            const csv = parser.parse(data);
+
+            fs.writeFile(fullname, csv, 'utf8', function (err) {
+
+                if (err) {
+
+                    res.status(500).send(err);
+
+                    return console.log(err);
+
+                }
+
+                res.writeHead(200, {
+                    "Content-Type": "application/octet-stream",
+                    "Content-Disposition": "attachment; filename=" + csvName
+                });
+
+                fs.createReadStream(fullname).pipe(res);
+
+            });
+
+
+        } catch (err) {
+
+        }
+
+
+       // res.status(200).send(data);
+
+    })
+
+})
+
+function getRandomInt(min, max) {
+    var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return randomNumber;
+}
 
 module.exports = router;

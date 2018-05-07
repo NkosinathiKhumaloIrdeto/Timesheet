@@ -10,16 +10,18 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-        <script src="../js/utils.js"></script>
+    <script src="../js/utils.js"></script>
     <script src="../js/report/report.js"></script>
-   <link rel="stylesheet" href="../css/report.css">
+    <link rel="stylesheet" href="../css/report.css">
 </head>
 
 <body ng-app="report-app" ng-controller="report-contr">
-    <br>
+
+
     <div class="report-user-div">
 
         <div ng-if="uiObj.userSelectd != true">
+
             <br>
             <h4>Please select name</h4>
             <hr>
@@ -48,6 +50,27 @@
     </div>
     <div class="container">
         <div ng-if="uiObj.userSelectd">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" ng-if="false">
+        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                               
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                
+                                <button class="btn btn-purple my-2 my-sm-0" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()" type="button">CSV</button>
+                                
+                            </form>
+                        </div>
+                    </nav>
+                    <br>
+
             <div class="row">
                 <div class="col">
                     <img src="../img/XYHXBUH.jpg" height="50">
@@ -145,9 +168,12 @@
 
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2" style="text-align: center">
                             <input type="button" class="btn btn-purple" ng-click="genReport()" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''"
                                 value="{{uiObj.btnText}}">
+                                <hr>
+                                <a href="#" ng-hide="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()">CSV</a>
+                                
                         </div>
                     </div>
                 </div>

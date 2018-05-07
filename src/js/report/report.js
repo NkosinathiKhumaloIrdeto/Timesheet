@@ -47,16 +47,51 @@ angular.module('report-app', [])
             }
 
             object.TOTAL += decHours
-            if(strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL'){} 
-            else{$scope.reportingObj.totalNormal += decHours}
-            
+            //   if(strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL'){} 
+            // else{$scope.reportingObj.totalNormal += decHours}
+            $scope.reportingObj.totalNormal += decHours
+
             return object;
 
         }
         function timeToDecimal(t) {
+
             var arr = t.split(':');
+
             return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
         }
+
+        $scope.exportCSV = function () {
+
+            var from, to;
+
+            from = $scope.uiObj.fromDate;
+
+            to = $scope.uiObj.toDate;
+
+            $http.get('/data/exportCSV/' + from + "/" + to)
+                .then((res) => {
+
+                    //wait
+                    console.log(res);
+                    var anchor = angular.element('<a/>');
+                    anchor.css({ display: 'none' }); // Make sure it's not visible
+                    angular.element(document.body).append(anchor); // Attach to document
+
+                    anchor.attr({
+                        href: 'data:attachment/csv;charset=utf-8,' + encodeURI(res.data),
+                        target: '_blank',
+                        download: 'filename.csv'
+                    })[0].click();
+
+                    anchor.remove();
+
+                }, (err) => {
+                    console.log('exportCSV', err)
+                })
+
+        }
+
         $scope.displayReport = function () {
 
             if ($scope.uiObj.username.length == 0) {

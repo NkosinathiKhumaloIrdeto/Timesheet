@@ -19,3 +19,4 @@ function weekAndDay() {
     return prefixes[0 | date.getDate() / 7] ;
 
 }
+
