@@ -120,7 +120,7 @@ router.post('/updateLog', (req, res) => {
         end: req.body.end,
         hours: req.body.hours
     }
-    console.log(req.body._id)
+    console.log(req.body)
     var _id = req.body._id
 
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {

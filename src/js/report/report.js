@@ -54,6 +54,7 @@ angular.module('report-app', [])
             return object;
 
         }
+        
         function timeToDecimal(t) {
 
             var arr = t.split(':');

@@ -57,9 +57,12 @@ angular.module('app', ['login-app'])
             $scope.uiObj.category = $('#selectCategory').val();
             $scope.uiObj.worktype = $('#selectWorkType').val();
             $scope.uiObj.projectname = $('#selectProjectName').val();
-            $scope.uiObj.hours = getHours($scope.uiObj.end, $scope.uiObj.start);
+            $scope.uiObj.hours = timeToDecimal(getHours($scope.uiObj.end, $scope.uiObj.start));
+            
 
-            console.log("### - payload - saveEvent", $scope.uiObj);
+            //timeToDecimal
+
+          
 
             //send data to server
             $http.post('/data/log', $scope.uiObj)
@@ -79,7 +82,7 @@ angular.module('app', ['login-app'])
 
         }
 
-        function updateEvent() {
+     /*   function updateEvent() {
 
             $http.post('/data/updateLog', $scope.uiObj)
                 .then((response) => {
@@ -87,7 +90,7 @@ angular.module('app', ['login-app'])
                 }, (error) => {
                     console.log(error)
                 })
-        }
+        }*/
 
         $scope.genReport = function(){
             $window.open('/Report/Report.html', '_blank');
@@ -115,6 +118,13 @@ angular.module('app', ['login-app'])
 
             $('#exampleModal').modal('toggle')
 
+        }
+
+        function timeToDecimal(t) {
+
+            var arr = t.split(':');
+
+            return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
         }
 
         function setUpCal() {
@@ -152,11 +162,11 @@ angular.module('app', ['login-app'])
                         $scope.uiObj.end = event.end.format();
                         $scope.uiObj.end = event.end.format();
                         $scope.uiObj._id = event._id;
-                        $scope.uiObj.hours = getHours(endDate, startDate);
-                        console.log("### - payload - eventResize", $scope.uiObj);
-               
+                        console.log("-->",$scope.uiObj);   
+                        $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
+                        
                         $http.post('/data/updateLog', $scope.uiObj)
-                        .then((response) => {
+                        .then((response) => { 
                             delete $scope.uiObj._id
                         }, (error) => {
                             delete $scope.uiObj._id
