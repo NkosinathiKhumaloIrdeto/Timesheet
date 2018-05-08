@@ -51,25 +51,26 @@
     <div class="container">
         <div ng-if="uiObj.userSelectd">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" ng-if="false">
-        
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                               
-                            </ul>
-                            <form class="form-inline my-2 my-lg-0">
-                                
-                                <button class="btn btn-purple my-2 my-sm-0" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()" type="button">CSV</button>
-                                
-                            </form>
-                        </div>
-                    </nav>
-                    <br>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" ng-if="false">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+
+                        <button class="btn btn-purple my-2 my-sm-0" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()"
+                            type="button">CSV</button>
+
+                    </form>
+                </div>
+            </nav>
+            <br>
 
             <div class="row">
                 <div class="col">
@@ -143,7 +144,23 @@
                 <br>
                 <h4>Please select dates (from-to):</h4>
                 <br>
+                
+                
                 <div class="date-select">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-3">
+                                    <b>Include Leave?:</b>
+                                </div>
+                                <div class="col-9">
+                                    {{uiObj.includeLeave}}
+                                    <input type="checkbox" ng-model="uiObj.includeLeave">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-5">
                             <div class="row">
@@ -171,9 +188,9 @@
                         <div class="col-2" style="text-align: center">
                             <input type="button" class="btn btn-purple" ng-click="genReport()" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''"
                                 value="{{uiObj.btnText}}">
-                                <hr>
-                                <a href="#" ng-hide="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()">CSV</a>
-                                
+                            <hr>
+                            <a href="#" ng-hide="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()">CSV</a>
+
                         </div>
                     </div>
                 </div>

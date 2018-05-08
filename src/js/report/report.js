@@ -8,6 +8,7 @@ angular.module('report-app', [])
             fromDate: '',
             toDate: '',
             btnText: "Go!",
+            includeLeave: false
 
         }
 
@@ -46,11 +47,18 @@ angular.module('report-app', [])
                     break;
             }
 
+           
+            if ((strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL')){
+                if($scope.uiObj.includeLeave){
+                    
+                    $scope.reportingObj.totalNormal += decHours
+                }                
+            }else{
+               
+                $scope.reportingObj.totalNormal += decHours
+            }
             object.TOTAL += decHours
-            //   if(strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL'){} 
-            // else{$scope.reportingObj.totalNormal += decHours}
-            $scope.reportingObj.totalNormal += decHours
-
+           
             return object;
 
         }
