@@ -58,11 +58,6 @@ angular.module('app', ['login-app'])
             $scope.uiObj.worktype = $('#selectWorkType').val();
             $scope.uiObj.projectname = $('#selectProjectName').val();
             $scope.uiObj.hours = timeToDecimal(getHours($scope.uiObj.end, $scope.uiObj.start));
-            
-
-            //timeToDecimal
-
-          
 
             //send data to server
             $http.post('/data/log', $scope.uiObj)
