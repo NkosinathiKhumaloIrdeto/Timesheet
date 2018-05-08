@@ -31,7 +31,7 @@ router.get('/getAll/:username', (req, res) => {
             return;
         }
 
-   
+
         res.send(data);
 
     })
@@ -199,6 +199,8 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
             return;
         }
 
+        data = updateTime(data)
+
         var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
 
         var fullname = csvPath + csvName
@@ -238,11 +240,38 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
         }
 
 
-       // res.status(200).send(data);
+        // res.status(200).send(data);
 
     })
 
 })
+
+function updateTime(data) {
+
+    for (var i = 0; i < data.length; i++) {
+
+        var obj = data[i];
+        var hours = data[i].hours
+        var start = data[i].start.split('T')[0]
+        data[i].start = start
+
+        if (hours.length > 3) {
+            data[i].hours = timeToDecimal(hours)
+        }
+
+
+    }
+
+    return data
+
+}
+
+function timeToDecimal(t) {
+
+    var arr = t.split(':');
+
+    return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
+}
 
 function getRandomInt(min, max) {
     var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;

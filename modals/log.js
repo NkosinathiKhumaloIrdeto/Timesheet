@@ -12,8 +12,8 @@ let Logs = new Schema({
     endDate: Date,
     hours: String,
     title: String,
-    projectname: String
-
+    projectname: String,
+    
 })
 
 module.exports = mongoose.model('logs', Logs);

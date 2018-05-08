@@ -54,7 +54,7 @@ angular.module('report-app', [])
             return object;
 
         }
-        
+
         function timeToDecimal(t) {
 
             var arr = t.split(':');
@@ -80,7 +80,7 @@ angular.module('report-app', [])
                     anchor.attr({
                         href: 'data:attachment/csv;charset=utf-8,' + encodeURI(res.data),
                         target: '_blank',
-                        download: uiObj.username + ".csv"
+                        download: $scope.uiObj.username + ".csv"
                     })[0].click();
 
                     anchor.remove();
