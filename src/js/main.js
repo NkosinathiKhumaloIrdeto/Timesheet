@@ -3,17 +3,23 @@ angular.module('app', ['login-app'])
 
 
         $scope.enableCalandar = false;
-
         $scope.obj = { username: "" };
+
         var url = "/data/getAll";
         var queryUrl = "";
+        let updateObj = {
+            updateData:{},
+            eventObj:{}
+        }
+
         $scope.displayCal = function () {
             queryUrl = url + "/" + $scope.obj.username
             $scope.enableCalandar = true;
             setUpCal();
         }
-
-        $scope.action
+        var dataEntry = {
+        }
+        $scope.saveActions = "SaveNew"
 
         $scope.txtDescription = "";
 
@@ -27,9 +33,21 @@ angular.module('app', ['login-app'])
                 hours: "",
                 title: "",
                 projectname: "",
-                startDate:'',
-                endDate:''
+                startDate: '',
+                endDate: ''
             }
+
+            updateObj = {
+                updateData:{},
+                eventObj:{}
+            }
+
+            $('#txtDescription').val('');
+            $('#selectCategory').val('');
+            $('#selectWorkType').val('');
+            $('#selectProjectName').val('');
+
+
         }
 
         $scope.uiObj = {
@@ -41,11 +59,30 @@ angular.module('app', ['login-app'])
             hours: "",
             title: "",
             projectname: "",
-            startDate:'',
-            endDate:''
+            startDate: '',
+            endDate: ''
         }
 
-        $scope.saveEvent = function () {
+        $scope.actionEvent = function(){
+
+            switch($scope.saveActions)
+            {
+                case "SaveNew": 
+                    saveEvent();
+                break;
+
+                case "SaveUpdate":
+                    processEventUpdate();
+                break;
+
+                default:
+                    alert("An Error has occurred. Please contact admin. log: #actionEvent()")
+                break;
+            }
+
+        }
+
+        function saveEvent() {
 
             if ($scope.txtDescription.length == 0) {
                 alert("Please add description");
@@ -77,17 +114,17 @@ angular.module('app', ['login-app'])
 
         }
 
-     /*   function updateEvent() {
+        /*   function updateEvent() {
+   
+               $http.post('/data/updateLog', $scope.uiObj)
+                   .then((response) => {
+   
+                   }, (error) => {
+                       console.log(error)
+                   })
+           }*/
 
-            $http.post('/data/updateLog', $scope.uiObj)
-                .then((response) => {
-
-                }, (error) => {
-                    console.log(error)
-                })
-        }*/
-
-        $scope.genReport = function(){
+        $scope.genReport = function () {
             $window.open('/Report/Report.html', '_blank');
         }
 
@@ -111,7 +148,7 @@ angular.module('app', ['login-app'])
 
             $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
 
-            $('#exampleModal').modal('toggle')
+            $('#exampleModal').modal('show')
 
         }
 
@@ -120,6 +157,30 @@ angular.module('app', ['login-app'])
             var arr = t.split(':');
 
             return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
+        }
+
+        function processEventUpdate() {
+
+            updateObj.updateData.title = $('#txtDescription').val(),
+            updateObj.updateData.category = $('#selectCategory').val(),
+            updateObj.updateData.worktype = $('#selectWorkType').val(),
+            updateObj.updateData.projectname = $('#selectProjectName').val(),
+        
+            $http.post('/data/updateLogDetail', updateObj.updateData)
+                .then((res) => {
+
+                    updateObj.eventObj.title  =  updateObj.updateData.title
+
+                    $('#calendar').fullCalendar('updateEvent', updateObj.eventObj);
+
+                    $('#exampleModal').modal('hide');
+                    
+                    clearFields();
+
+                }, (err) => {
+                    console.log(err)
+                })
+
         }
 
         function setUpCal() {
@@ -136,7 +197,7 @@ angular.module('app', ['login-app'])
                     $('#txtDescription').val('')
 
                 })
-                
+
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
@@ -153,41 +214,66 @@ angular.module('app', ['login-app'])
 
                         var startDate = event.start.format();
                         var endDate = event.end.format();
-                        
-                        $scope.uiObj.end = event.end.format();
-                        $scope.uiObj.end = event.end.format();
+
+                        $scope.uiObj.end = endDate;
+                        $scope.uiObj.endDate = event.end;
+
                         $scope.uiObj._id = event._id;
-                        console.log("-->",$scope.uiObj);   
                         $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
-                        
-                        $http.post('/data/updateLog', $scope.uiObj)
-                        .then((response) => { 
-                            delete $scope.uiObj._id
-                        }, (error) => {
-                            delete $scope.uiObj._id
-                            console.log(error)
-                        })
+
+                        $http.post('/data/updateLogResize', $scope.uiObj)
+                            .then((response) => {
+                                delete $scope.uiObj._id
+                            }, (error) => {
+                                delete $scope.uiObj._id
+                                console.log(error)
+                            })
 
                     },
                     select: function (startDate, endDate) {
-                        onSelect(startDate, endDate);                      
+                        $scope.saveActions = "SaveNew"
+                        onSelect(startDate, endDate);
                     },
                     events: queryUrl,
                     eventClick: function (calEvent, jsEvent, view) {
 
-                        /*                   alert('Event: ' + calEvent.title);
+                        /*alert('Event: ' + calEvent.title);
                                   alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
                                   alert('View: ' + view.name);
                         */
-                        ///                  $('#exampleModal').on('shown.bs.modal', function () {
-                        //$('#myInput').trigger('focus')
-                        //                    })
+                        // $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
+
+
+                        $scope.saveActions = "SaveUpdate"
+                        
+                        updateObj.eventObj = calEvent;
+                        updateObj.updateData._id = calEvent._id;
+                        
+                        $('#exampleModalLabel').html(calEvent.title);
+                        $('#txtDescription').val(calEvent.title);
+                        $('#selectCategory').val(calEvent.category);
+                        $('#selectWorkType').val(calEvent.worktype);
+                        $('#selectProjectName').val(calEvent.projectname);
+
+                        /* var updateObj = {
+                             title: $('#txtDescription').val(),
+                             category:  $('#selectCategory').val(),
+                             worktype: $('#selectWorkType').val(),
+                             projectname: $('#selectProjectName').val(),
+                             _id: calEvent._id
+                         }*/
+
+                        $('#exampleModal').modal('toggle')
+
+                        //http call: updateLogDetail
 
                         //    $('#exampleModalLabel').html(calEvent.title);
                         //   $('#exampleModal').modal('toggle')
-                       // console.log('event click', calEvent._id)
+                        // console.log('event click', calEvent._id)
                     }
                 });
+
+                
 
                 function apiCall(strUrl, objData) {
 

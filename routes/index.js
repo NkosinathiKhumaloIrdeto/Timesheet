@@ -114,13 +114,14 @@ router.post('/log', (req, res) => {
 })
 
 //updateLog
-router.post('/updateLog', (req, res) => {
+router.post('/updateLogResize', (req, res) => {
 
     var updatedObj = {
         end: req.body.end,
-        hours: req.body.hours
+        hours: req.body.hours,
+        endDate: new Date(req.body.endDate)
     }
-    console.log(req.body)
+
     var _id = req.body._id
 
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
@@ -131,6 +132,23 @@ router.post('/updateLog', (req, res) => {
 
     })
 
+})
+
+router.post('/updateLogDetail', (req, res) => {
+
+    var updatedObj = req.body;
+
+    var _id = updatedObj._id;
+
+    delete updatedObj._id;   //just so we don't overwrite the existing record
+   
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
+
+        if (err) return err
+
+        res.status(200).send(updatedObj)
+
+    })
 
 })
 
