@@ -170,7 +170,7 @@ router.get('/getBy/:fromDate/:toDate', (req, res) => {
     var startDate, endDate;
 
     startDate = moment(new Date(req.params.fromDate));
-
+    
     endDate = moment(new Date(req.params.toDate))
 
     startDate.set({ h: 00, m: 00 });
