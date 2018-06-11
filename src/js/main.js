@@ -137,7 +137,7 @@ angular.module('app', ['login-app'])
         }
 
         function onSelect(startDate, endDate) {
-
+            clearFields();
             var stDate = startDate.format().split("T");
             var enDate = endDate.format().split("T");
 
