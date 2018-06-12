@@ -28,7 +28,15 @@
 <body ng-app="app">
 
 
+<script>
 
+$(document).ready(function(){
+      
+    $('#msgSuccess').hide();
+        $('#msgError').hide();
+})
+
+    </script>
     <div ng-controller="contr">
 
         <div class="container" ng-if="enableCalandar == true">
