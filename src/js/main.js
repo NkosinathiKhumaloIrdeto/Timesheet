@@ -11,6 +11,16 @@ angular.module('app', ['login-app'])
             updateData:{},
             eventObj:{}
         }
+        
+        $('#msgSuccess').hide();
+        $('#msgError').hide();
+
+        $scope.msg = {
+            error:"",
+            errorTitle:"",
+            success: "",
+            successTitle:""
+        }
 
         $scope.displayCal = function () {
             queryUrl = url + "/" + $scope.obj.username
@@ -104,25 +114,43 @@ angular.module('app', ['login-app'])
                     $('#exampleModal').modal('hide')
                     $('#txtDescription').val('')
 
+
+                    $scope.msg = {
+                        error:"",
+                        success: ""
+                    }
+                    
+                    flagMessage( $scope.uiObj.title, response.data.message, 1);
+
                     clearFields();
 
-                    //   console.log('success', response);
-
                 }, (error) => {
+                    flagMessage( "Error: ", error, 0);
                     console.log(error)
                 })
 
         }
 
-        /*   function updateEvent() {
-   
-               $http.post('/data/updateLog', $scope.uiObj)
-                   .then((response) => {
-   
-                   }, (error) => {
-                       console.log(error)
-                   })
-           }*/
+        function flagMessage(strTitle, strMessage, type){
+
+            $('#msgSuccess').hide();
+            $('#msgError').hide();
+
+            if (type == 1){
+                $scope.msg.successTitle =  strTitle;
+                $scope.msg.success = strMessage;
+                $('#msgSuccess').show();
+                $('#msgSuccess').delay(5000).fadeOut("slow")
+            } else{
+                $scope.msg.errorTitle =  strTitle;
+                $scope.msg.error = strMessage;
+                $('#msgSuccess').show();
+                $('#msgSuccess').delay(15000).fadeOut("slow")
+            }
+
+            
+
+        }
 
         $scope.genReport = function () {
             $window.open('/Report/Report.html', '_blank');
@@ -138,9 +166,10 @@ angular.module('app', ['login-app'])
 
         function onSelect(startDate, endDate) {
             clearFields();
+            console.log($('#calendar').fullCalendar )
             var stDate = startDate.format().split("T");
             var enDate = endDate.format().split("T");
-
+         
             $scope.uiObj.start = startDate.format()
             $scope.uiObj.end = endDate.format()
             $scope.uiObj.startDate = startDate.format()
@@ -172,12 +201,13 @@ angular.module('app', ['login-app'])
                     updateObj.eventObj.title  =  updateObj.updateData.title
 
                     $('#calendar').fullCalendar('updateEvent', updateObj.eventObj);
-
+                    flagMessage( updateObj.updateData.title, response.data.message, 1);
                     $('#exampleModal').modal('hide');
                     
                     clearFields();
 
                 }, (err) => {
+                    flagMessage( "Error: ", err, 0);
                     console.log(err)
                 })
 
@@ -224,26 +254,29 @@ angular.module('app', ['login-app'])
                         $http.post('/data/updateLogResize', $scope.uiObj)
                             .then((response) => {
                                 delete $scope.uiObj._id
+                                flagMessage( "Success:", response.data.message, 1);
                             }, (error) => {
                                 delete $scope.uiObj._id
+                                flagMessage( "Error:", error, 0);
                                 console.log(error)
                             })
 
                     },
                     select: function (startDate, endDate) {
+
                         $scope.saveActions = "SaveNew"
                         onSelect(startDate, endDate);
                     },
                     events: queryUrl,
                     eventClick: function (calEvent, jsEvent, view) {
 
-                        /*alert('Event: ' + calEvent.title);
+/*                        alert('Event: ' + calEvent.title);
                                   alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                                  alert('View: ' + view.name);
-                        */
+  */                        //        alert('View: ' + view.name);
+                        
                         // $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
 
-
+                       
                         $scope.saveActions = "SaveUpdate"
                         
                         updateObj.eventObj = calEvent;

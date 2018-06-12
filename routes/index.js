@@ -128,7 +128,7 @@ router.post('/updateLogResize', (req, res) => {
 
         if (err) throw err;
 
-        res.status(200).send(updatedObj)
+        res.status(200).send({message:"Record updated successfully",updatedObj})
 
     })
 
@@ -146,7 +146,7 @@ router.post('/updateLogDetail', (req, res) => {
 
         if (err) return err
 
-        res.status(200).send(updatedObj)
+        res.status(200).send({message:"Record updated successfully",updatedObj})
 
     })
 
