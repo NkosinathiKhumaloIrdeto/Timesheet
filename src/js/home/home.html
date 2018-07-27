@@ -1,0 +1,70 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Irdeto Timehseets (Beta 1.5)</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+
+        </div>
+    </nav>
+
+   
+</div>
+
+<div ui-view></div>
+<div class="login-div" ng-if="!enableCalandar">
+    <div>
+        <br>
+        <h4>Please select your name:</h4>
+        <br>
+
+        <form>
+            <div class="row">
+
+                <div class="col">
+                    <select id="selectCategory" ng-model="obj.username" name="selectmultiple" class="form-control">
+                        <option value="Nkosinathi Khumalo">Nkosinathi Khumalo</option>
+                        <option value="Jonas Masemola">Jonas Masemola</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+
+                <div class="col-12">
+                    <input type="button" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<div class="sidenav sidenav-menu" ng-if="enableCalandar">
+
+    <a href="" class="side-nav-header">
+        {{obj.username|getInitials}}
+    </a>
+    <hr>
+
+    <a class="btn btn-side-nav" ui-sref="home.calendar({username:obj.username})" style="text-align: center">
+        <i class="fas fa-calendar-alt"></i>
+    </a>
+    <a class="btn btn-side-nav" ui-sref="home.reports({username:obj.username})" style="text-align: center">
+        <i class="fas fa-file-invoice"></i>
+    </a>
+    <hr>
+    <a href="#" class="btn btn-side-nav" style="text-align: center">
+        <i class="fas fa-info"></i>
+    </a>
+
+</div>

@@ -1,0 +1,240 @@
+<div class="container">
+   
+    <div class="report-div" ng-if="false">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <label>Consulting Firm:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.consultingFirm">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Contractor:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.contractor">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Contractor Number:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.contractorNumber">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Contractor Contact #:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.contractorContact">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <label>Company:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.company">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Client Contact Name:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" ng-model="uiForm.clientContactName">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <div class="report-div">
+        <br>
+        <h4>Please select dates (from-to):</h4>
+        <br>
+
+
+        <div class="date-select">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-3">
+                            <b>Include Leave?:</b>
+                        </div>
+                        <div class="col-9">
+                            {{uiObj.includeLeave}}
+                            <input type="checkbox" ng-model="uiObj.includeLeave">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>From:</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="Date" style="width:200px;" ng-model="uiObj.fromDate" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>To:</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="Date" style="width:200px;" ng-model="uiObj.toDate" class="form-control">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2" style="text-align: center">
+                    <input type="button" class="btn btn-purple" ng-click="genReport()" ng-disabled="uiObj.fromDate == '' || uiObj.toDate == ''"
+                        value="{{uiObj.btnText}}">
+                    <hr>
+                    <a href="#" ng-hide="uiObj.fromDate == '' || uiObj.toDate == ''" ng-click="exportCSV()">CSV</a>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <th>WEEK</th>
+                        <th>DATE</th>
+                        <th>DAY</th>
+                        <th>DAY TOTAL</th>
+                        <th>NORMAL</th>
+                        <th>OVERTIME</th>
+                        <th>SPECIAL</th>
+                        <th>SICK</th>
+                        <th>OTHER</th>
+                        <th>LEAVE</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="report in uiObj.reportData">
+
+                            <td>Week {{report.start|weekAndDay}}</td>
+                            <td>{{report.start | dateOnly}}</td>
+                            <td>{{report.start | dayOfTheWeek}}</td>
+                            <td>{{report.TOTAL}}</td>
+                            <td>
+                                {{report.NORMAL}}
+                            </td>
+                            <td>
+                                {{report.OVERTIME}}
+                            </td>
+                            <td>
+                                {{report.SPECIAL}}
+                            </td>
+                            <td>
+                                {{report.SICK}}
+                            </td>
+                            <td>
+                                {{report.OTHER}}
+                            </td>
+                            <td>
+                                {{report.LEAVE}}
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+                    <div class="col-6">
+                        <div style="padding: 5px; background:#ccc">
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <b>Month Total:</b>
+                                </div>
+                                <div class="col-6">
+                                    <div>
+                                        <b>{{reportingObj.totalNormal}}</b>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row" ng-if="false">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-4">
+                    <label>Contractor:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control" value="{{uiObj.username}}">
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <label>Client:</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-4">
+                    <label>Contractor Signature:</label>
+                </div>
+                <div class="col-8">
+                    <hr>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <label>Client Signature Signature:</label>
+                </div>
+                <div class="col-8">
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+</div>
