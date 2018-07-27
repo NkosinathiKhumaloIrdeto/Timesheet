@@ -43,6 +43,7 @@ button.fc-state-active {
     width: 300px;
     margin: 0 auto;
     text-align: center;
+    
 }
 
 .login-div h1 {
@@ -70,4 +71,123 @@ button.fc-state-active {
     .btn-purple {
         width: 100%;
     }
+}
+
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #5c0055;
+    overflow-x: hidden;
+    padding: 20px;
+    
+}
+
+.btn-side-nav {
+    background: #470f3a;
+    margin-top: 5px;
+}
+
+
+.side-nav-header {
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidenav a {
+    
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    background: #5c0055;
+}
+
+.sidenav hr {
+    border: 1px solid #fff;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+   
+    padding: 0px 10px;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#first
+{    
+    position:absolute;
+    bottom:0;
+    left:0;
+    text-align: center;
+    right:0;
+    top:0;  
+    opacity:0.7;
+    background-color:#000;
+    color:#fff;
+    z-index:9999;
+    display: none;
+}
+
+#first > h1 {
+    top: 50%;
+}
+
+
+.alert{display:none;}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
