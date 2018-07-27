@@ -56,10 +56,10 @@
     </a>
     <hr>
 
-    <a class="btn btn-side-nav" ui-sref="home.calendar({username:obj.username})" style="text-align: center">
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 1}" ui-sref="home.calendar({username:obj.username})" ng-click="activeLink = 1" style="text-align: center">
         <i class="fas fa-calendar-alt"></i>
     </a>
-    <a class="btn btn-side-nav" ui-sref="home.reports({username:obj.username})" style="text-align: center">
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}"  ui-sref="home.reports({username:obj.username})" ng-click="activeLink = 2" style="text-align: center">
         <i class="fas fa-file-invoice"></i>
     </a>
     <hr>

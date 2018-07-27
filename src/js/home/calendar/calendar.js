@@ -255,7 +255,7 @@ var calendarContr = function ($scope, $http, $state) {
                     $http.post('/data/updateLogResize', $scope.uiObj)
                         .then((response) => {
                             delete $scope.uiObj._id
-                            //flagMessage("Success:", response.data.message, 1);
+                            
                             showSnack("Updated: " + response.data.message);
 
                             $('#first').css("display", "none");

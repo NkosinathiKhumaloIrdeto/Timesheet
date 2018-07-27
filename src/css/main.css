@@ -86,8 +86,9 @@ button.fc-state-active {
     
 }
 
+
 .btn-side-nav {
-    background: #470f3a;
+    background: #5c0055;;
     margin-top: 5px;
 }
 
@@ -106,7 +107,15 @@ button.fc-state-active {
     font-size: 25px;
     color: #fff;
     display: block;
+    -webkit-transition: background 1s; /* For Safari 3.1 to 6.0 */
+    transition: background 1s;
 }
+
+.sidenav-active {
+    background: #470f3a;
+    
+}
+
 
 .sidenav a:hover {
     color: #f1f1f1;
