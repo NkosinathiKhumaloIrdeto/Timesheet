@@ -50,7 +50,7 @@ button.fc-state-active {
     color: #5c0055;
 }
 
-.btn-login {
+.btn-login, .btn-faq-search {
     background: #5c0055;
     color: #fff;
     width: 100px;

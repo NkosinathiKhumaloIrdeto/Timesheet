@@ -14,11 +14,11 @@
 
         </div>
     </nav>
-
    
 </div>
 
 <div ui-view></div>
+
 <div class="login-div" ng-if="!enableCalandar">
     <div>
         <br>
@@ -63,7 +63,7 @@
         <i class="fas fa-file-invoice"></i>
     </a>
     <hr>
-    <a href="#" class="btn btn-side-nav" style="text-align: center">
+    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.info({username:obj.username})" ng-click="activeLink = 3" style="text-align: center">
         <i class="fas fa-info"></i>
     </a>
 

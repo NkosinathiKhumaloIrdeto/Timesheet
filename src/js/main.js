@@ -40,6 +40,13 @@ angular.module('app', ['login-app', 'ui.router'])
                 templateUrl: 'js/home/report/report.html',
                 params: {username:null}
                 
+            }) //
+            .state('home.info', {
+                name: 'info',
+                controller:infoCtr,
+                templateUrl: 'js/home/info/info.html',
+                params: {username:null}
+                
             })
 
         $urlRouterProvider.otherwise('/home');
