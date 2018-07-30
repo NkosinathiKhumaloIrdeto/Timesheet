@@ -49,7 +49,7 @@ router.get('/get', (req, res) => {
     var fields = ['cars', 'color']
 
 
-    var opts = { fields, quote: '' };
+    var opts = { fields, delimiter: '\t'};
 
     myData = [{
         "car": "Audi",
@@ -225,7 +225,7 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
 
         var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title"]
 
-        var opts = { fields, quote: '' };
+        var opts = { fields, delimiter:" ",quote: '' };
 
         try {
 
@@ -276,7 +276,6 @@ function updateTime(data) {
         if (hours.length > 3) {
             data[i].hours = timeToDecimal(hours)
         }
-
 
     }
 

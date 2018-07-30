@@ -148,6 +148,10 @@ button.fc-state-active {
     font-size: 17px;
 }
 
+#selectCategory {
+    margin-right: 8px;
+}
+
 #first
 {    
     position:absolute;
