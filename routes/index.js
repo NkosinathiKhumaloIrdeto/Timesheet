@@ -225,7 +225,7 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
 
         var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title"]
 
-        var opts = { fields, delimiter:" ",quote: '' };
+        var opts = { fields, delimiter:",",quote: '' };
 
         try {
 
