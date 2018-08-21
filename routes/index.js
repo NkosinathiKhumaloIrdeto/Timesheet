@@ -106,12 +106,12 @@ router.post('/log', (req, res) => {
 
         if (err) { throw err; return; }
 
-        res.status(200).send({ "message": "Added successfully" })
+        res.status(200).send({ "message": "Added successfully", id: newLogModal._id })
 
         //  return done(null, data);
     })
 
-})
+}) 
 
 //updateLog
 router.post('/updateLogResize', (req, res) => {
@@ -121,7 +121,7 @@ router.post('/updateLogResize', (req, res) => {
         hours: req.body.hours,
         endDate: new Date(req.body.endDate)
     }
-
+    console.log("obj data",req.body);
     var _id = req.body._id
 
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
@@ -166,26 +166,26 @@ router.get('/getUser/:name', (req, res) => {
 })
 
 router.get('/getBy/:fromDate/:toDate', (req, res) => {
-
+console.log(1);
     var startDate, endDate;
 
     startDate = moment(new Date(req.params.fromDate));
     
     endDate = moment(new Date(req.params.toDate))
-
+    
     startDate.set({ h: 00, m: 00 });
 
     endDate.set({ h: 23, m: 59 });
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
-
+    
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
         }
-
+        
         res.status(200).send(data);
 
     })

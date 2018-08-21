@@ -91,7 +91,9 @@ var calendarContr = function ($scope, $http, $state) {
     function saveEvent() {
 
         if ($scope.txtDescription.length == 0) {
+
             alert("Please add description");
+
             return;
         }
 
@@ -107,6 +109,9 @@ var calendarContr = function ($scope, $http, $state) {
         //send data to server
         $http.post('/data/log', $scope.uiObj)
             .then((response) => {
+
+                $scope.uiObj.id = response.data.id;
+                console.log($scope.uiObj);
 
                 $('#calendar').fullCalendar('renderEvent', $scope.uiObj);
                 $('#exampleModal').modal('hide')
@@ -248,17 +253,23 @@ var calendarContr = function ($scope, $http, $state) {
                     $scope.uiObj.end = endDate;
                     $scope.uiObj.endDate = event.end;
 
-                    $scope.uiObj._id = event._id;
+                    console.log(event);
+
+                    if (event._id.length < 6) {
+                        $scope.uiObj._id = event.id;
+                    } else {
+                        $scope.uiObj._id = event._id;
+                    }
+
+
                     $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
 
                     $('#first').css("display", "block");
                     $http.post('/data/updateLogResize', $scope.uiObj)
                         .then((response) => {
-                            delete $scope.uiObj._id
-                            
-                            showSnack("Updated: " + response.data.message);
 
                             $('#first').css("display", "none");
+                            showSnack("Updated: " + response.data.message);
                         }, (error) => {
                             delete $scope.uiObj._id
                             flagMessage("Error:", error, 0);

@@ -23,7 +23,7 @@ var reportCtr = function ($scope,$http, $state) {
 
     function determineWorkType(object, strType, hours) {
 
-        var decHours = timeToDecimal(hours);
+        var decHours =  timeToDecimal(hours);
 
         switch (strType) {
             case "LEAVE":
@@ -44,20 +44,25 @@ var reportCtr = function ($scope,$http, $state) {
             case "SPECIAL":
                 object.SPECIAL += decHours
                 break;
+            default: 
+
+                break;
         }
 
-
         if ((strType == 'LEAVE' || strType == 'SICK' || strType == 'SPECIAL')) {
+
             if ($scope.uiObj.includeLeave) {
 
                 $scope.reportingObj.totalNormal += decHours
             }
+
         } else {
 
             $scope.reportingObj.totalNormal += decHours
         }
-        object.TOTAL += decHours
 
+        object.TOTAL += decHours
+        
         return object;
 
     }
@@ -65,8 +70,9 @@ var reportCtr = function ($scope,$http, $state) {
     function timeToDecimal(t) {
 
         var arr = t.split(':');
-
-        return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
+        //console.log("in-->",t);
+        //console.log("out",parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10)))
+        return parseFloat(parseFloat(arr[0], 10) + '.' + parseFloat((arr[1] / 6) * 10, 10));
     }
 
     $scope.exportCSV = function () {
@@ -121,7 +127,7 @@ var reportCtr = function ($scope,$http, $state) {
     }
 
     $scope.genReport = function () {
-
+        
         if ($scope.uiObj.btnText == "Clear") {
             strDateStart = '';
             currentObjs = [];
@@ -130,13 +136,15 @@ var reportCtr = function ($scope,$http, $state) {
             $scope.reportingObj.totalNormal = 0
             return;
         }
-
+        
         var from, to;
 
         from = $scope.uiObj.fromDate;
 
         to = $scope.uiObj.toDate;
+        
         $('#first').css("display", "block");
+        
         $http.get('/data/getBy/' + from + "/" + to)
 
             .then((response) => {
@@ -144,7 +152,7 @@ var reportCtr = function ($scope,$http, $state) {
                 for (var i = 0; i < response.data.length; i++) {
 
                     var obj = response.data[i];
-
+                    
                     if (strDateStart !== obj.start.split("T")[0]) {
 
                         strDateStart = obj.start.split("T")[0];
@@ -158,9 +166,9 @@ var reportCtr = function ($scope,$http, $state) {
                         obj.SICK = 0;
 
                         currentObjs.push(obj);
-
+                        
                         currentObjs[currentObjs.length - 1] = determineWorkType(obj, obj.worktype, obj.hours)
-                        $('#first').css("display", "none");
+                       
                     }
                     else {
 
@@ -169,9 +177,11 @@ var reportCtr = function ($scope,$http, $state) {
                         currentObjs[currentObjs.length - 1] = updatedObj
 
                     }
+                
 
                 }
 
+                $('#first').css("display", "none");
                 $scope.uiObj.reportData = currentObjs;
 
                 $scope.uiObj.btnText = "Clear";

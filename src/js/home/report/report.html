@@ -121,7 +121,7 @@
             <div class="col">
                 <table class="table">
                     <thead>
-                        <th>WEEK</th>
+                        
                         <th>DATE</th>
                         <th>DAY</th>
                         <th>DAY TOTAL</th>
@@ -135,7 +135,7 @@
                     <tbody>
                         <tr ng-repeat="report in uiObj.reportData">
 
-                            <td>Week {{report.start|weekAndDay}}</td>
+                           
                             <td>{{report.start | dateOnly}}</td>
                             <td>{{report.start | dayOfTheWeek}}</td>
                             <td>{{report.TOTAL}}</td>
