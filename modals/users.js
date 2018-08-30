@@ -10,7 +10,8 @@ let Users = new Schema({
     contractor : String,
     contractorNumber : String,
     clientContactName : String,
-    contractorContact : String
+    contractorContact : String,
+    username: String
 
 })
 

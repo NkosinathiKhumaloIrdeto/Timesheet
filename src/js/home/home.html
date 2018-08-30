@@ -14,7 +14,7 @@
 
         </div>
     </nav>
-   
+
 </div>
 
 <div ui-view></div>
@@ -27,12 +27,12 @@
 
         <form>
             <div class="row">
-
                 <div class="col">
                     <select id="selectCategory" ng-model="obj.username" name="selectmultiple" class="form-control">
                         <option value="Nkosinathi Khumalo">Nkosinathi Khumalo</option>
                         <option value="Jonas Masemola">Jonas Masemola</option>
                     </select>
+
                 </div>
             </div>
 
@@ -56,15 +56,20 @@
     </a>
     <hr>
 
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 1}" ui-sref="home.calendar({username:obj.username})" ng-click="activeLink = 1" style="text-align: center">
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 1}" ui-sref="home.calendar({username:obj.username})"
+        ng-click="activeLink = 1" style="text-align: center">
         <i class="fas fa-calendar-alt"></i>
     </a>
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}"  ui-sref="home.reports({username:obj.username})" ng-click="activeLink = 2" style="text-align: center">
+
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.reports({username:obj.username})"
+        ng-click="activeLink = 2" style="text-align: center">
         <i class="fas fa-file-invoice"></i>
-    </a>
+    </a>  
     <hr>
-    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.info({username:obj.username})" ng-click="activeLink = 3" style="text-align: center">
+    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 4}" ui-sref="home.info({username:obj.username})"
+        ng-click="activeLink = 3" style="text-align: center">
         <i class="fas fa-info"></i>
     </a>
 
 </div>
+
