@@ -13,7 +13,8 @@ let Logs = new Schema({
     hours: String,
     title: String,
     projectname: String,
-    
+    logid: String,
+    color: String
 })
 
 module.exports = mongoose.model('logs', Logs);

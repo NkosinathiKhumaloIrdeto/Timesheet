@@ -1,7 +1,8 @@
 <!--calendar-->
 
 <div class="container">
-
+    <input type="button" value="click" ng-click="test()">
+    
     <div class="alert alert-success" id="msgSuccess" role="alert">
         <strong>{{msg.successTitle}}</strong> {{msg.success}}
     </div>
@@ -13,6 +14,7 @@
 <br>
 
 <div class="container">
+        
     <div id="calendar" class="fc fc-unthemed fc-ltr">
         <div class="fc-toolbar fc-header-toolbar">
         </div>
@@ -30,13 +32,13 @@
             </div>
 
             <div class="modal-body">
+                
                 <div class="row">
                     <div class="col-4">
                         <label class="control-label" for="textinput">Description:</label>
                     </div>
                     <div class="col-8">
-
-                        <input class="form-control" id="txtDescription" ng-model="txtDescription" name="txtDescription">
+                        <input class="form-control" type="text" id="title" name="txtDescription">
                     </div>
                 </div>
                 <br>
@@ -45,7 +47,7 @@
                         <label class="control-label" for="textinput">Work Type:</label>
                     </div>
                     <div class="col-8">
-                        <select id="selectWorkType" name="selectmultiple" class="form-control">
+                        <select id="worktype"  name="selectmultiple" class="form-control">
                             <option value="LEAVE">LEAVE</option>
                             <option value="NORMAL">NORMAL</option>
                             <option value="OTHER">OTHER</option>
@@ -61,21 +63,7 @@
                         <label class="control-label" for="textinput">Category:</label>
                     </div>
                     <div class="col-8">
-                            <!--<input type="radio" id="selectCategory" name="selectmultiple" value="Annual leave">Annual leave
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Conference">Conference
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Development">Development
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Documentation">Documentation 
-                            <br>
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Internal Meeting">Internal Meeting
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Meeting Customer">Meeting Customer
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Problem Solving">Problem Solving <br>
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Public Holiday">Public Holiday
-                           
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Testing">Testing
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Timesheets">Timesheets
-                            <input type="radio" id="selectCategory" name="selectmultiple" value="Training">Training -->
-                            
-                        <select id="selectCategory" name="selectmultiple" class="form-control">
+                        <select id="category" class="form-control">
                             <option value="Annual leave">Annual leave</option>
                             <option value="Conference">Conference</option>
                             <option value="Development">Development</option>
@@ -96,7 +84,7 @@
                         <label class="control-label" for="textinput">Project Name:</label>
                     </div>
                     <div class="col-8">
-                        <select id="selectProjectName" name="selectmultiple" class="form-control">
+                        <select id="projectname" name="selectmultiple" class="form-control">
                             <option value="DSTVO BILLABLE">DSTVO BILLABLE</option>
                             <option value="DSTVO Non Billable">DSTVO Non Billable</option>
                             <option value="Irdeto Internal">Irdeto Internal</option>
@@ -106,8 +94,10 @@
             </div>
 
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" ng-click="deleteEvent()" id="btn-remove-entry">Delete</button>
+                <button type="button" class="btn btn-primary" ng-click="actionEvent()" 
+                id="btn-save-entry">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="actionEvent()" id="btn-save-entry">Save changes</button>
             </div>
         </div>
     </div>

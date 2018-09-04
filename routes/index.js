@@ -31,7 +31,6 @@ router.get('/getAll/:username', (req, res) => {
             return;
         }
 
-
         res.send(data);
 
     })
@@ -49,7 +48,7 @@ router.get('/get', (req, res) => {
     var fields = ['cars', 'color']
 
 
-    var opts = { fields, delimiter: '\t'};
+    var opts = { fields, delimiter: '\t' };
 
     myData = [{
         "car": "Audi",
@@ -94,7 +93,6 @@ router.get('/get', (req, res) => {
         console.error(err);
     }
 
-
 })
 
 
@@ -104,14 +102,13 @@ router.post('/log', (req, res) => {
 
     newLogModal.save(function (err) {
 
-        if (err) { throw err; return; }
+        if (err) { throw err; }
 
         res.status(200).send({ "message": "Added successfully", id: newLogModal._id })
 
-        //  return done(null, data);
     })
 
-}) 
+})
 
 //updateLog
 router.post('/updateLogResize', (req, res) => {
@@ -121,14 +118,14 @@ router.post('/updateLogResize', (req, res) => {
         hours: req.body.hours,
         endDate: new Date(req.body.endDate)
     }
-    console.log("obj data",req.body);
+
     var _id = req.body._id
 
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
 
         if (err) throw err;
 
-        res.status(200).send({message:"Record updated successfully",updatedObj})
+        res.status(200).send({ message: "Record updated successfully", updatedObj })
 
     })
 
@@ -141,12 +138,24 @@ router.post('/updateLogDetail', (req, res) => {
     var _id = updatedObj._id;
 
     delete updatedObj._id;   //just so we don't overwrite the existing record
-   
+
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
 
         if (err) return err
 
-        res.status(200).send({message:"Record updated successfully",updatedObj})
+        res.status(200).send({ message: "Record updated successfully", updatedObj })
+
+    })
+
+})
+
+router.post('/deleteLog', (req, res) => {
+
+    logModal.deleteOne(req.body, (err) => {
+
+        if (err) return err;
+
+        res.status(200).send({ message: "Record deleted successfully" })
 
     })
 
@@ -178,34 +187,34 @@ router.get('/getUser/:name', (req, res) => {
 
 })
 
-router.get('/getBy/:fromDate/:toDate', (req, res) => {
-console.log(1);
+router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
+
     var startDate, endDate;
 
     startDate = moment(new Date(req.params.fromDate));
-    
+
     endDate = moment(new Date(req.params.toDate))
-    
+
     startDate.set({ h: 00, m: 00 });
 
     endDate.set({ h: 23, m: 59 });
 
-    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
-    
+    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
+
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
         }
-        
+
         res.status(200).send(data);
 
     })
 
 })
 
-router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
+router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
     var csvPath = "./src/Report/generated/";
     var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
@@ -221,7 +230,7 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
 
     endDate.set({ h: 23, m: 59 });
 
-    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
+    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
@@ -238,7 +247,7 @@ router.get('/exportCSV/:fromDate/:toDate', (req, res) => {
 
         var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title"]
 
-        var opts = { fields, delimiter:",",quote: '' };
+        var opts = { fields, delimiter: ",", quote: '' };
 
         try {
 

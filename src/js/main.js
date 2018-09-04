@@ -4,13 +4,29 @@ angular.module('app', ['login-app', 'ui.router'])
         // In the return function, we must pass in a single parameter which will be the data we will work on.
         // We have the ability to support multiple other parameters that can be passed into the filter optionally
         return function (name) {
-
-            var split_name = name.split(" ");
+            
+            console.log(name);
 
             var output;
 
-            output = split_name[0].slice(0, 1)
-            output = output + split_name[1].slice(0, 1)
+            if(name.indexOf(" ") > 0){
+
+                console.log("1");
+
+                var split_name = name.split(" ");
+
+                output = split_name[0].slice(0, 1);
+
+                output = output + split_name[1].slice(0, 1);
+
+            } else 
+
+            { 
+                console.log("2");
+
+                output = (name.charAt(0) + "" + name.charAt(1)).toLocaleUpperCase();
+
+            }
 
             return output;
 
@@ -30,23 +46,24 @@ angular.module('app', ['login-app', 'ui.router'])
             .state('home.calendar', {
                 name: 'calendar',
                 controller: calendarContr,
+                controllerAs: "calController",
                 templateUrl: 'js/home/calendar/calendar.html',
-                params: {username:null}
-                
+                params: { username: null }
+
             })
             .state('home.reports', {
                 name: 'reports',
-                controller:reportCtr,
+                controller: reportCtr,
                 templateUrl: 'js/home/report/report.html',
-                params: {username:null}
-                
+                params: { username: null }
+
             }) //
             .state('home.info', {
                 name: 'info',
-                controller:infoCtr,
+                controller: infoCtr,
                 templateUrl: 'js/home/info/info.html',
-                params: {username:null}
-                
+                params: { username: null }
+
             })
 
         $urlRouterProvider.otherwise('/home');
@@ -68,4 +85,3 @@ angular.module('app', ['login-app', 'ui.router'])
     })
 
 
-    

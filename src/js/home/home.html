@@ -24,26 +24,29 @@
         <br>
         <h4>Please select your name:</h4>
         <br>
-
         <form>
             <div class="row">
                 <div class="col">
                     <select id="selectCategory" ng-model="obj.username" name="selectmultiple" class="form-control">
-                        <option value="Nkosinathi Khumalo">Nkosinathi Khumalo</option>
-                        <option value="Jonas Masemola">Jonas Masemola</option>
+                        <option value="Alouw">Alouw</option>
+                        <option value="Gmountford">Gmountford</option>
+                        <option value="Jacqui Steenkamp">Jacqui Steenkamp</option>
+                        <option value="Jmasemola">Jmasemola</option>
+                        <option value="Lameck Mwasisebe">Lameck Mwasisebe</option>
+                        <option value="Nkhumalo">Nkhumalo</option>
+                        <option value="Rmorgan">Rmorgan</option>
+                        <option value="Syedlapalli">Syedlapalli</option>
+                        <option value="Vinu George">Vinu George</option>
+                        <option value="Yannick Ngoi">Yannick Ngoi</option>
                     </select>
-
                 </div>
             </div>
-
             <hr>
             <div class="row">
-
                 <div class="col-12">
-                    <input type="button" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
+                    <input type="button" ng-disabled="obj.username == ''" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
                 </div>
             </div>
-
         </form>
     </div>
 
@@ -64,12 +67,11 @@
     <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.reports({username:obj.username})"
         ng-click="activeLink = 2" style="text-align: center">
         <i class="fas fa-file-invoice"></i>
-    </a>  
+    </a>
     <hr>
-    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 4}" ui-sref="home.info({username:obj.username})"
+    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.info({username:obj.username})"
         ng-click="activeLink = 3" style="text-align: center">
         <i class="fas fa-info"></i>
     </a>
 
 </div>
-

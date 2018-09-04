@@ -145,7 +145,7 @@ var reportCtr = function ($scope,$http, $state) {
         
         $('#first').css("display", "block");
         
-        $http.get('/data/getBy/' + from + "/" + to)
+        $http.get('/data/getBy/' + from + "/" + to + "/" + $scope.uiObj.username)
 
             .then((response) => {
 
