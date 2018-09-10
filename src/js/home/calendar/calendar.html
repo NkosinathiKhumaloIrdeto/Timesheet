@@ -1,7 +1,7 @@
 <!--calendar-->
 
 <div class="container">
-        
+
     <div class="alert alert-success" id="msgSuccess" role="alert">
         <strong>{{msg.successTitle}}</strong> {{msg.success}}
     </div>
@@ -13,7 +13,7 @@
 <br>
 
 <div class="container">
-        
+
     <div id="calendar" class="fc fc-unthemed fc-ltr">
         <div class="fc-toolbar fc-header-toolbar">
         </div>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="modal-body">
-                
+
                 <div class="row">
                     <div class="col-4">
                         <label class="control-label" for="textinput">Description:</label>
@@ -46,7 +46,7 @@
                         <label class="control-label" for="textinput">Work Type:</label>
                     </div>
                     <div class="col-8">
-                        <select id="worktype"  name="selectmultiple" class="form-control">
+                        <select id="worktype" name="selectmultiple" class="form-control">
                             <option value="LEAVE">LEAVE</option>
                             <option value="NORMAL">NORMAL</option>
                             <option value="OTHER">OTHER</option>
@@ -63,17 +63,28 @@
                     </div>
                     <div class="col-8">
                         <select id="category" class="form-control">
-                            <option value="Annual leave">Annual leave</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Architecture">Architecture</option>
                             <option value="Conference">Conference</option>
+                            <option value="Customer Training">Customer Training</option>
                             <option value="Development">Development</option>
                             <option value="Documentation">Documentation</option>
-                            <option value="Internal Meeting">Internal Meeting</option>
+                            <option value="Installation">Installation</option>
+                            <option value="Leave Annual">Leave Annual</option>
+                            <option value="Leave Parental">Leave Parental</option>
+                            <option value="Leave Sick">Leave Sick</option>
+                            <option value="Management">Management</option>
                             <option value="Meeting Customer">Meeting Customer</option>
+                            <option value="Meeting Internal">Meeting Internal</option>
+                            <option value="Pre-Sales Support">Pre-Sales Support</option>
                             <option value="Problem Solving">Problem Solving</option>
+                            <option value="Project Management">Project Management</option>
+                            <option value="Project Support">Project Support</option>
                             <option value="Public Holiday">Public Holiday</option>
+                            <option value="Special Leave">Special Leave</option>
                             <option value="Testing">Testing</option>
-                            <option value="Timesheets">Timesheets</option>
                             <option value="Training">Training</option>
+                            <option value="Travel">Travel</option>
                         </select>
                     </div>
                 </div>
@@ -87,6 +98,18 @@
                             <option value="DSTVO BILLABLE">DSTVO BILLABLE</option>
                             <option value="DSTVO Non Billable">DSTVO Non Billable</option>
                             <option value="Irdeto Internal">Irdeto Internal</option>
+                            <option value="New Project Billable">New Project Billable</option>
+                            <option value="New Project Non Billable">New Project Non Billable</option>
+                            <option value="ShahzadSky Non Billable">ShahzadSky Non Billable</option>
+                            <option value="ShahzadSky Billable">ShahzadSky Billable</option>
+                            <option value="Splunk Billable">Splunk Billable</option>
+                            <option value="Splunk Non Billable">Non Billable</option>
+                            <option value="KMS Automation Billable">KMS Automation Billable</option>
+                            <option value="KMS Automation Non Billable">KMS Automation Non Billable</option>
+                            <option value="Box Office Monitoring Billable">Box Office Monitoring Billable</option>
+                            <option value="Box Office Monitoring Non Billable">Box Office Monitoring Non Billable</option>
+                            <option value="KMS Advanced Monitoring Billable">KMS Advanced Monitoring Billable</option>
+                            <option value="KMS Advanced Monitoring Non Billable">KMS Advanced Monitoring Non Billable</option>
                         </select>
                     </div>
                 </div>
@@ -94,8 +117,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" ng-click="deleteEvent()" id="btn-remove-entry">Delete</button>
-                <button type="button" class="btn btn-primary" ng-click="actionEvent()" 
-                id="btn-save-entry">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="actionEvent()" id="btn-save-entry">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
