@@ -1,9 +1,8 @@
 .fc-event,
 .fc-dot {
     background-color: #5c0055;
-    border: 0px #fff;
+    border: 1px #5c0055;
     color: white;
-    border-radius: 0px;
 }
 
 .fc-content {
