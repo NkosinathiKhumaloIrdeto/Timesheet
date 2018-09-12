@@ -4,6 +4,18 @@ var homeContr = function ($scope, $state, $http) {
     $scope.activeLink = 1;
     $scope.obj = { username: "" };
 
+    $scope.db = {
+        users: [
+        ]
+    } 
+
+    //load usernames
+    $http.get("/users/getUsers")
+    .then((res)=>{
+        console.log(res.data)
+        $scope.db.users = res.data;
+    })
+
     //$scope.obj = { users: [] }
 
     //load users from db
@@ -22,7 +34,7 @@ console.log(res.data);
         
 
         $('.login-div').hide();
-        $state.go("home.calendar", { username: $scope.obj.username })
+        $state.go("home.calendar", { username: $scope.obj.username.username })
     }
 
 

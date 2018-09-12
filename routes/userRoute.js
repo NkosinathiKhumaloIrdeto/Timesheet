@@ -29,4 +29,20 @@ router.get('/getUsers', (req, res) => {
 
 })
 
+router.post ('/adduser', (req,res)=>{
+
+    console.log("userdata", req.body);
+
+    var new_user = new usersModal(req.body);
+
+    new_user.save(function (err) {
+
+        if (err) { throw err; }
+
+        res.status(200).send({ "message": "Added successfully", id: new_user._id })
+
+    })
+
+})
+
 module.exports = router;

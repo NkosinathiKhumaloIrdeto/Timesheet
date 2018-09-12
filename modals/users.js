@@ -7,12 +7,11 @@ let Users = new Schema({
     lastname : String,
     consultingFirm : String,
     company : String,
-    contractor : String,
+    contractor : String, 
     contractorNumber : String,
     clientContactName : String,
     contractorContact : String,
     username: String
-
 })
 
 module.exports = mongoose.model('users', Users);
