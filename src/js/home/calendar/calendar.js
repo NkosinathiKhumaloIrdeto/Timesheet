@@ -348,6 +348,13 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
+    var eventMoveObj = {
+        start:"",
+        startDate:"",
+        end: "",
+        endDate:""
+    }
+
     function setUpCal() {
 
         $(document).ready(function () {
@@ -372,9 +379,59 @@ var calendarContr = function ($scope, $http, $state) {
                 defaultDate: moment(new Date()),
                 defaultView: 'agendaWeek',
                 navLinks: true, // can click day/week names to navigate views
-                editable: true,
+                eventDurationEditable: true,
+                eventStartEditable: false,
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true, //Allows a user to highlight multiple days or timeslots by clicking and dragging.
+              /*  eventDragStart: function( event, jsEvent, ui, view ) { 
+
+                    eventMoveObj.start = "";
+                    eventMoveObj.startDate = "";
+
+                    eventMoveObj = {
+                        start:"",
+                        startDate:"",
+                        end: "",
+                        endDate:""
+                    }
+
+                    console.log("1",event)
+                },
+                eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+                console.log(event);
+                return;
+                    var startDate = event.startDate//.format();
+                    var endDate = event.endDate//.format();
+
+                    $scope.uiObj.end = endDate;
+                    $scope.uiObj.endDate = event.end;
+
+                    $scope.uiObj.start = startDate;
+                    $scope.uiObj.startDate = event.start;
+
+                    if (event._id.length < 6) {
+                        $scope.uiObj._id = event.id;
+                    } else {
+                        $scope.uiObj._id = event._id;
+                    }
+
+                    $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
+
+                    $('#first').css("display", "block");
+                    
+                    
+
+                    $http.post('/data/updateLogResize', $scope.uiObj)
+                        .then((response) => {
+
+                            $('#first').css("display", "none");
+                            showSnack("Updated: " + response.data.message);
+                        }, (error) => {
+                            delete $scope.uiObj._id
+                            flagMessage("Error:", error, 0);
+                            console.log(error)
+                        })
+                },*/
                 eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
 
                     var startDate = event.start.format();

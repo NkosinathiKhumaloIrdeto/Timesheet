@@ -115,9 +115,38 @@ router.post('/updateLogResize', (req, res) => {
 
     var updatedObj = {
         end: req.body.end,
+      //  start: req.body.start, //new
         hours: req.body.hours,
-        endDate: new Date(req.body.endDate)
+        endDate: new Date(req.body.endDate),
+      //  startDate: new Date(req.body.startDate)
     }
+
+    console.log("LogData",updatedObj);
+
+    var _id = req.body._id
+
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
+
+        if (err) throw err;
+
+        res.status(200).send({ message: "Record updated successfully", updatedObj })
+
+    })
+
+})
+
+//updateLog
+router.post('/updateLogMove', (req, res) => {
+
+    var updatedObj = {
+        end: req.body.end,
+        start: req.body.start, //new
+        hours: req.body.hours,
+        endDate: new Date(req.body.endDate),
+        startDate: new Date(req.body.startDate)
+    }
+
+    console.log("LogData",updatedObj);
 
     var _id = req.body._id
 
