@@ -65,6 +65,13 @@ angular.module('app', ['login-app', 'ui.router'])
                 params: { username: null }
 
             })
+            .state('home.settings', {
+                name: 'settings',
+                controller: settingsCtr,
+                templateUrl: 'js/home/settings/settings.html',
+                params: { username: null }
+
+            })
 
         $urlRouterProvider.otherwise('/home');
     })

@@ -12,7 +12,6 @@ var homeContr = function ($scope, $state, $http) {
     //load usernames
     $http.get("/users/getUsers")
     .then((res)=>{
-        console.log(res.data)
         $scope.db.users = res.data;
     })
 

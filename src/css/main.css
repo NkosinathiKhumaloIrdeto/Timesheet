@@ -62,6 +62,15 @@ button.fc-state-active {
     width: 100px;
 }
 
+.no-radius{
+    border-radius: 0px;
+}
+
+.btn-purple-color {
+    background: #5c0055;
+    color: #fff;
+}
+
 @media all and (max-width: 412px) {
     .login-div {
         width: 100%;

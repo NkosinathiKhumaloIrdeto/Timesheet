@@ -121,8 +121,6 @@ router.post('/updateLogResize', (req, res) => {
       //  startDate: new Date(req.body.startDate)
     }
 
-    console.log("LogData",updatedObj);
-
     var _id = req.body._id
 
     logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
@@ -145,8 +143,6 @@ router.post('/updateLogMove', (req, res) => {
         endDate: new Date(req.body.endDate),
         startDate: new Date(req.body.startDate)
     }
-
-    console.log("LogData",updatedObj);
 
     var _id = req.body._id
 

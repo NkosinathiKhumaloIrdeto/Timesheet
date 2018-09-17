@@ -31,8 +31,6 @@ router.get('/getUsers', (req, res) => {
 
 router.post ('/adduser', (req,res)=>{
 
-    console.log("userdata", req.body);
-
     var new_user = new usersModal(req.body);
 
     new_user.save(function (err) {

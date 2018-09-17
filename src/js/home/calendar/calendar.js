@@ -67,6 +67,54 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
+    loadData_category();
+    loadData_worktype();
+    loadData_projectname();
+
+    function loadData_worktype() {
+
+        $.getJSON("/settings/getAllSettings/worktype", function (result) {
+            var options = $("#worktype");
+            //don't forget error handling!
+            $.each(result, function (item) {
+                options.append($("<option />").val(result[item].description).text(result[item].description));
+            });
+        }, (err) => {
+            alert("Unable to load worktype")
+        });
+
+    }
+
+    function loadData_category() {
+        //get all category
+
+
+        $.getJSON("/settings/getAllSettings/category", function (result) {
+            var options = $("#category");
+            //don't forget error handling!
+            $.each(result, function (item) {
+                options.append($("<option />").val(result[item].description).text(result[item].description));
+            });
+        }, (err) => {
+            alert("Unable to load worktype")
+        });
+    }
+
+    function loadData_projectname() {
+        //get all projectname
+
+
+        $.getJSON("/settings/getAllSettings/projectname", function (result) {
+            var options = $("#projectname");
+            //don't forget error handling!
+            $.each(result, function (item) {
+                options.append($("<option />").val(result[item].description).text(result[item].description));
+            });
+        }, (err) => {
+            alert("Unable to load worktype")
+        });
+    }
+
     $scope.uiObj = {
         worktype: "",
         employee: "",
@@ -118,12 +166,24 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
+    function setusername() {
+
+        if ($scope.obj.username == null) {
+            $scope.obj.username = $state.params.username;
+        }
+
+        return $scope.obj.username;
+
+    }
+
+
+
     function saveEvent() {
 
         $('#first').css("display", "block");
 
         var data = {
-            employee: $scope.obj.username,
+            employee: setusername(),
             title: $('#title').val(),
             category: $('#category').val(),
             worktype: $('#worktype').val(),
@@ -135,29 +195,6 @@ var calendarContr = function ($scope, $http, $state) {
             startDate: $scope.uiObj.startDate,
             endDate: $scope.uiObj.endDate
         }
-
-        /*
-           $('#exampleModalLabel').html(calEvent.title);
-                    $('#description').val(calEvent.title);
-                    $('#category').val(calEvent.category);
-                    $('#worktype').val(calEvent.worktype);
-                    $('#selectprojectname').val(calEvent.projectname); 
-        
-        $scope.uiObj.employee = $scope.obj.username;
-        $scope.uiObj.title = $('#txtDescription').val();
-        $scope.uiObj.category = $('#selectCategory').val();
-        $scope.uiObj.worktype = $('#selectWorkType').val();
-        $scope.uiObj.projectname = $('#selectProjectName').val();
-        $scope.uiObj.hours = timeToDecimal(getHours($scope.uiObj.end, $scope.uiObj.start));
-        $scope.uiObj.color = eventColor($('#selectWorkType').val()); */
-
-        /* $scope.catpureForm = {
-     description: "",
-     category: "",
-     worktype: "",
-     projectname: ""
- }*/
-
 
         //send data to server
         $http.post('/data/log', data)
@@ -348,13 +385,6 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
-    var eventMoveObj = {
-        start:"",
-        startDate:"",
-        end: "",
-        endDate:""
-    }
-
     function setUpCal() {
 
         $(document).ready(function () {
@@ -383,55 +413,55 @@ var calendarContr = function ($scope, $http, $state) {
                 eventStartEditable: false,
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true, //Allows a user to highlight multiple days or timeslots by clicking and dragging.
-              /*  eventDragStart: function( event, jsEvent, ui, view ) { 
-
-                    eventMoveObj.start = "";
-                    eventMoveObj.startDate = "";
-
-                    eventMoveObj = {
-                        start:"",
-                        startDate:"",
-                        end: "",
-                        endDate:""
-                    }
-
-                    console.log("1",event)
-                },
-                eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
-                console.log(event);
-                return;
-                    var startDate = event.startDate//.format();
-                    var endDate = event.endDate//.format();
-
-                    $scope.uiObj.end = endDate;
-                    $scope.uiObj.endDate = event.end;
-
-                    $scope.uiObj.start = startDate;
-                    $scope.uiObj.startDate = event.start;
-
-                    if (event._id.length < 6) {
-                        $scope.uiObj._id = event.id;
-                    } else {
-                        $scope.uiObj._id = event._id;
-                    }
-
-                    $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
-
-                    $('#first').css("display", "block");
-                    
-                    
-
-                    $http.post('/data/updateLogResize', $scope.uiObj)
-                        .then((response) => {
-
-                            $('#first').css("display", "none");
-                            showSnack("Updated: " + response.data.message);
-                        }, (error) => {
-                            delete $scope.uiObj._id
-                            flagMessage("Error:", error, 0);
-                            console.log(error)
-                        })
-                },*/
+                /*  eventDragStart: function( event, jsEvent, ui, view ) { 
+  
+                      eventMoveObj.start = "";
+                      eventMoveObj.startDate = "";
+  
+                      eventMoveObj = {
+                          start:"",
+                          startDate:"",
+                          end: "",
+                          endDate:""
+                      }
+  
+                      console.log("1",event)
+                  },
+                  eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+                  console.log(event);
+                  return;
+                      var startDate = event.startDate//.format();
+                      var endDate = event.endDate//.format();
+  
+                      $scope.uiObj.end = endDate;
+                      $scope.uiObj.endDate = event.end;
+  
+                      $scope.uiObj.start = startDate;
+                      $scope.uiObj.startDate = event.start;
+  
+                      if (event._id.length < 6) {
+                          $scope.uiObj._id = event.id;
+                      } else {
+                          $scope.uiObj._id = event._id;
+                      }
+  
+                      $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
+  
+                      $('#first').css("display", "block");
+                      
+                      
+  
+                      $http.post('/data/updateLogResize', $scope.uiObj)
+                          .then((response) => {
+  
+                              $('#first').css("display", "none");
+                              showSnack("Updated: " + response.data.message);
+                          }, (error) => {
+                              delete $scope.uiObj._id
+                              flagMessage("Error:", error, 0);
+                              console.log(error)
+                          })
+                  },*/
                 eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
 
                     var startDate = event.start.format();
@@ -476,13 +506,6 @@ var calendarContr = function ($scope, $http, $state) {
                 events: queryUrl,
                 eventClick: function (calEvent, jsEvent, view) {
 
-                    /*                        alert('Event: ' + calEvent.title);
-                                                      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                      */                        //        alert('View: ' + view.name);
-
-                    // $('#exampleModalLabel').html("New Entry: " + stDate[0] + "<br>" + stDate[1] + " to " + enDate[1]);
-                    //$scope.catpureForm = calEvent;
-
                     $scope.saveActions = "SaveUpdate";
                     clearFields();
 
@@ -496,9 +519,8 @@ var calendarContr = function ($scope, $http, $state) {
                         updateObj.updateData.evID = calEvent._id;
                         updateObj.updateData._id = calEvent._id;
                     }
-                    //updateObj.updateData.evID = calEvent._id;
+
                     updateObj.eventObj = calEvent;
-                    //updateObj.updateData._id = calEvent._id;
 
                     $('#exampleModalLabel').html(calEvent.title);
                     $('#title').val(calEvent.title);
@@ -506,24 +528,8 @@ var calendarContr = function ($scope, $http, $state) {
                     $('#worktype').val(calEvent.worktype);
                     $('#projectname').val(calEvent.projectname);
 
-                    console.log("Damn scope", calEvent);
-                    console.log("Damn scope 2", updateObj.updateData);
-
-                    /* var updateObj = {
-                         title: $('#txtDescription').val(),
-                         category:  $('#selectCategory').val(),
-                         worktype: $('#selectWorkType').val(),
-                         projectname: $('#selectProjectName').val(),
-                         _id: calEvent._id
-                     }*/
-
                     $('#exampleModal').modal('toggle')
 
-                    //http call: updateLogDetail
-
-                    //    $('#exampleModalLabel').html(calEvent.title);
-                    //   $('#exampleModal').modal('toggle')
-                    // console.log('event click', calEvent._id)
                 }
             });
 
