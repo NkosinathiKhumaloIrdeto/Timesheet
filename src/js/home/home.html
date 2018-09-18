@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Irdeto Timehseets (1.5)</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -19,6 +19,8 @@
 
 <div ui-view></div>
 
+
+
 <div class="login-div" ng-if="!enableCalandar">
     <div>
         <br>
@@ -27,19 +29,20 @@
         <form>
             <div class="row">
                 <div class="col">
+                   
+                    <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
+                        class="form-control">
 
-                    
-            <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple" class="form-control">
-
-            </select>
+                    </select>
 
                 </div>
             </div>
             <hr>
-            
+
             <div class="row">
                 <div class="col-12">
-                    <input type="button" ng-disabled="obj.username.length == 0" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
+                    <input type="button" ng-disabled="obj.username.length == 0" ng-click="displayCal()" class="btn btn-login"
+                        value="Proceeed">
                 </div>
             </div>
         </form>

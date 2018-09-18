@@ -76,8 +76,9 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllSettings/worktype", function (result) {
             var options = $("#worktype");
             //don't forget error handling!
+            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
             $.each(result, function (item) {
-                options.append($("<option />").val(result[item].description).text(result[item].description));
+                options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
         }, (err) => {
             alert("Unable to load worktype")
@@ -92,8 +93,9 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllSettings/category", function (result) {
             var options = $("#category");
             //don't forget error handling!
-            $.each(result, function (item) {
-                options.append($("<option />").val(result[item].description).text(result[item].description));
+            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
+            $.each(lst, function (item) {
+                options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
         }, (err) => {
             alert("Unable to load worktype")
@@ -101,14 +103,19 @@ var calendarContr = function ($scope, $http, $state) {
     }
 
     function loadData_projectname() {
-        //get all projectname
-
+        //get all projectname       
 
         $.getJSON("/settings/getAllSettings/projectname", function (result) {
             var options = $("#projectname");
             //don't forget error handling!
-            $.each(result, function (item) {
-                options.append($("<option />").val(result[item].description).text(result[item].description));
+            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
+        
+            $.each(lst, function (item) {
+              //  console.log(item)
+               // Use Lodash to sort array by 'name'
+              //  console.log(result[item].description)
+
+                options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
         }, (err) => {
             alert("Unable to load worktype")

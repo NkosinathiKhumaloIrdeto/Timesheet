@@ -1,3 +1,25 @@
+<style>
+    .no-border {
+        border:0px;
+    }
+
+    .border-bottom
+    {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .rem-radius {
+        border-radius: 0px;
+    }
+
+    .list-group-settings:hover{
+        background: #5c0055;
+        color: #fff;
+    }
+
+    
+</style>
+
 <div class="container">
     <br><br>
 
@@ -45,8 +67,8 @@
                     <p ng-if="objs.worktype.isLoading">
                         ...loading
                     </p>
-                    <ul class="list-group" ng-if="!objs.worktype.isLoading" ng-repeat="worktype in objs.worktype.data">
-                        <li class="list-group-item d-flex justify-content-between align-items-center no-radius">
+                    <ul class="list-group " ng-if="!objs.worktype.isLoading" ng-repeat="worktype in objs.worktype.data">
+                        <li class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
                             {{worktype.description}}
                             <div style="text-align:right">
                                 <button ng-if="false" class="btn btn-sm btn-primary" ng-click="action(worktype, 'edit')"><i class="far fa-edit"></i></button>
@@ -65,7 +87,7 @@
                         ...loading
                     </p>
                     <ul class="list-group" ng-if="!objs.projectname.isLoading" ng-repeat="projectname in objs.projectname.data">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
                             {{projectname.description}}
                             <div style="text-align:right">
                                 <button ng-if="false" class="btn btn-sm btn-primary" ng-click="action(projectname, 'edit')"><i class="far fa-edit"></i></button>
@@ -86,7 +108,7 @@
                         ...loading
                     </p>
                     <ul class="list-group" ng-if="!objs.category.isLoading" ng-repeat="category in objs.category.data">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
                             {{category.description}}
                             <div style="text-align:right">
                                 <button ng-if="false" class="btn btn-sm btn-primary" ng-click="action(category, 'edit')"><i class="far fa-edit"></i></button>
