@@ -85,7 +85,7 @@ var reportCtr = function ($scope,$http, $state) {
         
         $('#first').css("display", "block");
 
-        $http.get('/data/exportCSV/' + from + "/" + to)
+        $http.get('/data/exportCSV/' + from + "/" + to + "/" + $state.params.username)
             .then((res) => {
                 $('#first').css("display", "none");
                 var anchor = angular.element('<a/>');
@@ -117,13 +117,23 @@ var reportCtr = function ($scope,$http, $state) {
         }
 
         //get user details
-        $http.get('/data/getUser/' + $scope.uiObj.username)
+        $http.get('/data/getUser/' + $state.params.username)
             .then((response) => {
                 $scope.uiForm = response.data
             }, (err) => { console.log(err) })
       
 
         $scope.uiObj.userSelectd = true;
+    }
+
+    function setusername() {
+
+        if ($scope.obj.username == null) {
+            $scope.obj.username = $state.params.username;
+        }
+
+        return $scope.obj.username;
+
     }
 
     $scope.genReport = function () {
@@ -144,8 +154,8 @@ var reportCtr = function ($scope,$http, $state) {
         to = $scope.uiObj.toDate;
         
         $('#first').css("display", "block");
-        
-        $http.get('/data/getBy/' + from + "/" + to + "/" + $scope.uiObj.username)
+
+        $http.get('/data/getBy/' + from + "/" + to + "/" + $state.params.username)
 
             .then((response) => {
 
@@ -191,5 +201,6 @@ var reportCtr = function ($scope,$http, $state) {
                 console.log('error', err)
 
             })
+            
     }
 }
