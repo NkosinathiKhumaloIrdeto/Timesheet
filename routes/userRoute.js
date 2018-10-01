@@ -18,9 +18,9 @@ router.get('/getUser/:name', (req, res) => {
 
 })
 
-router.get('/getUsers', (req, res) => {
+router.get('/getUsers',(req, res) => {
 
-    usersModal.find({}, (err, data) => {
+    usersModal.find({}).sort('firstname').exec((err, data) => {
 
         if (err) throw err
 

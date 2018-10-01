@@ -1,5 +1,9 @@
 <!--calendar-->
-
+<style>
+    .btn-event-action {
+        margin-right: 10px;
+    }
+</style>
 <div class="container">
 
     <div class="alert alert-success" id="msgSuccess" role="alert">
@@ -31,7 +35,7 @@
             </div>
 
             <div class="modal-body">
-
+                  
                 <div class="row">
                     <div class="col-4">
                         <label class="control-label" for="textinput">Description:</label>
@@ -47,14 +51,6 @@
                     </div>
                     <div class="col-8">
                         <select id="worktype" class="form-control"></select>
-                        <!-- <select id="worktype" name="selectmultiple" class="form-control">
-                            <option value="LEAVE">LEAVE</option>
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="OTHER">OTHER</option>
-                            <option value="OVERTIME">OVERTIME</option>
-                            <option value="SICK">SICK</option>
-                            <option value="SPECIAL">SPECIAL</option>
-                        </select> -->
                     </div>
                 </div>
                 <br>
@@ -63,35 +59,7 @@
                         <label class="control-label" for="textinput">Category:</label>
                     </div>
                     <div class="col-8">
-
-                            <select id="category" class="form-control"></select>
-
-                        <!--<select id="category" class="form-control">
-                            <option value="Admin">Admin</option>
-                            <option value="Architecture">Architecture</option>
-                            <option value="Conference">Conference</option>
-                            <option value="Customer Training">Customer Training</option>
-                            <option value="Development">Development</option>
-                            <option value="Documentation">Documentation</option>
-                            <option value="Installation">Installation</option>
-                            <option value="Leave Annual">Leave Annual</option>
-                            <option value="Leave Parental">Leave Parental</option>
-                            <option value="Leave Sick">Leave Sick</option>
-                            <option value="Management">Management</option>
-                            <option value="Meeting Customer">Meeting Customer</option>
-                            <option value="Meeting Internal">Meeting Internal</option>
-                            <option value="Pre-Sales Support">Pre-Sales Support</option>
-                            <option value="Problem Solving">Problem Solving</option>
-                            <option value="Project Management">Project Management</option>
-                            <option value="Project Support">Project Support</option>
-                            <option value="Public Holiday">Public Holiday</option>
-                            <option value="Special Leave">Special Leave</option>
-                            <option value="Testing">Testing</option>
-                            <option value="Training">Training</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Triage">Triage</option>
-
-                        </select> -->
+                        <select id="category" class="form-control"></select>
                     </div>
                 </div>
                 <br>
@@ -100,25 +68,7 @@
                         <label class="control-label" for="textinput">Project Name:</label>
                     </div>
                     <div class="col-8">
-                            <select id="projectname" class="form-control"></select>
-                        <!--<select id="projectname" name="selectmultiple" class="form-control">
-                            <option value="DSTVO BILLABLE">DSTVO BILLABLE</option>
-                            <option value="DSTVO Non Billable">DSTVO Non Billable</option>
-                            <option value="Irdeto Internal">Irdeto Internal</option>
-                            <option value="New Project Billable">New Project Billable</option>
-                            <option value="New Project Non Billable">New Project Non Billable</option>
-                            <option value="ShahzadSky Non Billable">ShahzadSky Non Billable</option>
-                            <option value="ShahzadSky Billable">ShahzadSky Billable</option>
-                            <option value="Splunk Billable">Splunk Billable</option>
-                            <option value="Splunk Non Billable">Non Billable</option>
-                            <option value="RDC Head-end Integration">RDC Head-end Integration</option>
-                            <option value="KMS Automation Billable">KMS Automation Billable</option>
-                            <option value="KMS Automation Non Billable">KMS Automation Non Billable</option>
-                            <option value="Box Office Monitoring Billable">Box Office Monitoring Billable</option>
-                            <option value="Box Office Monitoring Non Billable">Box Office Monitoring Non Billable</option>
-                            <option value="KMS Advanced Monitoring Billable">KMS Advanced Monitoring Billable</option>
-                            <option value="KMS Advanced Monitoring Non Billable">KMS Advanced Monitoring Non Billable</option>
-                        </select>-->
+                        <select id="projectname" class="form-control"></select>
                     </div>
                 </div>
             </div>
@@ -128,6 +78,41 @@
                 <button type="button" class="btn btn-primary" ng-click="actionEvent()" id="btn-save-entry">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="modal_copymove">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">CopyMove Event</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            ss
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
 </div>

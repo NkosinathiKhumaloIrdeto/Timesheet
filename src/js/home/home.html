@@ -1,3 +1,26 @@
+<style>
+    .login-names-a {
+  background: #5c0055;
+  color:#fff;
+}
+
+.login-names-ul > li {
+	list-style:none;
+	float: left;
+	margin: 10px;
+	padding:10px;
+	
+
+}
+
+.login-names-ul > li:hover {
+
+color:#5c0055;
+background:#fff;
+
+}
+</style>
+
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Irdeto Timehseets (1.5)</a>
@@ -29,11 +52,16 @@
         <form>
             <div class="row">
                 <div class="col">
-                   
-                    <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
-                        class="form-control">
+<div class="container">
+        <ul class="login-names-ul">
+                <li class="login-names-a" ng-repeat="x in db.users">{{x.username}}</li>
+            </ul>
 
-                    </select>
+</div>
+    
+                    <!-- <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
+                        class="form-control">
+                    </select>-->
 
                 </div>
             </div>
