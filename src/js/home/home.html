@@ -51,24 +51,24 @@ background:#fff;
         <br>
         <form>
             <div class="row">
-                <div class="col">
-<div class="container">
-        <ul class="login-names-ul">
-                <li class="login-names-a" ng-repeat="x in db.users">{{x.username}}</li>
+                <div class="col-md-12">
+
+                    <!--<ul class="login-names-ul">-->
+                    <!--      <li class="login-names-a" ng-repeat="x in db.users">{{x.username}}</li>
             </ul>
 
-</div>
-    
-                    <!-- <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
-                        class="form-control">
-                    </select>-->
+</div> -->
+
+                    <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
+                        class="form-control" style="width:100%">
+                    </select>
 
                 </div>
             </div>
             <hr>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12">
                     <input type="button" ng-disabled="obj.username.length == 0" ng-click="displayCal()" class="btn btn-login"
                         value="Proceeed">
                 </div>
@@ -80,7 +80,7 @@ background:#fff;
 
 <div class="sidenav sidenav-menu" ng-if="enableCalandar">
 
-    <a href="" class="side-nav-header">
+    <a href="" class="side-nav-header" ng-click="">
         {{obj.username.username|getInitials}}
     </a>
     <hr>
@@ -99,5 +99,12 @@ background:#fff;
         ng-click="activeLink = 3" style="text-align: center">
         <i class="fas fa-cog"></i>
     </a>
+
+    <a href="#" class="btn btn-side-nav activeLink" 
+        ng-click="logout()" style="text-align: center">
+        <i class="fas fa-sign-out-alt"></i>
+    </a>
+
+    
 
 </div>

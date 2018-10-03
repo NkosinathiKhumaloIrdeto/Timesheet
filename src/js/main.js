@@ -1,4 +1,4 @@
-angular.module('app', ['login-app', 'ui.router'])
+angular.module('app', ['login-app', 'ui.router', 'ngCookies'])
     .filter('getInitials', function () {
 
         // In the return function, we must pass in a single parameter which will be the data we will work on.
