@@ -96,23 +96,17 @@ button.fc-state-active {
 
 
 .btn-side-nav {
-    background: #5c0055;;
+    background: #5c0055;
     margin-top: 5px;
+    text-align: left;
 }
 
 
-.side-nav-header {
-    font-size: 25px;
-    color: #fff;
-    display: block;
-    margin-bottom: 20px;
-    text-align: center;
-}
 
 .sidenav a {
     
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #fff;
     display: block;
     -webkit-transition: background 1s; /* For Safari 3.1 to 6.0 */
@@ -134,6 +128,14 @@ button.fc-state-active {
     border: 1px solid #fff;
 }
 
+
+.side-nav-header {
+    font-size: 25px !important;
+    color: #470f3a;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+}
 .main {
     margin-left: 160px; /* Same as the width of the sidenav */
    

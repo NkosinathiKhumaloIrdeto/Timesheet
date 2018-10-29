@@ -1,0 +1,52 @@
+{
+    "RECORDS": [
+        {
+            "_id": {
+                "$oid": "5bceae582878fb47c0e8a795"
+            },
+            "category": "Architecture",
+            "color": "#777777",
+            "employee": "Nkosinathi Khumalo",
+            "end": "2018-10-23T10:00:00",
+            "endDate": "23-10-2018 08:00:00",
+            "hours": "2",
+            "projectname": "Box Office Monitoring Non Billable",
+            "start": "2018-10-23T08:00:00",
+            "startDate": "23-10-2018 06:00:00",
+            "title": "asd",
+            "worktype": "Killer"
+        },
+        {
+            "_id": {
+                "$oid": "5bceae7e2878fb47c0e8a796"
+            },
+            "category": "Conference",
+            "color": "#843f7f",
+            "employee": "Nkosinathi Khumalo",
+            "end": "2018-10-24T10:30:00",
+            "endDate": "24-10-2018 08:30:00",
+            "hours": "1.5",
+            "projectname": "DSTVO Billable",
+            "start": "2018-10-24T09:00:00",
+            "startDate": "24-10-2018 07:00:00",
+            "title": "asd",
+            "worktype": "NORMAL"
+        },
+        {
+            "_id": {
+                "$oid": "5bceae842878fb47c0e8a797"
+            },
+            "category": "Customer Training",
+            "color": "#843f7f",
+            "employee": "Nkosinathi Khumalo",
+            "end": "2018-10-23T12:30:00",
+            "endDate": "23-10-2018 10:30:00",
+            "hours": "1",
+            "projectname": "DSTVO Non Billable",
+            "start": "2018-10-23T11:30:00",
+            "startDate": "23-10-2018 09:30:00",
+            "title": "asd",
+            "worktype": "NORMAL"
+        }
+    ]
+}

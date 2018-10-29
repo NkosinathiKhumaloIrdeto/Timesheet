@@ -142,6 +142,8 @@ angular.module('report-app', [])
 
             to = $scope.uiObj.toDate;
 
+            console.log('/data/getBy/' + from + "/" + to);
+
             $http.get('/data/getBy/' + from + "/" + to)
 
                 .then((response) => {
