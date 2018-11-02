@@ -115,10 +115,10 @@ router.post('/updateLogResize', (req, res) => {
 
     var updatedObj = {
         end: req.body.end,
-      //  start: req.body.start, //new
+        //  start: req.body.start, //new
         hours: req.body.hours,
         endDate: new Date(req.body.endDate),
-      //  startDate: new Date(req.body.startDate)
+        //  startDate: new Date(req.body.startDate)
     }
 
     var _id = req.body._id
@@ -218,12 +218,16 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
 
     startDate = moment(new Date(req.params.fromDate));
 
-    endDate = moment(new Date(req.params.toDate))
+    endDate = moment(new Date(req.params.toDate));
 
     startDate.set({ h: 00, m: 00 });
 
     endDate.set({ h: 23, m: 59 });
 
+    startDate.add(1, 'days');
+    
+    endDate.add(1, 'days');
+   
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
@@ -247,13 +251,19 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
     var startDate, endDate;
 
+    var startDate, endDate;
+
     startDate = moment(new Date(req.params.fromDate));
 
-    endDate = moment(new Date(req.params.toDate))
+    endDate = moment(new Date(req.params.toDate));
 
     startDate.set({ h: 00, m: 00 });
 
     endDate.set({ h: 23, m: 59 });
+
+    startDate.add(1, 'days');
+    
+    endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
 
