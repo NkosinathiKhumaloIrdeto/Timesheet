@@ -76,7 +76,7 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllSettings/worktype", function (result) {
             var options = $("#worktype");
             //don't forget error handling!
-            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
+            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
             $.each(result, function (item) {
                 options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
@@ -93,7 +93,7 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllSettings/category", function (result) {
             var options = $("#category");
             //don't forget error handling!
-            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
+            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
             $.each(lst, function (item) {
                 options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
@@ -108,12 +108,12 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllSettings/projectname", function (result) {
             var options = $("#projectname");
             //don't forget error handling!
-            var lst = _.orderBy(result, ['description'],['asc']); // Use Lodash to sort array by 'name'
-        
+            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
+
             $.each(lst, function (item) {
-              //  console.log(item)
-               // Use Lodash to sort array by 'name'
-              //  console.log(result[item].description)
+                //  console.log(item)
+                // Use Lodash to sort array by 'name'
+                //  console.log(result[item].description)
 
                 options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
@@ -416,8 +416,7 @@ var calendarContr = function ($scope, $http, $state) {
                 defaultDate: moment(new Date()),
                 defaultView: 'agendaWeek',
                 navLinks: true, // can click day/week names to navigate views
-                eventDurationEditable: true,
-                eventStartEditable: false,
+                editable: true,
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true, //Allows a user to highlight multiple days or timeslots by clicking and dragging.
                 /*  eventDragStart: function( event, jsEvent, ui, view ) { 
@@ -511,6 +510,45 @@ var calendarContr = function ($scope, $http, $state) {
 
                 },
                 events: queryUrl,
+                eventDrop: function (event, delta, revertFunc) {
+
+                   // alert(event.title + " was dropped on " + event.start.format());
+                 //  if (!confirm("Move event to: " + event.start.format() + "?")) {
+                   //     revertFunc();
+                     //   return;
+                    //}
+
+                   $('#first').css("display", "block");
+                    var startDate = event.start.format();
+                    var endDate = event.end.format();
+
+                    var payload = {
+                        start: event.start,
+                        startDate: startDate,
+                        end: event.end,
+                        endDate: endDate,
+                        _id: ""
+                    }
+
+                    if (event._id.length < 6) {
+                        payload._id = event.id;
+                    } else {
+                        payload._id = event._id;
+                    }
+
+                    $http.post('/data/updateLogMove', payload)
+                    .then((response) => {
+
+                        $('#first').css("display", "none");
+                        showSnack("Updated: " + response.data.message);
+                    }, (error) => {
+                        delete $scope.uiObj._id
+                        flagMessage("Error:", error, 0);
+                        console.log(error)
+                        revertFunc();
+                    })
+
+                },
                 eventClick: function (calEvent, jsEvent, view) {
 
                     $scope.saveActions = "SaveUpdate";
@@ -545,3 +583,4 @@ var calendarContr = function ($scope, $http, $state) {
         });
     }
 }
+

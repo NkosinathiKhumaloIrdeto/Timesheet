@@ -181,7 +181,7 @@ var reportCtr = function ($scope,$http, $state) {
                        
                     }
                     else {
-
+console.log(obj.hours)
                         var updatedObj = determineWorkType(currentObjs[currentObjs.length - 1], obj.worktype, obj.hours)
 
                         currentObjs[currentObjs.length - 1] = updatedObj

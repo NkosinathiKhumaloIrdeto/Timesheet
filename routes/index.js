@@ -133,13 +133,14 @@ router.post('/updateLogResize', (req, res) => {
 
 })
 
+
+
 //updateLog
 router.post('/updateLogMove', (req, res) => {
 
     var updatedObj = {
         end: req.body.end,
         start: req.body.start, //new
-        hours: req.body.hours,
         endDate: new Date(req.body.endDate),
         startDate: new Date(req.body.startDate)
     }

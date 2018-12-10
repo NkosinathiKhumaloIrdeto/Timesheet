@@ -9,18 +9,6 @@ var homeContr = function ($scope, $state, $http, $cookies) {
         ]
     } 
 
-    //$scope.obj = { users: [] }
-
-    //load users from db
-    /*$http.get('/users/getUsers')
-        .then((res) => {
-            
-            $scope.obj.users = res.data;
-console.log(res.data);
-        }, (err) => {
-
-        })
-*/
     $scope.displayCal = function () {
 
         $cookies.put('timesheetUser', $scope.obj.username.username);
