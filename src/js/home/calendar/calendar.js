@@ -515,38 +515,13 @@ var calendarContr = function ($scope, $http, $state) {
                    // alert(event.title + " was dropped on " + event.start.format());
                  //  if (!confirm("Move event to: " + event.start.format() + "?")) {
                    //     revertFunc();
+                   $('#modal_copymove').modal('toggle')
                      //   return;
                     //}
-
-                   $('#first').css("display", "block");
-                    var startDate = event.start.format();
-                    var endDate = event.end.format();
-
-                    var payload = {
-                        start: event.start,
-                        startDate: startDate,
-                        end: event.end,
-                        endDate: endDate,
-                        _id: ""
-                    }
-
-                    if (event._id.length < 6) {
-                        payload._id = event.id;
-                    } else {
-                        payload._id = event._id;
-                    }
-
-                    $http.post('/data/updateLogMove', payload)
-                    .then((response) => {
-
-                        $('#first').css("display", "none");
-                        showSnack("Updated: " + response.data.message);
-                    }, (error) => {
-                        delete $scope.uiObj._id
-                        flagMessage("Error:", error, 0);
-                        console.log(error)
-                        revertFunc();
-                    })
+                    console.log(event);
+                    eventData.event = event;
+                    eventData.delta = delta;
+                    eventData.revertFunc = revertFunc;
 
                 },
                 eventClick: function (calEvent, jsEvent, view) {
@@ -578,6 +553,116 @@ var calendarContr = function ($scope, $http, $state) {
                 }
             });
 
+            var eventData = {
+                //event, delta, revertFunc
+            }
+
+            $('#btn-copy').click(function(){
+                $('#modal_copymove').modal('toggle');
+                copyEvent();
+            })
+
+            $('#btn-move').click(function(){
+                $('#modal_copymove').modal('toggle');
+                moveEvent();
+            })
+
+            $('.CopyMove-close').click(function(){
+                eventData.revertFunc();
+                eventData = {}
+            })
+
+            
+
+            function moveEvent(){
+
+                $('#first').css("display", "block");
+
+                    var startDate = eventData.event.start.format();
+                    var endDate = eventData.event.end.format();
+
+                    var payload = {
+                        start: eventData.event.start,
+                        startDate: startDate,
+                        end: eventData.event.end,
+                        endDate: endDate,
+                        _id: ""
+                    }
+
+                    if (eventData.event._id.length < 6) {
+                        payload._id = eventData.event.id;
+                    } else {
+                        payload._id = eventData.event._id;
+                    }
+
+                    $http.post('/data/updateLogMove', payload)
+                    .then((response) => {
+
+                        $('#first').css("display", "none");
+                        showSnack("Updated: " + response.data.message);
+                        eventData = {};
+                        console.log('event moved successfully');
+                    }, (error) => {
+                        delete $scope.uiObj._id
+                        flagMessage("Error:", error, 0);
+                        console.log(error)
+                        eventData.revertFunc();
+                        eventData = {}
+                    })
+            }
+
+            function copyEvent(){
+
+                eventData.revertFunc();
+
+                var startDate = eventData.event.start.format();
+                var endDate = eventData.event.end.format();
+                var data = {
+                    employee: setusername(),
+                    title: eventData.event.title,
+                    category: eventData.event.category,
+                    worktype: eventData.event.worktype,
+                    projectname: eventData.event.projectname,
+                    hours: eventData.event.hours,
+                    color: eventData.event.color,
+
+                    start: eventData.event.start,
+                        startDate: startDate,
+                        end: eventData.event.end,
+                        endDate: endDate,
+                }
+        
+                //send data to server
+                $http.post('/data/log', data)
+                    .then((response) => {
+        
+                        $scope.uiObj.id = response.data.id;
+                        data.id = response.data.id;
+                                
+                        $('#calendar').fullCalendar('renderEvent', data);
+                        $('#exampleModal').modal('hide')
+        
+                        $scope.msg = {
+                            error: "",
+                            success: ""
+                        }
+        
+                        
+
+                        showSnack(data.title + ": " + response.data.message);
+                        eventData = {}
+                        
+                        $('#first').css("display", "none");
+        
+                    }, (error) => {
+                        flagMessage("Error: ", error, 0);
+                        $('#first').css("display", "none");
+                        eventData = {}
+                    })
+
+            }
+
+         
             $scope.enableCalandar = true;
 
         });

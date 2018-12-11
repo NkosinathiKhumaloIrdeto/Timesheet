@@ -35,7 +35,7 @@
             </div>
 
             <div class="modal-body">
-                  
+
                 <div class="row">
                     <div class="col-4">
                         <label class="control-label" for="textinput">Description:</label>
@@ -84,6 +84,12 @@
 
 
 <!-- The Modal -->
+<style>
+    .btn-copymove {
+        background: #5c0055;
+        color: white;
+    }
+</style>
 <div class="modal fade" id="modal_copymove">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -91,27 +97,29 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">CopyMove Event</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close CopyMove-close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
                 <div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            ss
-                        </div>
-                        <div class="col-md-3">
-
+                    <p>Please specify wheather you would like to Move or Copy the event to this location:</p>
+                    <br>
+                    <div style="text-align:center">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="button" id="btn-copy" class="btn btn-lg btn-copymove" value="Copy">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="button" id="btn-move" class="btn btn-lg btn-copymove" value="Move">
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+
 
         </div>
     </div>
