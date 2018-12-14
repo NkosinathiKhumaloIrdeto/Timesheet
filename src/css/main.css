@@ -11,12 +11,17 @@
 }
 
 .fc-time-grid-event {
-    border: 1px solid #fff
+    border-left: 5px solid #fff
+}
+
+button {
+    border-radius: 0px;
 }
 
 .fc-button-group button {
     background: #5c0055;
     color: white;
+    border-radius: 0px;
 }
 
 .fc-button-group button:hover {
