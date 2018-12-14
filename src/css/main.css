@@ -11,6 +11,7 @@
 }
 
 .fc-time-grid-event {
+    border: 1px solid #fff;
     border-left: 5px solid #fff
 }
 
