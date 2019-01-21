@@ -49,20 +49,21 @@ var reportCtr = function ($scope,$http, $state) {
                 break;
         }
 
-        if ((strType == 'LEAVE' || strType == 'SICK' || strType == 'SPECIAL')) {
-
+        if ((strType == 'LEAVE' || strType == 'SICK' || strType == 'SPECIAL' || strType == 'OTHER')) {
+            object.dspClass = "tr-gray";
             if ($scope.uiObj.includeLeave) {
-
+                console.log("strType -",decHours)
                 $scope.reportingObj.totalNormal += decHours
             }
+            console.log("strType -",decHours)
 
         } else {
-
+            object.dspClass = "";
             $scope.reportingObj.totalNormal += decHours
         }
 
         object.TOTAL += decHours
-        
+    
         return object;
 
     }
@@ -181,7 +182,9 @@ var reportCtr = function ($scope,$http, $state) {
                        
                     }
                     else {
-console.log(obj.hours)
+                        
+                       
+
                         var updatedObj = determineWorkType(currentObjs[currentObjs.length - 1], obj.worktype, obj.hours)
 
                         currentObjs[currentObjs.length - 1] = updatedObj
