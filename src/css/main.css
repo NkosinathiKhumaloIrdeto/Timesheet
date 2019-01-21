@@ -77,6 +77,10 @@ button.fc-state-active {
     color: #fff;
 }
 
+.tr-gray{
+    background: #ccc;
+}
+
 @media all and (max-width: 412px) {
     .login-div {
         width: 100%;

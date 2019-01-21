@@ -133,9 +133,8 @@
                         <th>LEAVE</th>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="report in uiObj.reportData">
+                        <tr ng-repeat="report in uiObj.reportData" class="{{report.dspClass}}">
 
-                           
                             <td>{{report.start | dateOnly}}</td>
                             <td>{{report.start | dayOfTheWeek}}</td>
                             <td>{{report.TOTAL}}</td>
