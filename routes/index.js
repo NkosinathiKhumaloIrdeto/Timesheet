@@ -228,14 +228,14 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
     startDate.add(1, 'days');
     
     endDate.add(1, 'days');
-   
+   //update
     var searchQuery = { 
         "startDate": { $gte: startDate, $lte: endDate }, 
         employee: new RegExp("^" + req.params.username) ,
-        "title":{$regex: ".*" + req.query.filterBy + ".", $options:"i"} 
+        "title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
         //"title":new RegExp("/" + req.query.filterBy + "/i")
     };
-
+console.log(searchQuery);
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
