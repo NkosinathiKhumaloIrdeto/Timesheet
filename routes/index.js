@@ -232,7 +232,7 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
     var searchQuery = { 
         "startDate": { $gte: startDate, $lte: endDate }, 
         employee: new RegExp("^" + req.params.username) ,
-        "title":new RegExp("^" + req.query.filterBy) 
+        "title":{$regex: ".*" + req.query.filterBy + ".", $options:"i"} 
         //"title":new RegExp("/" + req.query.filterBy + "/i")
     };
 
