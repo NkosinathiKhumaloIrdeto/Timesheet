@@ -229,7 +229,12 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
     
     endDate.add(1, 'days');
    
-    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
+    var searchQuery = { 
+        "startDate": { $gte: startDate, $lte: endDate }, 
+        employee: new RegExp("^" + req.params.username) ,
+        "title":new RegExp("^" + req.query.filterBy) 
+        //"title":new RegExp("/" + req.query.filterBy + "/i")
+    };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 

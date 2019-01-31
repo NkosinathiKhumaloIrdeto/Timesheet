@@ -8,7 +8,8 @@ var reportCtr = function ($scope,$http, $state) {
         fromDate: '',
         toDate: '',
         btnText: "Go!",
-        includeLeave: false
+        includeLeave: false,
+        filterBy:""
     }
 
     $scope.uiForm = {}
@@ -148,15 +149,23 @@ var reportCtr = function ($scope,$http, $state) {
             return;
         }
         
-        var from, to;
+        var from, to, filter;
 
         from = $scope.uiObj.fromDate;
 
         to = $scope.uiObj.toDate;
         
-        $('#first').css("display", "block");
+        
 
-        $http.get('/data/getBy/' + from + "/" + to + "/" + $state.params.username)
+        if ($scope.uiObj.filterBy.length == 0){
+            filter = "";
+        } else {
+            filter = $scope.uiObj.filterBy;
+        }
+
+        $('#first').css("display", "block");
+        
+        $http.get('/data/getBy/' + from + "/" + to + "/" + $state.params.username + "?filterBy=" + filter)
 
             .then((response) => {
 

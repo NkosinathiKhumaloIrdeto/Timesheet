@@ -1,5 +1,5 @@
 <div class="container">
-   
+
     <div class="report-div" ng-if="false">
         <div class="row">
             <div class="col-6">
@@ -61,7 +61,7 @@
         </div>
 
     </div>
-    
+
     <div class="report-div">
         <br>
         <h4>Please select dates (from-to):</h4>
@@ -115,13 +115,27 @@
 
                 </div>
             </div>
+            <div class="row">
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-4">
+                                    Filter <span style="font-weight:bold">(case sensitive)</span>:
+                            </div>
+                            <div class="col-4">
+                                    <input type="text" style="width:200px;" ng-model="uiObj.filterBy" class="form-control">
+                                    <span style="font-size:10pt">Filter by title</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+  
         <br>
         <div class="row">
             <div class="col">
                 <table class="table">
                     <thead>
-                        
+
                         <th>DATE</th>
                         <th>DAY</th>
                         <th>DAY TOTAL</th>
