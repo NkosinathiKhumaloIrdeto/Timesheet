@@ -47,16 +47,22 @@ angular.module('report-app', [])
                     break;
             }
 
+
            
-            if ((strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL')){
+            if ((strType == 'LEAVE' || strType=='SICK' || strType == 'SPECIAL' || strType=='OTHER')){
+                
+               
+
                 if($scope.uiObj.includeLeave){
-                    
                     $scope.reportingObj.totalNormal += decHours
                 }                
             }else{
-               
+                
                 $scope.reportingObj.totalNormal += decHours
             }
+
+
+
             object.TOTAL += decHours
            
             return object;
@@ -180,6 +186,7 @@ angular.module('report-app', [])
                     }
 
                     $scope.uiObj.reportData = currentObjs;
+                    
 
                     $scope.uiObj.btnText = "Clear";
 
