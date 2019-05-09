@@ -249,6 +249,45 @@ console.log(searchQuery);
 
 })
 
+
+
+router.get('/getAllBy/:fromDate/:toDate', (req, res) => {
+
+    var startDate, endDate;
+
+    startDate = moment(new Date(req.params.fromDate));
+
+    endDate = moment(new Date(req.params.toDate));
+
+    startDate.set({ h: 00, m: 00 });
+
+    endDate.set({ h: 23, m: 59 });
+
+    startDate.add(1, 'days');
+    
+    endDate.add(1, 'days');
+   //update
+    var searchQuery = { 
+        "startDate": { $gte: startDate, $lte: endDate }
+        //employee: new RegExp("^" + req.params.username) ,
+        //"title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
+        //"title":new RegExp("/" + req.query.filterBy + "/i")
+    };
+
+    logModal.find(searchQuery).sort('startDate').exec((err, data) => {
+
+        if (err) {
+            res.status(500).send({ 'status': 500, 'msg': err });
+            return;
+        }
+
+        res.status(200).send(data);
+
+    })
+
+})
+
+
 router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
     var csvPath = "./src/Report/generated/";

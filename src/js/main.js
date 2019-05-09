@@ -51,6 +51,14 @@ angular.module('app', ['login-app', 'ui.router', 'ngCookies'])
                 params: { username: null }
 
             })
+            .state('home.dashboard', {
+                name: 'dashboard',
+                controller: dashboardCtr,
+                controllerAs: "dashboardController",
+                templateUrl: 'js/home/dashboard/dashboard.html',
+                params: { username: null }
+
+            })
             .state('home.reports', {
                 name: 'reports',
                 controller: reportCtr,

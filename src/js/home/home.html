@@ -88,14 +88,18 @@ background:#fff;
         ng-click="activeLink = 1">
         <i class="fas fa-calendar-alt" style="margin-right:10px"></i>Calendar
     </a>
-
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.reports({username:obj.username.username})"
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.dashboard({username:obj.username.username})"
         ng-click="activeLink = 2">
+        <i class="fas fa-tachometer-alt" style="margin-right:10px"></i>Dashboard   
+    </a>
+
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.reports({username:obj.username.username})"
+        ng-click="activeLink = 3">
         <i class="fas fa-file-invoice" style="margin-right:10px"></i>Report
     </a>
     <hr>
-    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.settings({username:obj.username.username})"
-        ng-click="activeLink = 3">
+    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 4}" ui-sref="home.settings({username:obj.username.username})"
+        ng-click="activeLink = 4">
         <i class="fas fa-cog" style="margin-right:10px"></i>Settings
     </a>
 
