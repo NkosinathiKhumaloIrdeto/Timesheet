@@ -4,6 +4,15 @@
         padding-top: 20px;
         text-align: center;
     }
+
+    #chartDigital {
+        font-weight: bold;
+        font-size: 30px;
+        color: #5c0055;
+        padding: 20px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
 </style>
 <div class="container">
 
@@ -11,9 +20,26 @@
         <h4>Dashboard {{dashboardController.dates}}</h4>
         <p>Hours ranging from the 25th of last month to the 25th of this month</p>
         <br>
-        <div id="chart">
-
+        <div class="row">
+            <div class="col-md-6">
+                <h4>DSTVO BILLABLE</h4>
+                <div id="chartDigital">
+                    {{dashboardController.hours.billable}} HRS
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>DSTVO Non Billable</h4>
+                <div id="chartDigital">
+                    {{dashboardController.hours.nonbillable}} HRS
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="chart">
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-

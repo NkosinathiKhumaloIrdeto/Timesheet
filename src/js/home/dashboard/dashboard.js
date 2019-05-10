@@ -12,6 +12,11 @@ var dashboardCtr = function ($scope, $http, $state) {
         filterBy: ""
     }
 
+    this.hours = {
+        billable: 0.0,
+        nonbillable:0.0
+    }
+
     $scope.uiForm = {}
 
     $scope.dashboardObj = {
@@ -26,11 +31,17 @@ var dashboardCtr = function ($scope, $http, $state) {
     queryDate.setDate(25);
 
     var qDate1 = new Date(queryDate.setMonth(queryDate.getMonth() - 1)); //get previous month
-    
-    var qDate2 = new Date (queryDate.setMonth(queryDate.getMonth() + 1)); //get previous month
-    
-var dataXAaxis = [];
-var dataYAaxis = [];
+
+    var qDate2 = new Date(queryDate.setMonth(queryDate.getMonth() + 1)); //get previous month
+
+    var dataXAaxis = [];
+    var dataYAaxis = [];
+
+    var dataBXaxis = [];
+    var dataBYaxis = [];
+
+    var pie1Val = parseFloat(0);
+    var pie2Val = parseFloat(0);
 
     $http.get("/data/getAllBy" + "/" + qDate1 + "/" + qDate2)
         .then((res) => {
@@ -46,21 +57,71 @@ var dataYAaxis = [];
 
                     dataXAaxis.push((employeeName));
                     dataYAaxis.push(parseFloat(d[i].hours));
-                    
+                    console.log("-->",d[i].projectname);
+                    console.log(String(d[i].projectname).search('DSTVO Billable'));
+
+                    if (d[i].projectname == 'DSTVO Billable') {
+
+                        pie1Val += parseFloat(d[i].hours);
+
+                    } else if (d[i].projectname = 'DSTVO Non Billable') {
+
+                        pie2Val += parseFloat(d[i].hours);
+                    }
+
+
+
                 } else {
-                    
+
                     dataYAaxis[dataXAaxis.indexOf((employeeName))] += parseFloat(d[i].hours)
 
                 }
 
             }
 
-            console.log("1",dataYAaxis);
-            console.log("2",dataXAaxis);
-
+           
             loadGraph1();
-
+            this.hours.billable = pie1Val;
+            this.hours.nonbillable = pie2Val;
+         
         })
+
+    function pie1() {
+        pie1Val = 180;
+        var options = {
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            series: [pie1Val],
+            labels: ['BILLABLE'],
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chartBillable"), options);
+
+        chart.render();
+
+
+    }
+
+    function pie2() {
+
+        var options = {
+            chart: {
+                height: 350,
+                type: 'radialBar',
+            },
+            series: [pie2Val],
+            labels: ['Non BILLABLE'],
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chartNonBillable"), options);
+
+        chart.render();
+
+    }
+
+    
 
     function getInitial(name) {
 
@@ -132,7 +193,7 @@ var dataYAaxis = [];
     }
 
     function loadGraph1() {
-        
+
         var options = {
             chart: {
                 type: 'line'
