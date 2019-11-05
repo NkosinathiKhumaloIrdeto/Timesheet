@@ -53,7 +53,7 @@ var reportCtr = function ($scope,$http, $state) {
         if ((strType == 'LEAVE' || strType == 'SICK' || strType == 'SPECIAL' || strType == 'OTHER')) {
             object.dspClass = "tr-gray";
             if ($scope.uiObj.includeLeave) {
-                console.log("strType -",decHours)
+                
                 $scope.reportingObj.totalNormal += decHours
             }
             console.log("strType -",decHours)
@@ -88,6 +88,37 @@ var reportCtr = function ($scope,$http, $state) {
         $('#first').css("display", "block");
 
         $http.get('/data/exportCSV/' + from + "/" + to + "/" + $state.params.username)
+            .then((res) => {
+                $('#first').css("display", "none");
+                var anchor = angular.element('<a/>');
+                anchor.css({ display: 'none' }); // Make sure it's not visible
+                angular.element(document.body).append(anchor); // Attach to document
+
+                anchor.attr({
+                    href: 'data:attachment/csv;charset=utf-8,' + encodeURI(res.data),
+                    target: '_blank',
+                    download: $scope.uiObj.username + ".csv"
+                })[0].click();
+
+                anchor.remove();
+
+            }, (err) => {
+                console.log('exportCSV', err)
+            })
+
+    }
+
+    $scope.exportAllCSV = function () {
+
+        var from, to;
+
+        from = $scope.uiObj.fromDate;
+
+        to = $scope.uiObj.toDate;
+        
+        $('#first').css("display", "block");
+
+        $http.get('/data/exportAllCSV/' + from + "/" + to)
             .then((res) => {
                 $('#first').css("display", "none");
                 var anchor = angular.element('<a/>');
