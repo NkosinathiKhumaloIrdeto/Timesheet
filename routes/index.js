@@ -235,7 +235,7 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
         "title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
         //"title":new RegExp("/" + req.query.filterBy + "/i")
     };
-console.log(searchQuery);
+
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
@@ -337,7 +337,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
             const parser = new Json2csvParser(opts);
 
             const csv = parser.parse(data);
-
+           
             fs.writeFile(fullname, csv, 'utf8', function (err) {
 
                 if (err) {
@@ -399,14 +399,14 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
         }
-
+        
         data = updateTime(data)
-
+ 
         var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title"]
+        var fields = ['worktype', 'employee', 'category', "start","end", "projectname", "hours", "title"]
 
         var opts = { fields, delimiter: ",", quote: '' };
 
@@ -454,7 +454,9 @@ function updateTime(data) {
         var obj = data[i];
         var hours = data[i].hours
         var start = data[i].start.split('T')[0]
-        data[i].start = start
+        data[i].start = data[i].start
+        //data[i].startDate = data[i].start
+        
 
         if (hours.length > 3) {
             data[i].hours = timeToDecimal(hours)
