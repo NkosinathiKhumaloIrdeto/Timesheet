@@ -19,7 +19,7 @@
     "moment": "^2.22.1",
     "mongoo": "^0.3.5",
     "mongoose": "^4.13.7",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "mysql": "^2.16.0",
     "node-url-shortener": "^1.0.1"
   }
