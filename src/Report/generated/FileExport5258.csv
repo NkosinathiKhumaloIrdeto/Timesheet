@@ -1,0 +1,93 @@
+worktype,employee,category,start,end,projectname,hours,title
+NORMAL,Vinu George,Architecture,2019-10-28T13:00:00,2019-10-28T15:00:00,DSTVO Billable,2,Discussion with dev on MM program workflow readyForQA check if either push or pull is expired.
+NORMAL,Vinu George,Admin,2019-10-28T15:00:00,2019-10-28T17:30:00,Irdeto Internal,2.5,TimeSheets filling
+NORMAL,Vinu George,Meeting Internal,2019-11-01T09:30:00,2019-11-01T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Development,2019-11-01T10:00:00,2019-11-01T12:00:00,DSTVO Billable,2,MCAP-3868
+NORMAL,Vinu George,Installation,2019-11-01T12:00:00,2019-11-01T15:30:00,DSTVO Billable,3.5,MCAP-3917- investigate docker container for auto image generation from showmax and discussion with showmax
+NORMAL,Vinu George,Development,2019-11-01T15:30:00,2019-11-01T17:30:00,DSTVO Billable,2,Rel 89 uat support and issues resolution
+OVERTIME,Vinu George,Project Support,2019-11-03T01:00:00,2019-11-03T02:30:00,DSTVO Billable,1.5,Device registration/unregistration History
+NORMAL,Vinu George,Meeting Internal,2019-11-04T09:30:00,2019-11-04T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Architecture,2019-11-04T10:00:00,2019-11-04T11:30:00,DSTVO Billable,1.5,Asset Based Pull VOD Integration with AWS arch discussion with mca
+NORMAL,Vinu George,Meeting Internal,2019-11-04T11:30:00,2019-11-04T12:00:00,DSTVO Non Billable,0.5,VOD Lab servers investigation
+NORMAL,Vinu George,Development,2019-11-04T12:00:00,2019-11-04T13:30:00,DSTVO Billable,1.5,UAT support and issues resolution
+NORMAL,Vinu George,Meeting Customer,2019-11-04T13:30:00,2019-11-04T14:30:00,ShowMax Billable,1,Explora Scramblers at Hetzner
+NORMAL,Vinu George,Documentation,2019-11-04T14:30:00,2019-11-04T16:00:00,ShowMax Billable,1.5,Showmax integration doc update with connectivity port details
+NORMAL,Vinu George,Project Support,2019-11-04T16:00:00,2019-11-04T18:00:00,DSTVO Billable,2,Device registration/unregistration History for vodacom ceo smart tv
+NORMAL,Vinu George,Project Support,2019-11-04T22:00:00,2019-11-04T23:30:00,DSTVO Billable,1.5,Device registration/unregistration History splunk log analysis between the registration days
+NORMAL,Vinu George,Meeting Internal,2019-11-05T09:30:00,2019-11-05T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Project Support,2019-11-05T10:00:00,2019-11-05T10:30:00,DSTVO Billable,0.5,Device registration/unregistration History for vodacom ceo smart tv
+NORMAL,Vinu George,Development,2019-11-05T10:30:00,2019-11-05T12:30:00,KMS Automation Non Billable,2,KMS Automation Queue analysis
+NORMAL,Vinu George,Development,2019-11-05T12:30:00,2019-11-05T15:00:00,DSTVO Billable,2.5,UAT support and issues resolution
+NORMAL,Vinu George,Project Support,2019-11-05T15:00:00,2019-11-05T17:30:00,DSTVO Billable,2.5,Dstv Control migration test cases and architecture design support
+OVERTIME,Vinu George,Problem Solving,2019-11-05T18:00:00,2019-11-05T20:00:00,DSTVO Non Billable,2,Ticket resolution
+NORMAL,Vinu George,Meeting Internal,2019-11-06T09:30:00,2019-11-06T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Meeting Customer,2019-11-06T10:00:00,2019-11-06T11:00:00,DSTVO Billable,1,VOD roadmap meeting
+NORMAL,Vinu George,Meeting Internal,2019-11-06T11:00:00,2019-11-06T12:00:00,DSTVO Non Billable,1,Meeting regarding victor Ops
+NORMAL,Vinu George,Architecture,2019-11-06T12:00:00,2019-11-06T13:00:00,DSTVO Billable,1,Auto Image generation docker image discussion
+NORMAL,Vinu George,Architecture,2019-11-06T13:00:00,2019-11-06T14:00:00,DSTVO Billable,1,New Nigeria Bouquets discussion- with Santjie
+NORMAL,Vinu George,Development,2019-11-06T14:00:00,2019-11-06T16:00:00,DSTVO Billable,2,UAT support and issue resolution
+NORMAL,Vinu George,Project Support,2019-11-06T16:00:00,2019-11-06T18:00:00,DSTVO Billable,2,MCAP-3921 Dstv control migration tests for ddm
+NORMAL,Vinu George,Meeting Internal,2019-11-07T09:30:00,2019-11-07T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Project Support,2019-11-07T10:00:00,2019-11-07T11:00:00,DSTVO Billable,1,Firewall Access to KMS Automation Tool testing and discussion with network team 
+NORMAL,Vinu George,Architecture,2019-11-07T11:00:00,2019-11-07T13:00:00,DSTVO Billable,2,Dstv OTT CatchUp Solution Architecure update to reflect new changes for distribting to MCA
+NORMAL,Vinu George,Development,2019-11-07T13:00:00,2019-11-07T15:00:00,DSTVO Billable,2,UAT support and issue resolution
+NORMAL,Vinu George,Project Support,2019-11-07T15:00:00,2019-11-07T17:30:00,DSTVO Billable,2.5,MCAP-3921 Dstv control migration tests for ddm
+NORMAL,Vinu George,Meeting Internal,2019-11-08T09:30:00,2019-11-08T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Development,2019-11-08T10:00:00,2019-11-08T15:00:00,DSTVO Billable,5,Simulcrypt assets issues investigation with respect to PES configuration further discussion and tests
+NORMAL,Vinu George,Development,2019-11-08T15:00:00,2019-11-08T16:30:00,DSTVO Billable,1.5,UAT support and issue resolution
+NORMAL,Vinu George,Project Support,2019-11-08T16:30:00,2019-11-08T17:30:00,DSTVO Billable,1,MCAP-3921 Dstv control migration tests for ddm
+OVERTIME,Vinu George,Problem Solving,2019-11-10T19:00:00,2019-11-10T21:00:00,DSTVO Non Billable,2,SMAX 7016712 -  Auto Abort discussion with team, Play images not ingesting to Cybertron ticket
+NORMAL,Vinu George,Meeting Internal,2019-11-11T09:30:00,2019-11-11T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Architecture,2019-11-11T10:00:00,2019-11-11T11:00:00,DSTVO Billable,1,New Nigeria Bouquets discussion with arch team
+NORMAL,Vinu George,Problem Solving,2019-11-11T11:00:00,2019-11-11T13:00:00,DSTVO Billable,2,Play images not ingesting to Cybertron investigation and discussion with ddm
+NORMAL,Vinu George,Testing,2019-11-11T13:00:00,2019-11-11T15:00:00,DSTVO Billable,2,Discussion with CA team on enabling access to KMS ports for CCA and testing simulcrypt
+NORMAL,Vinu George,Project Support,2019-11-11T15:00:00,2019-11-11T15:30:00,DSTVO Billable,0.5,VIP removal from RRM
+NORMAL,Vinu George,Meeting Customer,2019-11-11T15:30:00,2019-11-11T16:30:00,DSTVO Billable,1,Deployment plan template discussion with Nomthi and Bala
+NORMAL,Vinu George,Project Support,2019-11-11T16:30:00,2019-11-11T17:30:00,DSTVO Billable,1,MCAP-3921 Dstv control migration tests and disscussion with DDM
+NORMAL,Vinu George,Meeting Internal,2019-11-12T09:30:00,2019-11-12T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Development,2019-11-12T10:00:00,2019-11-12T11:00:00,DSTVO Billable,1,UAT catalog issues resolution bcos of old titles
+NORMAL,Vinu George,Project Support,2019-11-12T11:00:00,2019-11-12T14:00:00,DSTVO Billable,3,Simulcrypt asset tests and investigation support
+NORMAL,Vinu George,Operations Support,2019-11-12T14:00:00,2019-11-12T15:00:00,DSTVO Billable,1,Discussion with network team on enabling CCA ports in production prior to deployment
+NORMAL,Vinu George,Meeting Internal,2019-11-12T15:00:00,2019-11-12T15:30:00,DSTVO Billable,0.5,MM weekly synchup
+NORMAL,Vinu George,Meeting Customer,2019-11-12T15:30:00,2019-11-12T16:30:00,DSTVO Billable,1,KMS and tools team meeting
+NORMAL,Vinu George,Meeting Internal,2019-11-12T16:30:00,2019-11-12T17:30:00,DSTVO Billable,1,Release 89 and release 88 Deployment planning
+NORMAL,Vinu George,Meeting Internal,2019-11-13T09:30:00,2019-11-13T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Development,2019-11-13T10:00:00,2019-11-13T11:00:00,DSTVO Billable,1,UAT support and issues investigation
+NORMAL,Vinu George,Meeting Customer,2019-11-13T11:00:00,2019-11-13T12:00:00,DSTVO Billable,1,VOD Roapmap
+NORMAL,Vinu George,Development,2019-11-13T12:00:00,2019-11-13T13:00:00,DSTVO Billable,1,Worked on MCAP-3912
+NORMAL,Vinu George,Meeting Internal,2019-11-13T13:00:00,2019-11-13T14:30:00,DSTVO Billable,1.5,Share & Learn- KMS Automation Tool
+NORMAL,Vinu George,Development,2019-11-13T14:30:00,2019-11-13T17:30:00,DSTVO Billable,3,Worked on MCAP-3912
+NORMAL,Vinu George,Meeting Internal,2019-11-14T09:30:00,2019-11-14T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Development,2019-11-14T10:00:00,2019-11-14T12:00:00,DSTVO Billable,2,UAT support and issues investigation
+NORMAL,Vinu George,Project Support,2019-11-14T12:00:00,2019-11-14T13:00:00,DSTVO Billable,1,Simulcrypt asset tests and investigation support
+NORMAL,Vinu George,Meeting Customer,2019-11-14T13:00:00,2019-11-14T13:30:00,DSTVO Non Billable,0.5,Sync-up on QA UI Implementation
+NORMAL,Vinu George,Development,2019-11-14T13:30:00,2019-11-14T17:30:00,DSTVO Billable,4,Worked on MCAP-3912, tested simulcrypt and asset registration against KMS
+NORMAL,Vinu George,Meeting Internal,2019-11-15T09:30:00,2019-11-15T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Meeting Customer,2019-11-15T10:00:00,2019-11-15T11:30:00,DSTVO Billable,1.5,Assets not auto approving for Nano Sports investigation
+NORMAL,Vinu George,Development,2019-11-15T11:30:00,2019-11-15T17:30:00,DSTVO Billable,6,Worked on MCAP-3914
+OVERTIME,Vinu George,Testing,2019-11-17T06:00:00,2019-11-17T07:30:00,DSTVO Billable,1.5,Samrand PES connectivty test to KMS for cca ports
+OVERTIME,Vinu George,Problem Solving,2019-11-17T09:00:00,2019-11-17T11:30:00,KMS Automation Non Billable,2.5,KMS Automation support
+NORMAL,Vinu George,Meeting Internal,2019-11-18T09:30:00,2019-11-18T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Architecture,2019-11-18T10:00:00,2019-11-18T11:30:00,DSTVO Billable,1.5,Asset Based Pull VOD Integration with AWS arch discussion with mca
+NORMAL,Vinu George,Development,2019-11-18T11:30:00,2019-11-18T12:30:00,DSTVO Billable,1,UAT support and issues resolution
+NORMAL,Vinu George,Meeting Customer,2019-11-18T12:30:00,2019-11-18T13:30:00,DSTVO Billable,1,Live streaming-Network discussion
+NORMAL,Vinu George,Problem Solving,2019-11-18T13:30:00,2019-11-18T17:30:00,KMS Automation Non Billable,4,KMS Automation support and issues resolution
+NORMAL,Vinu George,Problem Solving,2019-11-18T20:00:00,2019-11-18T21:00:00,DSTVO Billable,1,Ticket resolution wrt uid update
+NORMAL,Vinu George,Meeting Internal,2019-11-19T09:30:00,2019-11-19T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Problem Solving,2019-11-19T10:00:00,2019-11-19T13:30:00,KMS Automation Non Billable,3.5,KMS Automation support and issues resolution
+NORMAL,Vinu George,Development,2019-11-19T13:30:00,2019-11-19T15:30:00,DSTVO Billable,2,UAT support and issues resolution
+NORMAL,Vinu George,Testing,2019-11-19T15:30:00,2019-11-19T17:30:00,DSTVO Billable,2,Testing MCAP-3914
+NORMAL,Vinu George,Project Support,2019-11-20T06:00:00,2019-11-20T08:00:00,DSTVO Billable,2,Provided Willie with KMS Automation ingest file format
+NORMAL,Vinu George,Meeting Internal,2019-11-20T09:30:00,2019-11-20T12:00:00,DSTVO Billable,2.5,Dstv dicsussion on RRM migration to control and related questions
+NORMAL,Vinu George,Project Support,2019-11-20T12:00:00,2019-11-20T14:30:00,DSTVO Billable,2.5,Samrand PES connectivty test to KMS for cca ports, CAProductIdList discussion wth E2ESI
+NORMAL,Vinu George,Project Support,2019-11-20T14:30:00,2019-11-20T17:30:00,KMS Automation Non Billable,3,KMS Automation support and investigation on DSD messages not playing out
+NORMAL,Vinu George,Meeting Internal,2019-11-21T09:30:00,2019-11-21T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Project Support,2019-11-21T10:00:00,2019-11-21T12:30:00,DSTVO Billable,2.5,Samrand PES connectivty test to KMS for cca ports, Poster location discussion with Willie, TimeCodes discussion with MCA
+NORMAL,Vinu George,Problem Solving,2019-11-21T12:30:00,2019-11-21T13:30:00,DSTVO Non Billable,1,Assets not available on NAS investigation
+NORMAL,Vinu George,Project Support,2019-11-21T13:30:00,2019-11-21T17:30:00,KMS Automation Non Billable,4,KMS Automation system support
+NORMAL,Vinu George,Meeting Internal,2019-11-22T09:30:00,2019-11-22T10:00:00,DSTVO Billable,0.5,Daily Scrum
+NORMAL,Vinu George,Project Support,2019-11-22T10:00:00,2019-11-22T12:30:00,DSTVO Billable,1.5,Samrand PES connectivty test to KMS for cca ports
+NORMAL,Vinu George,Development,2019-11-22T12:30:00,2019-11-22T13:30:00,DSTVO Billable,1,UAT support and issues resolution
+NORMAL,Vinu George,Project Support,2019-11-22T13:30:00,2019-11-22T17:30:00,KMS Automation Non Billable,3,KMS Automation system support and setting up Team Viewer in the tower machine for access from home
+LEAVE,Vinu George,Leave Annual,2019-11-25T09:30:00,2019-11-25T17:30:00,Irdeto Internal,8,Leave
+NORMAL,Vinu George,Development,2019-11-26T04:30:00,2019-11-26T18:30:00,DSTVO Billable,14,Rel 88, 89 deployment and related support and issue resolution

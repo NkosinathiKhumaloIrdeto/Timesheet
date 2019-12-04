@@ -104,7 +104,7 @@ router.post('/log', (req, res) => {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully", id: newLogModal._id })
+        res.status(200).send({ "message": "Added Successfully", id: newLogModal._id })
 
     })
 
@@ -305,9 +305,9 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
 
     endDate.set({ h: 23, m: 59 });
 
-    startDate.add(1, 'days');
+    //startDate.add(1, 'days');
     
-    endDate.add(1, 'days');
+    //endDate.add(1, 'days');
 
     /*
     db.getCollection('logs').find({"employee" : {"$in" :["Ashley Jansen","Bafana Mtshali","Bertha Sekgothe","Brian Davids","Christiaan Coetzee","Conway Braun","Cornelius Rykaart","Edward Mnisi","Etienne Du Preez","Jan Andreas","Jan Pienaar","Justin Benade","Katlego Pheeda","Kessie Pillay","Patric Mwaba","Saul Massdorp","Sebata Motloung","Siraj Vawda","Siyabulela Mbekwa","Solomon Kgaabi","Thabo mkhabela","Tobias Maja","Tshidiso Rapuleng","Warren Gabriel","Vanessa Naidoo","Jonathan Painter"]}})

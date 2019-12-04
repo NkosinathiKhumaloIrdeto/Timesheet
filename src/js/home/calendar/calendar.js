@@ -195,7 +195,7 @@ var calendarContr = function ($scope, $http, $state) {
             category: $('#category').val(),
             worktype: $('#worktype').val(),
             projectname: $('#projectname').val(),
-            hours: timeToDecimal(getHours($scope.uiObj.end, $scope.uiObj.start)),
+            hours: calcHours($scope.uiObj.start, $scope.uiObj.end), // timeToDecimal(getHours($scope.uiObj.end, $scope.uiObj.start)),
             color: eventColor($('#worktype').val()),
             start: $scope.uiObj.start,
             end: $scope.uiObj.end,
@@ -297,6 +297,28 @@ var calendarContr = function ($scope, $http, $state) {
 
         return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
     }
+
+    
+function calcHours(startTime,endTime){
+
+	var t1 = new Date(startTime);
+	var t2 = new Date(endTime);
+	
+	var duration = t2 - t1;
+	
+	var milliseconds = parseInt((duration%1000)/100)
+        , seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    minutes = parseInt(minutes) == 30 ? "." + 5: "";
+   // seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + minutes;
+
+}
 
     function processEventUpdate() {
 
@@ -482,7 +504,7 @@ var calendarContr = function ($scope, $http, $state) {
                         $scope.uiObj._id = event._id;
                     }
 
-                    $scope.uiObj.hours = timeToDecimal(getHours(endDate, startDate));
+                    $scope.uiObj.hours = calcHours(startDate, endDate), // timeToDecimal(getHours(endDate, startDate));
 
                     $('#first').css("display", "block");
 
@@ -586,6 +608,7 @@ var calendarContr = function ($scope, $http, $state) {
                         startDate: startDate,
                         end: eventData.event.end,
                         endDate: endDate,
+                        hourse : calcHours(startDate, endDate),
                         _id: ""
                     }
 
@@ -623,14 +646,14 @@ var calendarContr = function ($scope, $http, $state) {
                     category: eventData.event.category,
                     worktype: eventData.event.worktype,
                     projectname: eventData.event.projectname,
-                    hours: eventData.event.hours,
+                    hours: calcHours(startDate,endDate),// eventData.event.hours,
                     color: eventData.event.color,
-
                     start: eventData.event.start,
                         startDate: startDate,
                         end: eventData.event.end,
                         endDate: endDate,
                 }
+                
         
                 //send data to server
                 $http.post('/data/log', data)
@@ -645,9 +668,7 @@ var calendarContr = function ($scope, $http, $state) {
                         $scope.msg = {
                             error: "",
                             success: ""
-                        }
-        
-                        
+                        }                        
 
                         showSnack(data.title + ": " + response.data.message);
                         eventData = {}
