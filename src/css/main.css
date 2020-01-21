@@ -7,7 +7,6 @@
 
 .fc-content {
     color: white;
-
 }
 
 .fc-time-grid-event {
@@ -17,6 +16,10 @@
 
 button {
     border-radius: 0px;
+}
+
+body {
+    background: #f4f4f4;
 }
 
 .fc-button-group button {
@@ -33,7 +36,6 @@ button {
 button.fc-state-active {
     background: #fff;
     color: #5c0055;
-
 }
 
 .wrapper {
@@ -46,20 +48,41 @@ button.fc-state-active {
 }
 
 .login-div {
-    width: 300px;
+    width: 400px;
     margin: 0 auto;
     text-align: center;
-    
+    background: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 2px 2px 10px 0px #ddd;
+    ;
 }
 
 .login-div h1 {
     color: #5c0055;
 }
 
-.btn-login, .btn-faq-search {
+.btn-login,
+.btn-faq-search {
     background: #5c0055;
     color: #fff;
     width: 100px;
+}
+
+.modal-content {
+    border-radius: 0px;
+    border: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.nav-logout-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .btn-purple {
@@ -68,7 +91,7 @@ button.fc-state-active {
     width: 100px;
 }
 
-.no-radius{
+.no-radius {
     border-radius: 0px;
 }
 
@@ -77,7 +100,7 @@ button.fc-state-active {
     color: #fff;
 }
 
-.tr-gray{
+.tr-gray {
     background: #ccc;
 }
 
@@ -86,12 +109,10 @@ button.fc-state-active {
         width: 100%;
         margin: 0;
     }
-
     .btn-purple {
         width: 100%;
     }
 }
-
 
 .sidenav {
     height: 100%;
@@ -104,30 +125,25 @@ button.fc-state-active {
     padding: 15px;
 }
 
-
 .btn-side-nav {
     background: #5c0055;
     margin-top: 5px;
     text-align: left;
 }
 
-
-
 .sidenav a {
-    
     text-decoration: none;
     font-size: 20px;
     color: #fff;
     display: block;
-    -webkit-transition: background 1s; /* For Safari 3.1 to 6.0 */
+    -webkit-transition: background 1s;
+    /* For Safari 3.1 to 6.0 */
     transition: background 1s;
 }
 
 .sidenav-active {
     background: #470f3a;
-    
 }
-
 
 .sidenav a:hover {
     color: #f1f1f1;
@@ -138,7 +154,6 @@ button.fc-state-active {
     border: 1px solid #fff;
 }
 
-
 .side-nav-header {
     font-size: 25px !important;
     color: #470f3a;
@@ -146,9 +161,10 @@ button.fc-state-active {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-   
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
     padding: 0px 10px;
 }
 
@@ -172,27 +188,27 @@ button.fc-state-active {
     margin-right: 8px;
 }
 
-#first
-{    
-    position:absolute;
-    bottom:0;
-    left:0;
+#first {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     text-align: center;
-    right:0;
-    top:0;  
-    opacity:0.7;
-    background-color:#000;
-    color:#fff;
-    z-index:9999;
+    right: 0;
+    top: 0;
+    opacity: 0.7;
+    background-color: #000;
+    color: #fff;
+    z-index: 9999;
     display: none;
 }
 
-#first > h1 {
+#first>h1 {
     top: 50%;
 }
 
-
-.alert{display:none;}
+.alert {
+    display: none;
+}
 
 #snackbar.show {
     visibility: visible;
@@ -205,26 +221,54 @@ button.fc-state-active {
 }
 
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }

@@ -1,47 +1,86 @@
 <style>
     .login-names-a {
-  background: #5c0055;
-  color:#fff;
-}
-
-.login-names-ul > li {
-	list-style:none;
-	float: left;
-	margin: 10px;
-	padding:10px;
-	
-
-}
-
-.login-names-ul > li:hover {
-
-color:#5c0055;
-background:#fff;
-
-}
+        background: #5c0055;
+        color: #fff;
+    }
+    
+    .login-names-ul>li {
+        list-style: none;
+        float: left;
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    .login-names-ul>li:hover {
+        color: #5c0055;
+        background: #fff;
+    }
+    
+    .nav-main {
+        box-shadow: 2px 2px 10px 0px #ddd;
+        background: #fff;
+        height: 100%;
+    }
+    
+    .nav-header {
+        background: #5f5f60;
+        padding: 25px;
+        color: #ddd;
+        font-weight: bold;
+        font-size: 13pt;
+    }
+    
+    .nav-main ul {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .nav-main ul li {
+        list-style: none;
+    }
+    
+    .nav-main ul li a {
+        text-decoration: none;
+        padding: 15px;
+        display: block;
+        color: #212121;
+    }
+    
+    .nav-main ul li a.active {
+        background: #f0bbd1;
+        border-left: 5px #a42359 solid;
+        font-weight: bold;
+        ;
+    }
+    
+    .nav-main ul li a:hover {
+        background: #f0bbd1;
+    }
+    
+    .display {
+        padding-top: 25px;
+    }
+    
+    .calDisp {
+        background: #fff;
+        box-shadow: 2px 2px 10px 0px #ddd;
+    }
 </style>
 
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Irdeto Timehseets (1.5)  <span style="color:red; font-size: 12pt"></span></a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light calDisp">
+    <a class="navbar-brand" href="#">Irdeto Timehseets (1.5.2)<span style="color:red; font-size: 12pt"></span></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
 
-        </div>
-    </nav>
-
-</div>
-
-<div ui-view></div>
-
-
+    </div>
+</nav>
 
 <div class="login-div" ng-if="!enableCalandar">
     <div>
@@ -52,14 +91,7 @@ background:#fff;
             <div class="row">
                 <div class="col-md-12">
 
-                    <!--<ul class="login-names-ul">-->
-                    <!--      <li class="login-names-a" ng-repeat="x in db.users">{{x.username}}</li>
-            </ul>
-
-</div> -->
-
-                    <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple"
-                        class="form-control" style="width:100%">
+                    <select ng-model="obj.username" ng-options="x.username for x in db.users" id="selectCategory" name="selectmultiple" class="form-control" style="width:100%">
                     </select>
 
                 </div>
@@ -68,8 +100,7 @@ background:#fff;
 
             <div class="row">
                 <div class="col-md-12">
-                    <input type="button" ng-disabled="obj.username.length == 0" ng-click="displayCal()" class="btn btn-login"
-                        value="Proceeed">
+                    <input type="button" ng-disabled="obj.username.length == 0" ng-click="displayCal()" class="btn btn-login" value="Proceeed">
                 </div>
             </div>
         </form>
@@ -77,29 +108,25 @@ background:#fff;
 
 </div>
 
-<div class="sidenav sidenav-menu" ng-if="enableCalandar">
+<!--<div class="sidenav sidenav-menu" ng-if="enableCalandar">
 
     <a href="" class="side-nav-header" ng-click="">
         {{obj.username.username|getInitials}}
     </a>
     <hr>
 
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 1}" ui-sref="home.calendar({username:obj.username.username})"
-        ng-click="activeLink = 1">
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 1}" ui-sref="home.calendar({username:obj.username.username})" ng-click="activeLink = 1">
         <i class="fas fa-calendar-alt" style="margin-right:10px"></i>Calendar
     </a>
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.dashboard({username:obj.username.username})"
-        ng-click="activeLink = 2">
-        <i class="fas fa-tachometer-alt" style="margin-right:10px"></i>Dashboard   
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 2}" ui-sref="home.dashboard({username:obj.username.username})" ng-click="activeLink = 2">
+        <i class="fas fa-tachometer-alt" style="margin-right:10px"></i>Dashboard
     </a>
 
-    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.reports({username:obj.username.username})"
-        ng-click="activeLink = 3">
+    <a class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 3}" ui-sref="home.reports({username:obj.username.username})" ng-click="activeLink = 3">
         <i class="fas fa-file-invoice" style="margin-right:10px"></i>Report
     </a>
     <hr>
-    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 4}" ui-sref="home.settings({username:obj.username.username})"
-        ng-click="activeLink = 4">
+    <a href="#" class="btn btn-side-nav" ng-class="{'sidenav-active':activeLink == 4}" ui-sref="home.settings({username:obj.username.username})" ng-click="activeLink = 4">
         <i class="fas fa-cog" style="margin-right:10px"></i>Settings
     </a>
 
@@ -107,6 +134,33 @@ background:#fff;
         <i class="fas fa-sign-out-alt" style="margin-right:10px"></i>Logout
     </a>
 
+</div> -->
+<div class="display">
+    <div class="row" ng-if="enableCalandar">
+        <div class="col-md-2">
 
+            <div class="nav-main" ng-if="enableCalandar">
+                <div class="nav-header">Hi, {{obj.username.username|getInitials}}</div>
 
+                <ul>
+                    <li><a ng-class="{'active':activeLink == 1}" ui-sref="home.calendar({username:obj.username.username})" ng-click="activeLink = 1"><i class="fas fa-calendar-alt" style="margin-right:10px"></i>Calendar</a></li>
+                    <!--  <li><a href="#">Dashboard</a></li> -->
+                    <li><a ng-class="{'active':activeLink == 3}" ui-sref="home.reports({username:obj.username.username})" ng-click="activeLink = 3"><i class="fas fa-file-invoice" style="margin-right:10px"></i>Report</a></li>
+                </ul>
+
+                <ul>
+                    <li><a ng-class="{'active':activeLink == 4}" ui-sref="home.settings({username:obj.username.username})" ng-click="activeLink = 4"><i class="fas fa-cog" style="margin-right:10px"></i>Settings</a></li>
+                    <li><a ng-click="logout()" href="#">Logout</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="calDisp">
+                <div ui-view></div>
+            </div>
+
+        </div>
+    </div>
 </div>
