@@ -69,7 +69,7 @@ router.get('/get', (req, res) => {
 
         const csv = parser.parse(myData);
 
-        fs.writeFile(fullname, csv, 'utf8', function (err) {
+        fs.writeFile(fullname, csv, 'utf8', function(err) {
 
             if (err) {
 
@@ -100,7 +100,7 @@ router.post('/log', (req, res) => {
 
     var newLogModal = new logModal(req.body);
 
-    newLogModal.save(function (err) {
+    newLogModal.save(function(err) {
 
         if (err) { throw err; }
 
@@ -123,7 +123,7 @@ router.post('/updateLogResize', (req, res) => {
 
     var _id = req.body._id
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
 
         if (err) throw err;
 
@@ -147,7 +147,7 @@ router.post('/updateLogMove', (req, res) => {
 
     var _id = req.body._id
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
 
         if (err) throw err;
 
@@ -163,9 +163,9 @@ router.post('/updateLogDetail', (req, res) => {
 
     var _id = updatedObj._id;
 
-    delete updatedObj._id;   //just so we don't overwrite the existing record
+    delete updatedObj._id; //just so we don't overwrite the existing record
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
 
         if (err) return err
 
@@ -221,19 +221,19 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
 
     endDate = moment(new Date(req.params.toDate));
 
-    startDate.set({ h: 00, m: 00 });
+    startDate.set({ h: 00, m: 01 });
 
     endDate.set({ h: 23, m: 59 });
 
-    startDate.add(1, 'days');
-    
+    //startDate.add(1, 'days');
+
     //endDate.add(1, 'days');
-   //update
-    var searchQuery = { 
-        "startDate": { $gte: startDate, $lte: endDate }, 
-        employee: new RegExp("^" + req.params.username) ,
+    //update
+    var searchQuery = {
+        "startDate": { $gte: startDate, $lte: endDate },
+        employee: new RegExp("^" + req.params.username),
         "title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
-        //"title":new RegExp("/" + req.query.filterBy + "/i")
+            //"title":new RegExp("/" + req.query.filterBy + "/i")
     };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
@@ -263,11 +263,11 @@ router.get('/getAllBy/:fromDate/:toDate', (req, res) => {
 
     endDate.set({ h: 23, m: 59 });
 
-    startDate.add(1, 'days');
-    
-    endDate.add(1, 'days');
-   //update
-    var searchQuery = { 
+    //startDate.add(1, 'days');
+
+    //endDate.add(1, 'days');
+    //update
+    var searchQuery = {
         "startDate": { $gte: startDate, $lte: endDate }
         //employee: new RegExp("^" + req.params.username) ,
         //"title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
@@ -306,14 +306,14 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
     endDate.set({ h: 23, m: 59 });
 
     //startDate.add(1, 'days');
-    
+
     //endDate.add(1, 'days');
 
     /*
     db.getCollection('logs').find({"employee" : {"$in" :["Ashley Jansen","Bafana Mtshali","Bertha Sekgothe","Brian Davids","Christiaan Coetzee","Conway Braun","Cornelius Rykaart","Edward Mnisi","Etienne Du Preez","Jan Andreas","Jan Pienaar","Justin Benade","Katlego Pheeda","Kessie Pillay","Patric Mwaba","Saul Massdorp","Sebata Motloung","Siraj Vawda","Siyabulela Mbekwa","Solomon Kgaabi","Thabo mkhabela","Tobias Maja","Tshidiso Rapuleng","Warren Gabriel","Vanessa Naidoo","Jonathan Painter"]}})
      */
 
-    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }};
+    var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
@@ -337,8 +337,8 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
             const parser = new Json2csvParser(opts);
 
             const csv = parser.parse(data);
-           
-            fs.writeFile(fullname, csv, 'utf8', function (err) {
+
+            fs.writeFile(fullname, csv, 'utf8', function(err) {
 
                 if (err) {
 
@@ -388,7 +388,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
     endDate.set({ h: 23, m: 59 });
 
     startDate.add(1, 'days');
-    
+
     endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
@@ -399,14 +399,14 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
             res.status(500).send({ 'status': 500, 'msg': err });
             return;
         }
-        
+
         data = updateTime(data)
- 
+
         var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype', 'employee', 'category', "start","end", "projectname", "hours", "title"]
+        var fields = ['worktype', 'employee', 'category', "start", "end", "projectname", "hours", "title"]
 
         var opts = { fields, delimiter: ",", quote: '' };
 
@@ -416,7 +416,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
             const csv = parser.parse(data);
 
-            fs.writeFile(fullname, csv, 'utf8', function (err) {
+            fs.writeFile(fullname, csv, 'utf8', function(err) {
 
                 if (err) {
 
@@ -455,8 +455,8 @@ function updateTime(data) {
         var hours = data[i].hours
         var start = data[i].start.split('T')[0]
         data[i].start = data[i].start
-        //data[i].startDate = data[i].start
-        
+            //data[i].startDate = data[i].start
+
 
         if (hours.length > 3) {
             data[i].hours = timeToDecimal(hours)
