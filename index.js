@@ -15,7 +15,7 @@ app.use('/settings', setting_routes)
 app.use(morgan('dev'));
 
 //setup
-let mongodb_dev = "mongodb://localhost:27017/Timesheets";
+let mongodb_dev = "mongodb://mongodb_container:27017/Timesheets";
 let mongodb_live = "mongodb://172.27.1.101:27017/Timesheets";
 mongoose.connect(mongodb_dev)
     .then(() => console.log('Connection succesful'))
