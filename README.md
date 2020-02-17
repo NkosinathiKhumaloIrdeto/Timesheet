@@ -26,13 +26,15 @@ MongoDb to be installed on local system
 
 ## [Database Structure]
 
-ssh into mongodb container
+### To create a new database:
+
+ssh into mongodb container:
 
 ```
 $ docker exec -it mongodb_container /bin/bash
 ```
 
-Connect to mongo instance
+Connect to mongo instance:
 
 ```
 mongo --host localhost:2701
@@ -44,7 +46,7 @@ Create db:
 use Timsheets
 ```
 
-Create collections
+Create collections:
 
 ```
 db.createCollection("users")
@@ -52,4 +54,30 @@ db.createCollection("logs")
 db.createCollection("setts")
 ```
 
-### Collections
+### To restore a database:
+
+Create a dump of existing database hosted on local/anywhere else
+
+```
+$ mongodump --db=Timesheets
+```
+
+Copy dump into container (mongodb_container)
+
+```
+docker cp /location_of_dump_on_host mongodb_container:/var
+```
+
+ssh into mongodb container:
+
+```
+$ docker exec -it mongodb_container /bin/bash
+```
+
+Restore database from whithin container:
+```
+$ mongorestore /var/dump
+```
+
+Restore should be complete.
+
