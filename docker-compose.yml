@@ -1,0 +1,17 @@
+version: '3'
+services: 
+    sampleapp: #container 1
+        container_name: docker_app_container
+        restart: always
+        build: . #build from local dockerfile
+        ports:
+            - "8020:8020"
+        links: 
+            - mongodb
+    mongodb: #container 2
+        container_name: mongodb_container
+        image: mongo:latest
+        ports:
+            - "27016:27017"
+        volumes: 
+            - "/root/docker/mongodb/data:/data/db"

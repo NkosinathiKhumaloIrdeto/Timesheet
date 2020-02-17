@@ -1,4 +1,3 @@
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -12,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static('src'))
 app.use('/data', routes);
 app.use('/users', user_routes);
-app.use('/settings',setting_routes)
+app.use('/settings', setting_routes)
 app.use(morgan('dev'));
 
 //setup
@@ -22,5 +21,5 @@ mongoose.connect(mongodb_dev)
     .then(() => console.log('Connection succesful'))
     .catch((err) => console.error(err));
 
-app.listen("8019");
-console.log("App running on 8019...");
+app.listen("8020");
+console.log("App running on 8020...");
