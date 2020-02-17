@@ -1,7 +1,7 @@
 version: '3'
 services: 
     sampleapp: #container 1
-        container_name: docker_app_container
+        container_name: timesheet_container
         restart: always
         build: . #build from local dockerfile
         ports:
