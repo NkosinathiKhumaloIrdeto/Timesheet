@@ -28,7 +28,7 @@ MongoDb to be installed on local system
 
 ### To create a new database:
 
-ssh into mongodb container:
+`ssh` into mongodb container:
 
 ```
 $ docker exec -it mongodb_container /bin/bash
@@ -68,7 +68,7 @@ Copy dump into container (mongodb_container)
 docker cp /location_of_dump_on_host mongodb_container:/var
 ```
 
-ssh into mongodb container:
+`ssh` into mongodb container:
 
 ```
 $ docker exec -it mongodb_container /bin/bash
@@ -79,5 +79,5 @@ Restore database from whithin container:
 $ mongorestore /var/dump
 ```
 
-Restore should be complete.
+> Restore should be complete.
 
