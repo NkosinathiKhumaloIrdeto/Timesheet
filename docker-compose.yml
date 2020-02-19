@@ -1,6 +1,6 @@
 version: '3'
 services: 
-    sampleapp: #container 1
+    timesheets: #container 1
         container_name: timesheet_container
         restart: always
         build: . #build from local dockerfile
