@@ -14,11 +14,14 @@ This is a simple application written in nodejs v1.6x. It connects to a mongo dat
 
 The setup is easy. Clone repo to you server/local machine. Ensure the following is installed:
 
-### npm dependencies
-[pm2 ] installed globaly
+### Install Docker & Docker-Compose
+
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+Also, ensure Docker-Compose:
 
 ```
-$ npm install pm2 -g
+$ sudo apt install docker-compose
 ```
 
 MongoDb to be installed on local system
