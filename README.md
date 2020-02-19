@@ -18,7 +18,7 @@ The setup is easy. Clone repo to you server/local machine. Ensure the following 
 
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-Also, ensure Docker-Compose:
+Docker-Compose:
 
 ```
 $ sudo apt install docker-compose
