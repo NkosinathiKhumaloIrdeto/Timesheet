@@ -24,7 +24,6 @@ Docker-Compose:
 $ sudo apt install docker-compose
 ```
 
-MongoDb to be installed on local system
 
 
 ## [Database Structure]
