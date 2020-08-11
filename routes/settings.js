@@ -29,6 +29,7 @@ router.get('/getAll', (req, res) => {
 
 })
 
+
 router.post ('/addSetting', (req,res)=>{
 
     sett_worktype.create(req.body, function (err) {

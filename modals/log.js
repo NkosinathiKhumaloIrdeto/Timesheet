@@ -14,7 +14,8 @@ let Logs = new Schema({
     title: String,
     projectname: String,
     logid: String,
-    color: String
+    color: String,
+    jiranumber: String
 })
 
 module.exports = mongoose.model('logs', Logs);

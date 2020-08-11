@@ -97,7 +97,7 @@ router.get('/get', (req, res) => {
 
 
 router.post('/log', (req, res) => {
-
+console.log("req",req.body);
     var newLogModal = new logModal(req.body);
 
     newLogModal.save(function(err) {
@@ -309,10 +309,6 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
 
     //endDate.add(1, 'days');
 
-    /*
-    db.getCollection('logs').find({"employee" : {"$in" :["Ashley Jansen","Bafana Mtshali","Bertha Sekgothe","Brian Davids","Christiaan Coetzee","Conway Braun","Cornelius Rykaart","Edward Mnisi","Etienne Du Preez","Jan Andreas","Jan Pienaar","Justin Benade","Katlego Pheeda","Kessie Pillay","Patric Mwaba","Saul Massdorp","Sebata Motloung","Siraj Vawda","Siyabulela Mbekwa","Solomon Kgaabi","Thabo mkhabela","Tobias Maja","Tshidiso Rapuleng","Warren Gabriel","Vanessa Naidoo","Jonathan Painter"]}})
-     */
-
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
@@ -406,7 +402,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype', 'employee', 'category', "start", "end", "projectname", "hours", "title"]
+        var fields = ['worktype', 'employee', 'category', "start", "end", "projectname", "hours", "title", "jiranumber"]
 
         var opts = { fields, delimiter: ",", quote: '' };
 

@@ -64,6 +64,7 @@ var calendarContr = function ($scope, $http, $state) {
         $('#category').val('');
         $('#worktype').val('');
         $('#projectname').val('');
+        $('#jiranumber').val('');
 
     }
 
@@ -111,10 +112,7 @@ var calendarContr = function ($scope, $http, $state) {
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
 
             $.each(lst, function (item) {
-                //  console.log(item)
-                // Use Lodash to sort array by 'name'
-                //  console.log(result[item].description)
-
+               
                 options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
         }, (err) => {
@@ -200,7 +198,8 @@ var calendarContr = function ($scope, $http, $state) {
             start: $scope.uiObj.start,
             end: $scope.uiObj.end,
             startDate: $scope.uiObj.startDate,
-            endDate: $scope.uiObj.endDate
+            endDate: $scope.uiObj.endDate,
+            jiranumber:$('#jiranumber').val()
         }
 
         //send data to server
@@ -322,13 +321,12 @@ function calcHours(startTime,endTime){
 
     function processEventUpdate() {
 
-        updateObj.updateData.title = $('#title').val(),
-            updateObj.updateData.category = $('#category').val(),
-            updateObj.updateData.worktype = $('#worktype').val(),
-            updateObj.updateData.projectname = $('#projectname').val(),
-
-
-            updateObj.updateData.color = eventColor($('#worktype').val());
+        updateObj.updateData.title = $('#title').val();
+        updateObj.updateData.category = $('#category').val();
+        updateObj.updateData.worktype = $('#worktype').val();
+        updateObj.updateData.projectname = $('#projectname').val();
+        updateObj.updateData.jiranumber = $('#jiranumber').val();
+        updateObj.updateData.color = eventColor($('#worktype').val());
 
         $('#first').css("display", "block");
 
@@ -339,7 +337,9 @@ function calcHours(startTime,endTime){
                 updateObj.eventObj.category = updateObj.updateData.category
                 updateObj.eventObj.worktype = updateObj.updateData.worktype
                 updateObj.eventObj.projectname = updateObj.updateData.projectname
+                updateObj.eventObj.jiranumber = updateObj.updateData.jiranumber
                 updateObj.eventObj.color = updateObj.updateData.color
+                
 
                 $('#calendar').fullCalendar('updateEvent', updateObj.eventObj);
 
@@ -540,7 +540,7 @@ function calcHours(startTime,endTime){
                    $('#modal_copymove').modal('toggle')
                      //   return;
                     //}
-                    console.log(event);
+                    
                     eventData.event = event;
                     eventData.delta = delta;
                     eventData.revertFunc = revertFunc;
@@ -569,7 +569,7 @@ function calcHours(startTime,endTime){
                     $('#category').val(calEvent.category);
                     $('#worktype').val(calEvent.worktype);
                     $('#projectname').val(calEvent.projectname);
-
+                    $('#jiranumber').val(calEvent.jiranumber);
                     $('#exampleModal').modal('toggle')
 
                 }
@@ -624,7 +624,7 @@ function calcHours(startTime,endTime){
                         $('#first').css("display", "none");
                         showSnack("Updated: " + response.data.message);
                         eventData = {};
-                        console.log('event moved successfully');
+                        
                     }, (error) => {
                         delete $scope.uiObj._id
                         flagMessage("Error:", error, 0);
@@ -640,6 +640,7 @@ function calcHours(startTime,endTime){
 
                 var startDate = eventData.event.start.format();
                 var endDate = eventData.event.end.format();
+                
                 var data = {
                     employee: setusername(),
                     title: eventData.event.title,
@@ -647,6 +648,7 @@ function calcHours(startTime,endTime){
                     worktype: eventData.event.worktype,
                     projectname: eventData.event.projectname,
                     hours: calcHours(startDate,endDate),// eventData.event.hours,
+                    jiranumber : eventData.event.jiranumber,
                     color: eventData.event.color,
                     start: eventData.event.start,
                         startDate: startDate,
@@ -682,6 +684,8 @@ function calcHours(startTime,endTime){
                     })
 
             }
+
+            
 
          
             $scope.enableCalandar = true;

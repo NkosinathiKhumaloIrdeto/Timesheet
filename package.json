@@ -22,6 +22,7 @@
         "mongoose": ">=5.7.5",
         "morgan": "^1.9.1",
         "mysql": "^2.16.0",
-        "node-url-shortener": "^1.0.1"
+        "node-url-shortener": "^1.0.1",
+        "request": "^2.88.2"
     }
 }

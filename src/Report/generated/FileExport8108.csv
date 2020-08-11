@@ -1,0 +1,58 @@
+worktype,employee,category,start,end,projectname,hours,title
+NORMAL,Nkosinathi Khumalo,Development,2020-05-05T07:00:00,2020-05-05T09:30:00,DSTVO Billable,2.5,MCAP-4013
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-05T09:30:00,2020-05-05T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-05T10:00:00,2020-05-05T15:00:00,DSTVO Billable,5,MCAP-4013
+NORMAL,Nkosinathi Khumalo,Development,2020-05-06T07:00:00,2020-05-06T09:30:00,DSTVO Billable,2.5,MCAP-4013
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-06T09:30:00,2020-05-06T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-06T10:00:00,2020-05-06T15:00:00,DSTVO Billable,5,MCAP-4013
+NORMAL,Nkosinathi Khumalo,Development,2020-05-07T07:00:00,2020-05-07T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-07T09:30:00,2020-05-07T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-07T10:00:00,2020-05-07T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-08T07:00:00,2020-05-08T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-08T09:30:00,2020-05-08T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-08T10:00:00,2020-05-08T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-11T07:00:00,2020-05-11T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-11T09:30:00,2020-05-11T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-11T10:00:00,2020-05-11T11:30:00,DSTVO Billable,1.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-11T11:30:00,2020-05-11T12:00:00,DSTVO Billable,0.5,Production Issues and Tickets
+NORMAL,Nkosinathi Khumalo,Development,2020-05-11T12:00:00,2020-05-11T15:00:00,DSTVO Billable,3,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-12T07:00:00,2020-05-12T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-12T09:30:00,2020-05-12T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-12T10:00:00,2020-05-12T11:00:00,DSTVO Billable,1,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-12T11:00:00,2020-05-12T11:30:00,DSTVO Non Billable,0.5,Media Manager Sprint demo
+NORMAL,Nkosinathi Khumalo,Development,2020-05-12T11:30:00,2020-05-12T15:00:00,DSTVO Billable,3.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-13T07:00:00,2020-05-13T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-13T09:30:00,2020-05-13T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-13T10:00:00,2020-05-13T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-14T07:00:00,2020-05-14T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-14T09:30:00,2020-05-14T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-14T10:00:00,2020-05-14T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-15T07:00:00,2020-05-15T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Internal,2020-05-15T09:30:00,2020-05-15T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-15T10:00:00,2020-05-15T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-18T07:00:00,2020-05-18T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-18T09:30:00,2020-05-18T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-18T10:00:00,2020-05-18T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-19T07:00:00,2020-05-19T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-19T09:30:00,2020-05-19T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-19T10:00:00,2020-05-19T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-20T07:00:00,2020-05-20T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-20T09:30:00,2020-05-20T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-20T10:00:00,2020-05-20T11:00:00,DSTVO Billable,1,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-20T11:00:00,2020-05-20T12:00:00,DSTVO Billable,1,96 Hand Over
+NORMAL,Nkosinathi Khumalo,Development,2020-05-20T12:00:00,2020-05-20T14:00:00,DSTVO Billable,2,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-20T14:00:00,2020-05-20T15:00:00,DSTVO Billable,1,96 Hand Over
+NORMAL,Nkosinathi Khumalo,Development,2020-05-21T06:30:00,2020-05-21T11:30:00,DSTVO Billable,5,Rel 94 Deployment
+NORMAL,Nkosinathi Khumalo,Development,2020-05-21T11:30:00,2020-05-21T15:00:00,DSTVO Billable,3.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-22T07:00:00,2020-05-22T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Meeting Customer,2020-05-22T09:30:00,2020-05-22T10:00:00,DSTVO Billable,0.5,Scrum
+NORMAL,Nkosinathi Khumalo,Development,2020-05-22T10:00:00,2020-05-22T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-25T07:00:00,2020-05-25T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-25T09:30:00,2020-05-25T10:00:00,DSTVO Billable,0.5,SCRUM
+NORMAL,Nkosinathi Khumalo,Development,2020-05-25T10:00:00,2020-05-25T15:00:00,DSTVO Billable,5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-26T07:00:00,2020-05-26T09:30:00,DSTVO Billable,2.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-05-26T09:30:00,2020-05-26T10:30:00,DSTVO Billable,1,SCRUM
+NORMAL,Nkosinathi Khumalo,Development,2020-05-26T10:30:00,2020-05-26T15:00:00,DSTVO Billable,4.5,MCAP-4050
+NORMAL,Nkosinathi Khumalo,Development,2020-06-08T07:00:00,2020-06-08T09:00:00,DSTVO Billable,2,test2
+NORMAL,Nkosinathi Khumalo,Development,2020-06-08T09:30:00,2020-06-08T12:00:00,DSTVO Billable,2.5,tsd
+NORMAL,Nkosinathi Khumalo,Development,2020-06-10T08:00:00,2020-06-10T10:00:00,DSTVO Billable,2,test2

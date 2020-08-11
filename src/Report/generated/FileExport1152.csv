@@ -1,0 +1,8 @@
+worktype,employee,category,start,end,projectname,hours,title
+NORMAL,Nkosinathi Khumalo,Development,2020-08-03T16:30:00,2020-08-03T18:00:00,DSTVO Billable,1.5,Test desc
+OTHER,Nkosinathi Khumalo,Meeting Internal,2020-08-04T07:30:00,2020-08-04T09:00:00,ShahzadSky Billable,1.5,MAM Schedule to Media Manager
+NORMAL,Nkosinathi Khumalo,Customer Training,2020-08-04T10:30:00,2020-08-04T12:30:00,DSTVO Non Billable,2,MAM Schedule to Media Manager - testing, dev, code review
+OTHER,Nkosinathi Khumalo,Business Travel,2020-08-05T09:00:00,2020-08-05T12:30:00,DSTVO Billable,3.5,Test Docker swarm mode in multiple docker nodes (only Staging)
+OTHER,Nkosinathi Khumalo,Meeting Internal,2020-08-05T16:00:00,2020-08-05T19:00:00,ShahzadSky Billable,3,Add Bouquet
+NORMAL,Nkosinathi Khumalo,Development,2020-08-06T10:30:00,2020-08-06T12:30:00,KMS Automation Non Billable,2,KMS autom: Option to enforce sequence of commands send to Gofer container
+OTHER,Nkosinathi Khumalo,Business Travel,2020-08-07T10:30:00,2020-08-07T14:00:00,DSTVO Billable,3.5,Test Docker swarm mode in multiple docker nodes (only Staging)
