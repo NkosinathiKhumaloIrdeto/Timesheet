@@ -4,12 +4,12 @@ angular.module('app', ['login-app', 'ui.router', 'ngCookies'])
         // In the return function, we must pass in a single parameter which will be the data we will work on.
         // We have the ability to support multiple other parameters that can be passed into the filter optionally
         return function (name) {
-            
+
             console.log(name);
 
             var output;
 
-            if(name.indexOf(" ") > 0){
+            if (name.indexOf(" ") > 0) {
 
                 console.log("1");
 
@@ -19,9 +19,7 @@ angular.module('app', ['login-app', 'ui.router', 'ngCookies'])
 
                 output = output + split_name[1].slice(0, 1);
 
-            } else 
-
-            { 
+            } else {
                 console.log("2");
 
                 output = (name.charAt(0) + "" + name.charAt(1)).toLocaleUpperCase();

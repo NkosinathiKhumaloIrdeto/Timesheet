@@ -130,8 +130,14 @@ var calendarContr = function ($scope, $http, $state) {
         title: "",
         projectname: "",
         startDate: '',
-        endDate: ''
+        endDate: '',
+        jiraNumbers: []
     }
+    
+
+        /*<input auto-complete ui-items="names" class="form-control" name="jiranumber" id="jiranumber" ng-model="selected">
+        */
+       
 
     //<--- enable calendar here --->
     setUpCal();
@@ -686,8 +692,6 @@ function calcHours(startTime,endTime){
             }
 
             
-
-         
             $scope.enableCalandar = true;
 
         });

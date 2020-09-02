@@ -6,49 +6,37 @@
 </style>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font: 16px Arial;
-    }
-
-
-    /*the container must be positioned relative:*/
-    .autocomplete {
+    .dropdown {
         position: relative;
         display: inline-block;
     }
 
-    .autocomplete-items {
+    .dropdown-content {
+        display: none;
         position: absolute;
-        border: 1px solid #d4d4d4;
-        border-bottom: none;
-        border-top: none;
-        z-index: 99;
-        /*position the autocomplete items to be the same width as the container:*/
-        top: 100%;
-        left: 0;
-        right: 0;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border: 1px solid #ddd;
     }
 
-    .autocomplete-items div {
-        padding: 10px;
-        cursor: pointer;
-        background-color: #fff;
-        border-bottom: 1px solid #d4d4d4;
+    .dropdown-content a {
+        color:#3d3d3d;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #ddd;
     }
 
-    /*when hovering an item:*/
-    .autocomplete-items div:hover {
-        background-color: #e9e9e9;
+    .dropdown-content a:hover {
+        background-color: #5c0055;
+        color: #fff;
     }
 
-    /*when navigating through the items using the arrow keys:*/
-    .autocomplete-active {
-        background-color: DodgerBlue !important;
-        color: #ffffff;
+    .show {
+        display: block;
     }
 </style>
 
@@ -89,8 +77,20 @@
                         <div style="padding: 20px;padding-top: 25px; padding-bottom: 25px; background-color: #f5f5f5;">
                             <label class="control-label" for="textinput">JIRA Number <SPAN
                                     style="color:#fff; font-weight: bold; padding:4px; background-color: red; font-size:11px">(NEW)</SPAN>:</label>
-                            <input class="form-control" id="jiranumber" type="text" name="jiranumber"
-                                placeholder="search e.g: 302...">
+                            <!--<input class="form-control" id="jiranumber" type="text" name="jiranumber"
+                                placeholder="search e.g: 302...">-->
+
+                            <input type="text" class="form-control" id="jiranumber" onkeyup="searchJiras()">
+                           
+                            <div id="div_searchResults" class="dropdown-content">
+  
+                            </div>
+
+                            <br>
+
+                           <!-- <input auto-complete ui-items="names" class="form-control" name="jiranumber" id="jiranumber"
+                                ng-model="selected">
+                            selected = {{selected}} -->
                             <span style="font-size: 8pt; font-style: italic;">This will replace content in the
                                 description field</span>
                         </div>
@@ -227,122 +227,69 @@
 </div>
 
 <script>
-    function autocomplete(inp, arr) {
-        /*the autocomplete function takes two arguments,
-        the text field element and an array of possible autocompleted values:*/
-        var currentFocus;
-        /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function (e) {
-            var a, b, i, val = this.value;
-            /*close any already open lists of autocompleted values*/
-            closeAllLists();
-            if (!val) { return false; }
-            currentFocus = -1;
-            /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            /*append the DIV element as a child of the autocomplete container:*/
-            this.parentNode.appendChild(a);
-            /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].jiranumber.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    /*create a DIV element for each matching element:*/
-                    b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].jiranumber.substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].jiranumber.substr(val.length) + " - " + arr[i].description;
-                    /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' description='" + arr[i].description + "' value='MCAP-" + arr[i].jiranumber + "'>";
-                    /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function (e) {
-                        /*insert the value for the autocomplete text field:*/
-                        //UPDATE DESCRIPTION
-                        var xx = this.getElementsByTagName("input")[0].getAttribute("description");
 
-                        document.getElementById('title').value = xx;
+    function onJiraClick(jiranumber,description){
 
-                        inp.value = this.getElementsByTagName("input")[0].value;
+        //populate jira field
+        document.getElementById("jiranumber").value = "MCAP-" + jiranumber
+        document.getElementById("title").value = description
 
-                        /*close the list of autocompleted values,
-                        (or any other open lists of autocompleted values:*/
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
-                }
-            }
-        });
-        /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function (e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    /*and simulate a click on the "active" item:*/
-                    if (x) x[currentFocus].click();
-                }
-            }
-        });
-        function addActive(x) {
-            /*a function to classify an item as "active":*/
-            if (!x) return false;
-            /*start by removing the "active" class on all items:*/
-            removeActive(x);
-            if (currentFocus >= x.length) currentFocus = 0;
-            if (currentFocus < 0) currentFocus = (x.length - 1);
-            /*add class "autocomplete-active":*/
-            x[currentFocus].classList.add("autocomplete-active");
-        }
-        function removeActive(x) {
-            /*a function to remove the "active" class from all autocomplete items:*/
-            for (var i = 0; i < x.length; i++) {
-                x[i].classList.remove("autocomplete-active");
-            }
-        }
-        function closeAllLists(elmnt) {
-            /*close all autocomplete lists in the document,
-            except the one passed as an argument:*/
-            var x = document.getElementsByClassName("autocomplete-items");
-            for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
-                    x[i].parentNode.removeChild(x[i]);
-                }
-            }
-        }
-        /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function (e) {
-            closeAllLists(e.target);
-        });
     }
 
-    var countries = []
+    function searchJiras() {
 
-    /*An array containing all the country names in the world:*/
-    $.get("/jira/getAll", function (data, status) {
-        // console.log(data[0].jiranumber);
-        //alert("Data: " + data + "\nStatus: " + status);
+        var txt_val = document.getElementById("jiranumber").value
+        var val_length = document.getElementById("jiranumber").value.length
+        var show_search = false
 
-        //data
-        countries = data;
+        if (val_length > 3) {
+           
+            show_search = true;
 
-        /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-        autocomplete(document.getElementById("jiranumber"), countries);
-    });
+            var str_links = "";
+            
+            $.get("/jira/search/" + txt_val, function (data, status) {
 
+                for(var i = 0; i < data.length; i++){
+                   str_links += "<a href='#' onclick='onJiraClick("  + data[i].jiranumber + ",\"" + data[i].description + "\")'><b>MCAP-" + data[i].jiranumber + "</b> " + data[i].description + "</a>"
+                }
 
+                document.getElementById("div_searchResults").innerHTML = str_links
+               
+            })
+
+            
+        } else {
+            console.log("no search");
+            show_search = false;
+        }
+
+        if (show_search) {
+
+            if (!document.getElementById("div_searchResults").classList.contains("show")) {
+                document.getElementById("div_searchResults").classList.add("show");
+                document.getElementById("div_searchResults").classList.remove("hide");
+            }
+
+        } else {
+            if (!document.getElementById("div_searchResults").classList.contains("hide")) {
+                document.getElementById("div_searchResults").classList.add("hide");
+                document.getElementById("div_searchResults").classList.remove("show");
+            }
+
+        }
+    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 </script>

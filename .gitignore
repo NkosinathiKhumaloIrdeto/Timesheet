@@ -1,2 +1,4 @@
 node_modules/
 src/Report/generated/
+help.txt
+csv.js

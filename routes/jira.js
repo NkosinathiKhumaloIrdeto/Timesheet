@@ -29,6 +29,19 @@ router.get('/getAll', (req, res) => {
 
 })
 
+router.get('/search/:query', (req, res) => {
+
+    jira.find(
+
+        { $or: [{ jiranumber: new RegExp("^" + req.params.query) }, { description: { '$regex': req.params.query, '$options': 'i' } }] }
+        , (err, data) => {
+
+            if (err) throw err
+
+            res.status(200).send(data);
+        })
+
+})
 
 router.post('/addJIra', (req, res) => {
 
@@ -37,8 +50,6 @@ router.post('/addJIra', (req, res) => {
 
         if (err) throw err
 
-        // res.status(200).send(data);
-        console.log(req.body);
         if (data.length == 0) {
             jira.create(req.body, function (err) {
 
@@ -67,7 +78,7 @@ router.post('/importJiras1', (req, res) => {
 
         new_data = obj[i]
 
-        jira.find({jiranumber: new_data.jiranumber }, (err, data) => {
+        jira.find({ jiranumber: new_data.jiranumber }, (err, data) => {
 
             count++;
 
@@ -76,18 +87,18 @@ router.post('/importJiras1', (req, res) => {
                 jira.create(new_data, function (err) {
 
                     if (err) { throw err; }
-                    
-                    count++;
-        
-                }) 
 
-            } else {console.log('null',data)}
+                    count++;
+
+                })
+
+            } else { console.log('null', data) }
 
         })
 
     }
 
-    res.status(200).send({"message": count + " - Were imported successfully" })
+    res.status(200).send({ "message": count + " - Were imported successfully" })
 
 })
 
@@ -97,10 +108,9 @@ router.post('/importJiras', (req, res) => {
     jira.create(req.body, function (err) {
 
         if (err) { throw err; }
-    
 
-    }) 
-    res.status(200).send({"message": "Imported successfully" })
+    })
+    res.status(200).send({ "message": "Imported successfully" })
 
 })
 
@@ -114,6 +124,6 @@ router.post('/deleteSetting', (req, res) => {
 
     })
 
-})	
+})
 
 module.exports = router;
