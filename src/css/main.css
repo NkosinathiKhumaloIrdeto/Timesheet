@@ -188,6 +188,10 @@ button.fc-state-active {
     margin-right: 8px;
 }
 
+.align-right{
+    text-align: right;
+}
+
 #first {
     position: absolute;
     bottom: 0;

@@ -68,14 +68,33 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
-    loadData_category();
+    //loadData_category();
     loadData_worktype();
     loadData_projectname();
 
     function loadData_worktype() {
-
-        $.getJSON("/settings/getAllSettings/worktype", function (result) {
+       
+        $.getJSON("/settings/getAllWorktype", function (result) {
             var options = $("#worktype");
+            //don't forget error handling!
+            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
+            $.each(result, function (item) {
+                options.append($("<option />").val(lst[item].description).text(lst[item].description).data('id',lst[item].id));
+            });
+        }, (err) => {
+            alert("Unable to load worktype")
+        });
+
+    }
+
+    $('#worktype').change(function(){
+
+        $('#category').val('').empty();
+
+        var id = $('#worktype').find(":selected").data("id");
+
+        $.getJSON("/settings/getAllLinkedCat/" + id, function (result) {
+            var options = $("#category");
             //don't forget error handling!
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
             $.each(result, function (item) {
@@ -85,14 +104,18 @@ var calendarContr = function ($scope, $http, $state) {
             alert("Unable to load worktype")
         });
 
-    }
+    })
 
     function loadData_category() {
         //get all category
 
+        $('#category').val('');
 
-        $.getJSON("/settings/getAllSettings/category", function (result) {
+        $.getJSON("/settings/getAllCategory", function (result) {
             var options = $("#category");
+
+            console.log(result)
+
             //don't forget error handling!
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
             $.each(lst, function (item) {
@@ -106,7 +129,7 @@ var calendarContr = function ($scope, $http, $state) {
     function loadData_projectname() {
         //get all projectname       
 
-        $.getJSON("/settings/getAllSettings/projectname", function (result) {
+        $.getJSON("/settings/getAllProjectNames", function (result) {
             var options = $("#projectname");
             //don't forget error handling!
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
