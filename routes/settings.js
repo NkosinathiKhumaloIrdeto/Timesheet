@@ -89,7 +89,6 @@ router.post('/addProjectName/:description', (req, res) => {
 
     var query = "INSERT INTO config_project_name (id, description) VALUES (?,?)";
 
-    console.log(values);
 
     mysql.query(query,values, function (err) {
 

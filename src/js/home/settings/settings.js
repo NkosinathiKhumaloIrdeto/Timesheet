@@ -119,7 +119,7 @@ var settingsCtr = function ($scope, $http, $state) {
 
         $('#first').css("display", "block");
 
-        $http.post('/settings/addProjectName/' + $scope.objs.worktype.worktypetext, {})
+        $http.post('/settings/addWorkType/' + $scope.objs.worktype.worktypetext, {})
             .then((res) => {
 
                 loadAll();
@@ -166,8 +166,9 @@ var settingsCtr = function ($scope, $http, $state) {
     $scope.save_project_name = function () {
 
         $('#first').css("display", "block");
-
-        $http.post('/settings/addProjectName/' + $scope.objs.project.projectnametext, {})
+console.log("adding")
+//$scope.objs.worktype.worktypetext, {})
+        $http.post('/settings/addProjectName/' + $scope.objs.projectname.projectnametext, {})
             .then((res) => {
 
                 loadAll();
@@ -179,19 +180,21 @@ var settingsCtr = function ($scope, $http, $state) {
                 clear_form();
 
                 $scope.objs.addProjectName = false;
-
+                console.log("done")
             })
 
     }
 
     $scope.remove_project_name = function (obj) {
 
+        console.log(obj)
+
         if (!confirm("Are you sure you want to delete this entry?")) {
             return;
         }
 
         $('#first').css("display", "block");
-
+       
         $http.post('/settings/removeProjectName/' + obj.id, {})
             .then((res) => {
 
@@ -230,7 +233,7 @@ var settingsCtr = function ($scope, $http, $state) {
             })
 
     }
-
+/*
     $scope.remove_project_name = function (obj) {
 
         if (!confirm("Are you sure you want to delete this entry?")) {
@@ -256,4 +259,5 @@ var settingsCtr = function ($scope, $http, $state) {
 
     }
     //========================================== CATEGORY
+*/
 }

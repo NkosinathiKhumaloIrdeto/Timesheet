@@ -402,7 +402,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype', 'employee', 'category', "start", "end", "projectname", "hours", "title", "jiranumber"]
+        var fields = ['worktype','category', 'employee', 'sub-category', "start", "end", "projectname", "hours", "title", "jiranumber"]
 
         var opts = { fields, delimiter: ",", quote: '' };
 

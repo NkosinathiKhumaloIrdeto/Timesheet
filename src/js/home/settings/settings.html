@@ -67,7 +67,7 @@
                             <input type="button" class="btn btn-purple-color" value="New"
                                 ng-click="objs.addWFtype = true" ng-show="!objs.addWFtype">
 
-                            <input type="button" class="btn btn-purple-color" value="Link Category"
+                            <input type="button" class="btn btn-purple-color" value="Link Sub-Category"
                                 ng-show="!objs.addWFtype" data-toggle="modal" data-target="#linkCategorisModal">
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Worktype</label>
+                            <label>Category</label>
                         </div>
                         <div class="col-md-10">
                             <input type="text" ng-model="objs.worktype.worktypetext" class="form-control">
@@ -95,7 +95,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <b>Work Type({{objs.worktype.data.length}}):</b>
+                        <b>Category ({{objs.worktype.data.length}}):</b>
                     </div>
                     <div class="col-md-9">
                         <p ng-if="objs.worktype.isLoading">
@@ -137,7 +137,7 @@
                             <label>Project Name:</label>
                         </div>
                         <div class="col-md-10">
-                            <input type="text" ng-model="objs.worktype.worktypetext" class="form-control">
+                            <input type="text" ng-model="objs.projectname.projectnametext" class="form-control">
                             <br>
                             <input type="button" class="btn btn-sm btn-purple-color" ng-click="save_project_name()"
                                 value="Save">
@@ -161,11 +161,12 @@
                             ...loading
                         </p>
                         <ul class="list-group" ng-if="!objs.projectname.isLoading"
-                            ng-repeat="projectname in objs.projectname.data">
-                            <li
+                            >
+                            <li ng-repeat="projectname in objs.projectname.data"
                                 class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
                                 {{projectname.description}}
                                 <div style="text-align:right">
+                                    
                                     <button class="btn btn-sm btn-danger" ng-click="remove_project_name(projectname)"><i
                                             class="fas fa-minus-circle"></i></button>
                                 </div>
@@ -211,7 +212,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <b>Category({{objs.category.data.length}}):</b>
+                        <b>Sub Category({{objs.category.data.length}}):</b>
                     </div>
                     <div class="col-md-9">
                         <p ng-if="objs.category.isLoading">
@@ -252,7 +253,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Select Work Type:</label>
+                            <label>Select Category:</label>
                             <br>
                             <select id="worktype" class="form-control"></select>
                         </div>
