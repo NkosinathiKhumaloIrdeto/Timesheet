@@ -58,182 +58,186 @@
         </div>
     </div>
 
-    <div class="row" ng-if="!objs.isEditing">
-        <div class="col-md-6">
-            <div class="settings-div">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="align-right">
-                            <input type="button" class="btn btn-purple-color" value="New"
-                                ng-click="objs.addWFtype = true" ng-show="!objs.addWFtype">
-
-                            <input type="button" class="btn btn-purple-color" value="Link Sub-Category"
-                                ng-show="!objs.addWFtype" data-toggle="modal" data-target="#linkCategorisModal">
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="objs.addWFtype">
-                    <br>
+    <div ng-if="!objs.isEditing">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="settings-div">
                     <div class="row">
-                        <div class="col-md-2">
-                            <label>Category</label>
-                        </div>
-                        <div class="col-md-10">
-                            <input type="text" ng-model="objs.worktype.worktypetext" class="form-control">
-                            <br>
-                            <input type="button" class="btn btn-sm btn-purple-color" ng-click="save_work_type()"
-                                value="Save">
-                            <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
-                                ng-click="objs.addWFtype = false">
-                        </div>
+                        <div class="col-md-12">
+                            <div class="align-right">
+                                <input type="button" class="btn btn-purple-color" value="New"
+                                    ng-click="objs.addWFtype = true" ng-show="!objs.addWFtype">
 
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                </div>
+                    <div ng-if="objs.addWFtype">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Category</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" ng-model="objs.worktype.worktypetext" class="form-control">
+                                <br>
+                                <input type="button" class="btn btn-sm btn-purple-color" ng-click="save_work_type()"
+                                    value="Save">
+                                <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                    ng-click="objs.addWFtype = false">
+                            </div>
 
+                        </div>
+                        <hr>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <b>Category ({{objs.worktype.data.length}}):</b>
+                        </div>
+                        <div class="col-md-9">
+                            <p ng-if="objs.worktype.isLoading">
+                                ...loading
+                            </p>
+                            <ul class="list-group " ng-if="!objs.worktype.isLoading"
+                                ng-repeat="worktype in objs.worktype.data">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                    {{worktype.description}}
+                                    <div style="text-align:right">
+                                        <button ng-if="false" class="btn btn-sm btn-primary"
+                                            ng-click="remove_work_type(worktype, 'edit')"><i
+                                                class="far fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger" ng-click="remove_work_type(worktype)"><i
+                                                class="fas fa-minus-circle"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <br>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Category ({{objs.worktype.data.length}}):</b>
-                    </div>
-                    <div class="col-md-9">
-                        <p ng-if="objs.worktype.isLoading">
-                            ...loading
-                        </p>
-                        <ul class="list-group " ng-if="!objs.worktype.isLoading"
-                            ng-repeat="worktype in objs.worktype.data">
-                            <li
-                                class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
-                                {{worktype.description}}
-                                <div style="text-align:right">
-                                    <button ng-if="false" class="btn btn-sm btn-primary"
-                                        ng-click="remove_work_type(worktype, 'edit')"><i
-                                            class="far fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger" ng-click="remove_work_type(worktype)"><i
-                                            class="fas fa-minus-circle"></i></button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-            <br>
-            <div class="settings-div">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="align-right">
-                            <input type="button" class="btn btn-purple-color" value="New"
-                                ng-click="objs.addProjectName = true" ng-show="!objs.addProjectName">
-                        </div>
-                    </div>
-                </div>
-
-                <div ng-if="objs.addProjectName">
-                    <br>
+            <div class="col-md-6">
+                <div class="settings-div">
                     <div class="row">
-                        <div class="col-md-2">
-                            <label>Project Name:</label>
+                        <div class="col-md-12">
+                            <b>Links:</b>
+                            <div class="align-right">
+                                <input type="button" class="btn btn-purple-color" value="Link Sub-Category"
+                                    ng-show="!objs.addWFtype" data-toggle="modal" data-target="#linkCategorisModal">
+                            </div>
+                            
+                            <hr>
+                            <ul class="list-group " ng-if="!objs.categorylinks.isLoading"
+                                ng-repeat="link in objs.categorylinks.data">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                    ({{link.worktype}}) - {{link.category}}
+                                    <div style="text-align:right">
+                                        
+                                        <button class="btn btn-sm btn-danger" ng-click="remove_link(link)"><i
+                                                class="fas fa-minus-circle"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col-md-10">
-                            <input type="text" ng-model="objs.projectname.projectnametext" class="form-control">
-                            <br>
-                            <input type="button" class="btn btn-sm btn-purple-color" ng-click="save_project_name()"
-                                value="Save">
-                            <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
-                                ng-click="objs.addProjectName = false">
-                        </div>
-
-                    </div>
-                    <hr>
-                </div>
-
-                <br>
-
-                <div class="row">
-
-                    <div class="col-md-3">
-                        <b>Project Name({{objs.projectname.data.length}}):</b>
-                    </div>
-                    <div class="col-md-9">
-                        <p ng-if="objs.projectname.isLoading">
-                            ...loading
-                        </p>
-                        <ul class="list-group" ng-if="!objs.projectname.isLoading"
-                            >
-                            <li ng-repeat="projectname in objs.projectname.data"
-                                class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
-                                {{projectname.description}}
-                                <div style="text-align:right">
-                                    
-                                    <button class="btn btn-sm btn-danger" ng-click="remove_project_name(projectname)"><i
-                                            class="fas fa-minus-circle"></i></button>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="col-md-6">
-            <div class="settings-div">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="align-right">
-                            <input type="button" class="btn btn-purple-color" value="New"
-                                ng-click="objs.addCategory = true" ng-show="!objs.addProjectName">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="settings-div">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <b>Sub Category({{objs.category.data.length}}):</b>
+                        </div>
+                        <div class="col-md-9">
+                            <p ng-if="objs.category.isLoading">
+                                ...loading
+                            </p>
+                            <ul class="list-group" ng-if="!objs.category.isLoading"
+                                ng-repeat="category in objs.category.data">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                    {{category.description}}
+                                    <div style="text-align:right">
+
+                                        <button class="btn btn-sm btn-danger" ng-click="remove_subCategory(category)"><i
+                                                class="fas fa-minus-circle"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <br>
+            </div>
+        </div>
 
-                <div ng-if="objs.addCategory">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="settings-div">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="align-right">
+                                <input type="button" class="btn btn-purple-color" value="New"
+                                    ng-click="objs.addProjectName = true" ng-show="!objs.addProjectName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-if="objs.addProjectName">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label>Project Name:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" ng-model="objs.projectname.projectnametext"
+                                            class="form-control">
+                                        <br>
+                                        <input type="button" class="btn btn-sm btn-purple-color"
+                                            ng-click="save_project_name()" value="Save">
+                                        <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                            ng-click="objs.addProjectName = false">
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
                     <br>
                     <div class="row">
-                        <div class="col-md-2">
-                            <label>Project Name:</label>
+                        <div class="col-md-3">
+                            <b>Project Name({{objs.projectname.data.length}}):</b>
                         </div>
-                        <div class="col-md-10">
-                            <input type="text" ng-model="objs.category.categorytext" class="form-control">
-                            <br>
-                            <input type="button" class="btn btn-sm btn-purple-color" ng-click="save_category()"
-                                value="Save">
-                            <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
-                                ng-click="objs.addCategory = false">
+                        <div class="col-md-9">
+                            <p ng-if="objs.projectname.isLoading">
+                                ...loading
+                            </p>
+                            <ul class="list-group" ng-if="!objs.projectname.isLoading">
+                                <li ng-repeat="projectname in objs.projectname.data"
+                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                    {{projectname.description}}
+                                    <div style="text-align:right">
+                                        <button class="btn btn-sm btn-danger"
+                                            ng-click="remove_project_name(projectname)"><i
+                                                class="fas fa-minus-circle"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-
-                    </div>
-                    <hr>
-                </div>
-
-                <br>
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <b>Sub Category({{objs.category.data.length}}):</b>
-                    </div>
-                    <div class="col-md-9">
-                        <p ng-if="objs.category.isLoading">
-                            ...loading
-                        </p>
-                        <ul class="list-group" ng-if="!objs.category.isLoading"
-                            ng-repeat="category in objs.category.data">
-                            <li
-                                class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
-                                {{category.description}}
-                                <div style="text-align:right">
-
-                                    <button class="btn btn-sm btn-danger" ng-click="remove_project_name(category)"><i
-                                            class="fas fa-minus-circle"></i></button>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -259,8 +263,9 @@
                         </div>
                         <div class="col-md-8">
                             <ul class="list-group">
-                                <li class="list-group-item" style="font-size: 10pt;" ng-repeat="cat in objs.category.data">
-                                    {{cat.description}} 
+                                <li class="list-group-item" style="font-size: 10pt;"
+                                    ng-repeat="cat in objs.category.data">
+                                    {{cat.description}}
                                     <span style="float: right;">
                                         <a href="#" ng-click="add_link(cat.id)" class="btn btn-primary btn-sm">+</a>
                                     </span>

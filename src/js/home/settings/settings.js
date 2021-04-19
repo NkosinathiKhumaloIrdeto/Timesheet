@@ -19,6 +19,10 @@ var settingsCtr = function ($scope, $http, $state) {
             data: [],
             projectnametext: ''
         },
+        categorylinks: {
+            isLoading: true,
+            data: []
+        },
         isEditing: false,
         form: {
             description: "",
@@ -33,10 +37,22 @@ var settingsCtr = function ($scope, $http, $state) {
         loadData_worktypey();
         loadData_category();
         loadData_projectname();
+        loadData_allLinks();
 
     }
 
     loadAll();
+
+    function loadData_allLinks(){
+        //
+        //get all worktype
+        $http.get('/settings/getAllLinkedCats')
+            .then((res) => {
+                $scope.objs.categorylinks.isLoading = false;
+                $scope.objs.categorylinks.data = res.data;
+
+            })
+    }
 
     $scope.add_link = (id_category)=>{
 
@@ -49,7 +65,10 @@ var settingsCtr = function ($scope, $http, $state) {
         $http.get('/settings/addLinkedCat/'+ worktype_id + "/" + id_category)
             .then((res) => {
 
+                loadAll();
+
                 alert("Linked successfully");
+
 
             }, (err)=>{
 
@@ -89,7 +108,6 @@ var settingsCtr = function ($scope, $http, $state) {
             .then((res) => {
                 $scope.objs.category.isLoading = false;
                 $scope.objs.category.data = res.data;
-
             })
     }
 
@@ -161,6 +179,30 @@ var settingsCtr = function ($scope, $http, $state) {
 
     }
 
+    $scope.remove_link = function(link){
+        if (!confirm("Are you sure you want to delete this entry?")) {
+            return;
+        }
+
+        $('#first').css("display", "block");
+
+        $http.post('/settings/removeLink/' + link.id, {})
+            .then((res) => {
+
+                loadAll();
+
+                $('#first').css("display", "none");
+
+                showSnack(res.data.message);
+
+                clear_form();
+
+                $scope.objs.addWFtype = false;
+
+            })
+
+    }
+
     //========================================== WORKTYPE
     //========================================== PRJECT NAME
     $scope.save_project_name = function () {
@@ -182,6 +224,29 @@ console.log("adding")
                 $scope.objs.addProjectName = false;
                 console.log("done")
             })
+
+    }
+
+    $scope.remove_subCategory = function(obj){
+
+        if (!confirm("Are you sure you want to delete this entry?")) {
+            return;
+        }
+
+        $http.post('/settings/removeCategory/' + obj.id, {})
+        .then((res) => {
+
+            loadAll();
+
+            $('#first').css("display", "none");
+
+            showSnack(res.data.message);
+
+            clear_form();
+
+            $scope.objs.addProjectName = false;
+
+        })
 
     }
 

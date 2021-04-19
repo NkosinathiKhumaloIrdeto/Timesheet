@@ -45,7 +45,7 @@ router.post('/removeWorkType/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,values, function (err) {
+    mysql.query(query,id, function (err) {
 
         if (err) { throw err; }
 
@@ -111,7 +111,7 @@ router.post('/removeProjectName/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,values, function (err) {
+    mysql.query(query,id, function (err) {
 
         if (err) { throw err; }
 
@@ -155,8 +155,6 @@ router.post('/addCategory/:description', (req, res) => {
 
     var query = "INSERT INTO config_category(id, description) VALUES (?,?)";
 
-    console.log(values);
-
     mysql.query(query,values, function (err) {
 
         if (err) { throw err; }
@@ -178,7 +176,7 @@ router.post('/removeCategory/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,values, function (err) {
+    mysql.query(query,id, function (err) {
 
         if (err) { throw err; }
 
@@ -187,6 +185,28 @@ router.post('/removeCategory/:id', (req, res) => {
     })
 
 })
+
+router.post('/removeLink/:id', (req, res) => {
+
+    var id = req.params.id;
+
+    var values = [id];
+
+    var query = "DELETE FROM config_worktype_category  WHERE id = ?";
+
+    console.log(values);
+
+    mysql.query(query,id, function (err) {
+
+        if (err) { throw err; }
+
+        res.status(200).send({ "message": "Removed successfully"})
+
+    })
+
+})
+
+//
 
 //Get worktype
 router.get('/getAllCategory', (req, res) => {
@@ -303,6 +323,24 @@ router.get('/getAllLinkedCat/:workflowid/', (req, res) => {
     });   
 
 })
+
+//SELECT cw.description, cc.description FROM config_worktype_category cwc JOIN config_worktype cw on cw.id = cwc.workflowtypeId JOIN config_category cc on cc.id = cwc.categoryId 
+
+router.get('/getAllLinkedCats', (req, res) => {
+    var query = "SELECT cwc.id, cw.description as worktype, cc.description as category FROM config_worktype_category cwc JOIN config_worktype cw on cw.id = cwc.workflowtypeId JOIN config_category cc on cc.id = cwc.categoryId";
+
+    mysql.query(query, function (err, result) {             
+        if(err) {
+           throw err;
+        }
+        else{
+            //result
+            res.status(200).send(result);
+        }
+    });   
+
+})
+
 
 router.get('/addLinkedCat/:workflowid/:categoryid', (req, res) => {
 
