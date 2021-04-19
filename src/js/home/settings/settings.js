@@ -49,7 +49,10 @@ var settingsCtr = function ($scope, $http, $state) {
         $http.get('/settings/getAllLinkedCats')
             .then((res) => {
                 $scope.objs.categorylinks.isLoading = false;
-                $scope.objs.categorylinks.data = res.data;
+
+                var lst = _.orderBy(res.data, ['worktype'], ['asc']);
+
+                $scope.objs.categorylinks.data = lst;
 
             })
     }
