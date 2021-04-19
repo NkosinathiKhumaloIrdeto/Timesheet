@@ -38,6 +38,14 @@
     .show {
         display: block;
     }
+    
+    .form_hide {
+        display:none;
+    }
+
+    .form_show{
+        display:block;
+    }
 </style>
 
 <div class="container">
@@ -53,7 +61,6 @@
 <br>
 
 <div class="container">
-
     <div id="calendar" class="fc fc-unthemed fc-ltr">
         <div class="fc-toolbar fc-header-toolbar">
         </div>
@@ -99,49 +106,54 @@
 
                 </div>
               
-                <div class="row">
-                    <div class="col-4">
-                        <label class="control-label" for="textinput">Description:</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="control-label" for="textinput">Description:</label>
+                        </div>
+                        <div class="col-8">
+                            <textarea ng-disabled = "loading" class="form-control" type="text" id="title" rows="3" name="txtDescription"></textarea>
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <textarea class="form-control" type="text" id="title" rows="3" name="txtDescription"></textarea>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="control-label" for="textinput">Category:</label>
+                        </div>
+                        <div class="col-8">
+                            <select id="worktype" ng-disabled = "loading" ng class="form-control"></select>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-4">
-                        <label class="control-label" for="textinput">Category:</label>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="control-label" for="textinput">Sub-Category:</label>
+                        </div>
+                        <div class="col-8">
+                            <select id="category" ng-disabled = "loading" class="form-control"></select>
+                            <span style="font-size: 10pt; color:#999999">If the above is blank, please reselect <b>Category</b></span>
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <select id="worktype" class="form-control"></select>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="control-label" for="textinput">Project Name:</label>
+                        </div>
+                        <div class="col-8">
+                            <select id="projectname" ng-disabled = "loading" class="form-control"></select>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-4">
-                        <label class="control-label" for="textinput">Sub-Category:</label>
-                    </div>
-                    <div class="col-8">
-                        <select id="category" class="form-control"></select>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-4">
-                        <label class="control-label" for="textinput">Project Name:</label>
-                    </div>
-                    <div class="col-8">
-                        <select id="projectname" class="form-control"></select>
-                    </div>
-                </div>
+                
+                
+                
+
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" ng-click="deleteEvent()"
+                <button type="button" ng-disabled = "loading" class="btn btn-danger" ng-click="deleteEvent()"
                     id="btn-remove-entry">Delete</button>
-                <button type="button" class="btn btn-primary" ng-click="actionEvent()" id="btn-save-entry">Save
+                <button type="button" ng-disabled = "loading" class="btn btn-primary" ng-click="actionEvent()" id="btn-save-entry">Save
                     changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

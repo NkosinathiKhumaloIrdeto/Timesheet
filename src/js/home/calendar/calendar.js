@@ -9,6 +9,7 @@ var calendarContr = function ($scope, $http, $state) {
         updateData: {},
         eventObj: {}
     }
+    var loading = false;
 
     $scope.catpureForm = {
         title: "",
@@ -60,11 +61,18 @@ var calendarContr = function ($scope, $http, $state) {
             eventObj: {}
         }
 
-        $('#title').val('');
-        $('#category').val('');
-        $('#worktype').val('');
-        $('#projectname').val('');
-        $('#jiranumber').val('');
+        $('#title').val('').empty();
+        $('#category').val('').empty();
+        $('#worktype').val('').empty();
+        $('#projectname').val('').empty();
+        $('#jiranumber').val('').empty();
+        $('#category').val('').empty()
+        /*
+        worktype category projectname title
+        */
+
+       loadData_worktype();
+       loadData_projectname();
 
     }
 
@@ -76,8 +84,11 @@ var calendarContr = function ($scope, $http, $state) {
        
         $.getJSON("/settings/getAllWorktype", function (result) {
             var options = $("#worktype");
+
             //don't forget error handling!
+            $('#worktype').val('').empty();
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
+            options.append($("<option />").val("").text("").data('id',""));
             $.each(result, function (item) {
                 options.append($("<option />").val(lst[item].description).text(lst[item].description).data('id',lst[item].id));
             });
@@ -97,6 +108,7 @@ var calendarContr = function ($scope, $http, $state) {
             var options = $("#category");
             //don't forget error handling!
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
+            options.append($("<option />").val("").text("").data('id',""));
             $.each(result, function (item) {
                 options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
@@ -114,7 +126,6 @@ var calendarContr = function ($scope, $http, $state) {
         $.getJSON("/settings/getAllCategory", function (result) {
             var options = $("#category");
 
-            console.log(result)
 
             //don't forget error handling!
             var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
@@ -128,16 +139,20 @@ var calendarContr = function ($scope, $http, $state) {
 
     function loadData_projectname() {
         //get all projectname       
-
+        $('#projectname').val('').empty();
+        
         $.getJSON("/settings/getAllProjectNames", function (result) {
             var options = $("#projectname");
+           
             //don't forget error handling!
-            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'
+            var lst = _.orderBy(result, ['description'], ['asc']); // Use Lodash to sort array by 'name'    
+
+            options.append($("<option />").val("").text("").data('id',""));
 
             $.each(lst, function (item) {
-               
-                options.append($("<option />").val(lst[item].description).text(lst[item].description));
+               options.append($("<option />").val(lst[item].description).text(lst[item].description));
             });
+
         }, (err) => {
             alert("Unable to load worktype")
         });
@@ -231,6 +246,8 @@ var calendarContr = function ($scope, $http, $state) {
             jiranumber:$('#jiranumber').val()
         }
 
+        loading = true;
+
         //send data to server
         $http.post('/data/log', data)
             .then((response) => {
@@ -252,6 +269,8 @@ var calendarContr = function ($scope, $http, $state) {
                 clearFields();
                 $('#first').css("display", "none");
 
+                loading = false;
+
             }, (error) => {
                 flagMessage("Error: ", error, 0);
                 $('#first').css("display", "none");
@@ -259,15 +278,20 @@ var calendarContr = function ($scope, $http, $state) {
 
     }
 
+
     function eventColor(eventType) {
 
-        var color = "#777777";
+        var color = "#843f7f";// "#777777";
 
-        switch (eventType) {
+       // if (eventType.toUpperCase().indexOf('LEAVE') != -1) {
+         //   color = "#777777";
+       // }
+
+       /* switch (eventType) {
             case "NORMAL":
                 color = "#843f7f";
                 break;
-        }
+        } */
 
         return color;
 
@@ -304,6 +328,9 @@ var calendarContr = function ($scope, $http, $state) {
     function onSelect(startDate, endDate) {
 
         clearFields();
+
+        //loadData_worktype();
+        //loadData_projectname();
 
         var stDate = startDate.format().split("T");
         var enDate = endDate.format().split("T");
@@ -356,7 +383,7 @@ function calcHours(startTime,endTime){
         updateObj.updateData.projectname = $('#projectname').val();
         updateObj.updateData.jiranumber = $('#jiranumber').val();
         updateObj.updateData.color = eventColor($('#worktype').val());
-
+        loading = true;
         $('#first').css("display", "block");
 
         $http.post('/data/updateLogDetail', updateObj.updateData)
@@ -379,6 +406,8 @@ function calcHours(startTime,endTime){
                 $('#exampleModal').modal('hide');
 
                 clearFields();
+
+                loading = false;
 
             }, (err) => {
 
@@ -407,6 +436,8 @@ function calcHours(startTime,endTime){
         }
 
         $('#first').css("display", "block");
+        
+        loading = true;
 
         $http.post('/data/deleteLog', { "_id": id })
 
@@ -421,6 +452,8 @@ function calcHours(startTime,endTime){
                 $('#first').css("display", "none");
 
                 clearFields();
+                
+                loading = false;
 
                 return;
 
@@ -537,11 +570,15 @@ function calcHours(startTime,endTime){
 
                     $('#first').css("display", "block");
 
+                    loading = true;
+
                     $http.post('/data/updateLogResize', $scope.uiObj)
                         .then((response) => {
 
                             $('#first').css("display", "none");
                             showSnack("Updated: " + response.data.message);
+
+                            loading = false;
                         }, (error) => {
                             delete $scope.uiObj._id
                             flagMessage("Error:", error, 0);
@@ -578,11 +615,11 @@ function calcHours(startTime,endTime){
                 eventClick: function (calEvent, jsEvent, view) {
 
                     $scope.saveActions = "SaveUpdate";
-                    clearFields();
-
+                 
                     $scope.obj.disableDeleteButton = false;
 
                     $('#btn-remove-entry').show();
+
                     if (calEvent._id.length < 6) {
                         updateObj.updateData.evID = calEvent.id;
                         updateObj.updateData._id = calEvent.id;
@@ -595,7 +632,11 @@ function calcHours(startTime,endTime){
 
                     $('#exampleModalLabel').html(calEvent.title);
                     $('#title').val(calEvent.title);
-                    $('#category').val(calEvent.category);
+                    
+                    //$('#category').val(calEvent.category);
+
+                    $('#category').append($("<option />").val(calEvent.category).text(calEvent.category));
+
                     $('#worktype').val(calEvent.worktype);
                     $('#projectname').val(calEvent.projectname);
                     $('#jiranumber').val(calEvent.jiranumber);
@@ -647,12 +688,16 @@ function calcHours(startTime,endTime){
                         payload._id = eventData.event._id;
                     }
 
+                    loading = true;
+
                     $http.post('/data/updateLogMove', payload)
+                    
                     .then((response) => {
 
                         $('#first').css("display", "none");
                         showSnack("Updated: " + response.data.message);
                         eventData = {};
+                        loading = false;
                         
                     }, (error) => {
                         delete $scope.uiObj._id
@@ -685,7 +730,7 @@ function calcHours(startTime,endTime){
                         endDate: endDate,
                 }
                 
-        
+                loading = true;
                 //send data to server
                 $http.post('/data/log', data)
                     .then((response) => {
@@ -705,6 +750,8 @@ function calcHours(startTime,endTime){
                         eventData = {}
                         
                         $('#first').css("display", "none");
+
+                        loading = false;
         
                     }, (error) => {
                         flagMessage("Error: ", error, 0);

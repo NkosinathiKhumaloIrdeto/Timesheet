@@ -87,6 +87,12 @@ var reportCtr = function ($scope,$http, $state) {
         
         $('#first').css("display", "block");
 
+        $('#first').css("display", "none");
+        //alert("http://localhost:8019/data/exportCSV/" + from + "/" + to + "/" + $state.params.username);
+        window.open("http://localhost:8019/data/exportCSV/" + from + "/" + to + "/" + $state.params.username); 
+       
+        return;
+
         $http.get('/data/exportCSV/' + from + "/" + to + "/" + $state.params.username)
             .then((res) => {
                 $('#first').css("display", "none");
@@ -118,9 +124,18 @@ var reportCtr = function ($scope,$http, $state) {
         
         $('#first').css("display", "block");
 
+        //alert("This will open in a new window.");
+        
+        $('#first').css("display", "none");
+        window.open("http://localhost:8019/data/exportAllCSV/" + from + "/" + to); 
+        
+return
         $http.get('/data/exportAllCSV/' + from + "/" + to)
             .then((res) => {
                 $('#first').css("display", "none");
+                
+
+
                 var anchor = angular.element('<a/>');
                 anchor.css({ display: 'none' }); // Make sure it's not visible
                 angular.element(document.body).append(anchor); // Attach to document

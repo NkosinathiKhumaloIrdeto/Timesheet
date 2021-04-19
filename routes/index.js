@@ -310,7 +310,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
     //endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
-
+    
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
@@ -324,8 +324,9 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title", "jiranumber"]
-
+        //var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title", "jiranumber"]
+        var fields = ['worktype','category', 'employee', 'sub-category', "start", "end", "projectname", "hours", "title", "jiranumber"]
+        
         var opts = { fields, delimiter: ",", quote: '' };
 
         try {
@@ -340,7 +341,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
 
                     res.status(500).send(err);
 
-                    return console.log(err);
+                    return;
 
                 }
 
@@ -370,7 +371,6 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
     var csvPath = "./src/Report/generated/";
     var csvName = "FileExport" + getRandomInt(1, 9999) + ".csv";
     var fullname = csvPath + csvName
-
     var startDate, endDate;
 
     var startDate, endDate;
@@ -388,7 +388,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
     endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
-
+    
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
@@ -403,7 +403,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
         var fullname = csvPath + csvName
 
         var fields = ['worktype','category', 'employee', 'sub-category', "start", "end", "projectname", "hours", "title", "jiranumber"]
-
+        //var fields = ['worktype', 'employee', 'category', 'sub-category', "start", "projectname", "hours", "title", "jiranumber"]
         var opts = { fields, delimiter: ",", quote: '' };
 
         try {
