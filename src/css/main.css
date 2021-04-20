@@ -224,6 +224,23 @@ button.fc-state-active {
     display: none;
 }
 
+.title-div{
+    border: 1px solid #ccc;
+}
+
+.title-body {
+    padding: 10px;
+}
+
+.title {
+    background-color: #ccc;
+    text-align: center;
+    color: #212121;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14pt;
+}
+
 @-webkit-keyframes fadein {
     from {
         bottom: 0;

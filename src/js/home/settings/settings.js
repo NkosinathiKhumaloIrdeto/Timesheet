@@ -2,6 +2,13 @@ var settingsCtr = function ($scope, $http, $state) {
 
      $scope.linkWorktype  = "";
 
+     $scope.filters = {
+         txtFilterCategory : '',
+         txtFilterLinks : '',
+         txtFiltersubcat : '',
+         txtFilterProject : ''
+     }
+
     $scope.objs = {
         worktype: {
             isLoading: true,
@@ -30,7 +37,9 @@ var settingsCtr = function ($scope, $http, $state) {
         },
         addWFtype: false,
         addProjectName: false,
-        addCategory: false
+        addCategory: false,
+        addSubCategory: false
+
     }
 
     function loadAll() {
@@ -211,7 +220,7 @@ var settingsCtr = function ($scope, $http, $state) {
     $scope.save_project_name = function () {
 
         $('#first').css("display", "block");
-console.log("adding")
+
 //$scope.objs.worktype.worktypetext, {})
         $http.post('/settings/addProjectName/' + $scope.objs.projectname.projectnametext, {})
             .then((res) => {
@@ -296,7 +305,7 @@ console.log("adding")
 
                 clear_form();
 
-                $scope.objs.addCategory = false;
+                $scope.objs.addSubCategory = false;
 
             })
 

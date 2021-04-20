@@ -41,18 +41,57 @@ router.post('/removeWorkType/:id', (req, res) => {
 
     var values = [id];
 
+    //1st query if linked already
+    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.workflowtypeId = ?";   
+    var delete_links_query = "DELETE FROM config_worktype_category WHERE workflowtypeId = ?";
     var query = "DELETE FROM config_worktype WHERE id = ?";
 
-    console.log(values);
+    mysql.query(query_check,id, function (err, result) {             
+        if(err) {
+           throw err;
+        }
+        else {
+            //result            
+            
+            if (result.length != 0){
 
-    mysql.query(query,id, function (err) {
+                //delete links
 
-        if (err) { throw err; }
+                console.log('deleting links');
 
-        res.status(200).send({ "message": "Removed successfully"})
+                mysql.query(delete_links_query,id, function (err) {
 
-    })
+                    if (err) { throw err; }
 
+                    //delete category
+                    mysql.query(query,id, function (err) {
+
+                        if (err) { throw err; }
+                
+                        res.status(200).send({ "message": "Removed successfully"})
+                
+                    })
+                
+
+                })
+
+            } else {
+
+                //delete category
+                mysql.query(query,id, function (err) {
+
+                    if (err) { throw err; }
+            
+                    res.status(200).send({ "message": "Removed successfully"})
+            
+                })
+
+            }
+        }
+    }
+    )
+
+    
 })
 
 //Get worktype
@@ -121,6 +160,65 @@ router.post('/removeProjectName/:id', (req, res) => {
 
 })
 
+
+router.post('/removeCategory/:id', (req, res) => {
+
+    var id = req.params.id;
+
+    //1st query if linked already
+    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.categoryId = ?";   
+    var delete_links_query = "DELETE FROM config_worktype_category WHERE categoryId = ?";
+    var query = "DELETE FROM config_category WHERE id = ?";
+
+    mysql.query(query_check,id, function (err, result) {             
+        if(err) {
+           throw err;
+        }
+        else {
+            //result            
+            
+            if (result.length != 0){
+
+                //delete links
+
+                console.log('deleting links');
+
+                mysql.query(delete_links_query,id, function (err) {
+
+                    if (err) { throw err; }
+
+                    //delete category
+                    mysql.query(query,id, function (err) {
+
+                        if (err) { throw err; }
+                
+                        res.status(200).send({ "message": "Removed successfully"})
+                
+                    })
+                
+
+                })
+
+            } else {
+
+                //delete projec
+                mysql.query(query,id, function (err) {
+
+                    if (err) { throw err; }
+            
+                    res.status(200).send({ "message": "Removed successfully"})
+            
+                })
+
+            }
+        }
+    }
+    )
+
+    
+})
+
+
 //Get worktype
 router.get('/getAllProjectName', (req, res) => {
 
@@ -166,7 +264,7 @@ router.post('/addCategory/:description', (req, res) => {
 })
 
 //Remove worktype
-router.post('/removeCategory/:id', (req, res) => {
+router.post('/removeCategory1/:id', (req, res) => {
 
     var id = req.params.id;
 
@@ -347,8 +445,6 @@ router.get('/addLinkedCat/:workflowid/:categoryid', (req, res) => {
     var id = create_id();
     var data_check = [req.params.workflowid, req.params.categoryid]
     var data = [id, req.params.workflowid, req.params.categoryid]
-
-    console.log(data_check);
 
     //1st query if linked already
     var query_check = "SELECT cc.* FROM config_worktype_category cc WHERE cc.workflowtypeId = ? AND cc.categoryId = ?";
