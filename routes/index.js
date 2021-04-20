@@ -325,7 +325,8 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
         var fullname = csvPath + csvName
 
         //var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title", "jiranumber"]
-        var fields = ['worktype','category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
+        //var fields = ['worktype','category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
+        var fields = ['category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
         
         var opts = { fields, delimiter: ",", quote: '' };
 
@@ -402,7 +403,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
         var fullname = csvPath + csvName
 
-        var fields = ['worktype','category', 'employee', 'sub-category', "start", "end", "projectname", "hours", "title", "jiranumber"]
+        var fields = ['category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
         //var fields = ['worktype', 'employee', 'category', 'sub-category', "start", "projectname", "hours", "title", "jiranumber"]
         var opts = { fields, delimiter: ",", quote: '' };
 
@@ -449,13 +450,15 @@ function updateTime(data) {
 
         var obj = data[i];
         var hours = data[i].hours
+        var end = data[i].end.split('T')[0]
         var start = data[i].start.split('T')[0]
-        data[i].start = data[i].start
-            //data[i].startDate = data[i].start
-
-
+        data[i].start = start // data[i].start
+        data[i].end = end
+           
         if (hours.length > 3) {
             data[i].hours = timeToDecimal(hours)
+        } else {
+            data[i].hours = parseFloat(data[i].hours).toFixed(2)
         }
 
     }
@@ -468,7 +471,7 @@ function timeToDecimal(t) {
 
     var arr = t.split(':');
 
-    return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10));
+    return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1] / 6) * 10, 10)).toFixed(2);
 }
 
 function getRandomInt(min, max) {
