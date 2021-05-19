@@ -40,7 +40,7 @@
             </div>
         </div>
         <br>
-        
+
         <div class="row">
             <div class="col-md-4">
                 <label>Type:</label>
@@ -60,8 +60,8 @@
     </div>
 
     <div ng-if="!objs.isEditing">
-        
-        <div class="row">
+
+        <!--<div class="row">
             <div class="col-md-6">
                 <div class="settings-div">
                     <div class="title-div">
@@ -75,28 +75,31 @@
                                     <label ng-show="!objs.addWFtype">Filter: </label>
                                 </div>
                                 <div class="col-md-6">
-                                        <input type="text" ng-show="!objs.addWFtype" class="form-control" placeholder="filter" ng-model="filter.txtFilterCategory">
+                                    <input type="text" ng-show="!objs.addWFtype" class="form-control"
+                                        placeholder="filter" ng-model="filter.txtFilterCategory">
                                 </div>
                                 <div class="col-md-3">
                                     <div class="align-right">
                                         <input type="button" class="btn btn-purple-color" value="New"
                                             ng-click="objs.addWFtype = true" ng-show="!objs.addWFtype">
-        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                    
+
                     <div ng-if="objs.addWFtype">
                         <br>
                         <div class="row">
-                           
+
                             <div class="col-md-12">
-                                <input type="text" ng-model="objs.worktype.worktypetext" class="form-control" placeholder="Category">
+                                <input type="text" ng-model="objs.worktype.worktypetext" class="form-control"
+                                    placeholder="Category">
                                 <br>
-                                <input type="button" class="btn btn-sm btn-purple-color" ng-Disabled="objs.worktype.worktypetext.length < 3" ng-click="save_work_type()"
+                                <input type="button" class="btn btn-sm btn-purple-color"
+                                    ng-Disabled="objs.worktype.worktypetext.length < 3" ng-click="save_work_type()"
                                     value="Save">
                                 <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
                                     ng-click="objs.addWFtype = false">
@@ -106,14 +109,14 @@
                         <hr>
                     </div>
                     <br>
-                    
+
                     <div class="row">
-                      
+
                         <div class="col-md-12">
                             <p ng-if="objs.worktype.isLoading">
                                 ...loading
                             </p>
-                            <ul ng-if ="!objs.addWFtype" class="list-group " ng-if="!objs.worktype.isLoading"
+                            <ul ng-if="!objs.addWFtype" class="list-group " ng-if="!objs.worktype.isLoading"
                                 ng-repeat="worktype in objs.worktype.data | filter: filter.txtFilterCategory">
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
@@ -144,23 +147,24 @@
                         <div class="title-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label >Filter: </label>
+                                    <label>Filter: </label>
                                 </div>
                                 <div class="col-md-6">
-                                        <input type="text"  class="form-control" placeholder="filter" ng-model="filters.txtFilterLinks">
+                                    <input type="text" class="form-control" placeholder="filter"
+                                        ng-model="filters.txtFilterLinks">
                                 </div>
                                 <div class="col-md-3">
                                     <div class="align-right">
                                         <input type="button" class="btn btn-purple-color" value="New"
-                                     data-toggle="modal" data-target="#linkCategorisModal">
-        
+                                            data-toggle="modal" data-target="#linkCategorisModal">
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                    
+
                     <br>
                     <div class="row">
                         <div class="col-md-12">
@@ -170,7 +174,7 @@
                                     class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
                                     ({{link.worktype}}) - {{link.category}}
                                     <div style="text-align:right">
-                                        
+
                                         <button class="btn btn-sm btn-danger" ng-click="remove_link(link)"><i
                                                 class="fas fa-minus-circle"></i></button>
                                     </div>
@@ -180,7 +184,7 @@
                     </div>
                 </div>
             </div>
-<br>
+            <br>
         </div>
 
         <div class="row">
@@ -198,28 +202,31 @@
                                     <label ng-show="!objs.addSubCategory">Filter: </label>
                                 </div>
                                 <div class="col-md-6">
-                                        <input type="text" ng-show="!objs.addSubCategory" class="form-control" placeholder="filter" ng-model="filters.txtFiltersubcat">
+                                    <input type="text" ng-show="!objs.addSubCategory" class="form-control"
+                                        placeholder="filter" ng-model="filters.txtFiltersubcat">
                                 </div>
                                 <div class="col-md-3">
                                     <div class="align-right">
                                         <input type="button" class="btn btn-purple-color" value="New"
-                                        ng-click="objs.addSubCategory = true" ng-show="!objs.addSubCategory">
-        
+                                            ng-click="objs.addSubCategory = true" ng-show="!objs.addSubCategory">
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <br>
                     <div ng-if="objs.addSubCategory">
                         <br>
                         <div class="row">
-                           
+
                             <div class="col-md-12">
-                                <input type="text" ng-model="objs.category.categorytext" class="form-control" placeholder="sub category">
+                                <input type="text" ng-model="objs.category.categorytext" class="form-control"
+                                    placeholder="sub category">
                                 <br>
-                                <input type="button" class="btn btn-sm btn-purple-color" ng-Disabled="objs.category.categorytext.length < 3" ng-click="save_category()"
+                                <input type="button" class="btn btn-sm btn-purple-color"
+                                    ng-Disabled="objs.category.categorytext.length < 3" ng-click="save_category()"
                                     value="Save">
                                 <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
                                     ng-click="objs.addSubCategory = false">
@@ -231,7 +238,7 @@
                     <br>
 
                     <div class="row" ng-if="!objs.addSubCategory">
-                        
+
                         <div class="col-md-12">
                             <p ng-if="objs.category.isLoading">
                                 ...loading
@@ -262,7 +269,7 @@
 
                     <div class="title-div">
                         <div class="title">
-                            PROJECT NAME: ({{objs.category.data.length}}): 
+                            PROJECT NAME: ({{objs.category.data.length}}):
                         </div>
                         <br>
                         <div class="title-body">
@@ -271,17 +278,18 @@
                                     <label ng-show="!objs.addWFtype">Filter: </label>
                                 </div>
                                 <div class="col-md-6">
-                                        <input type="text" ng-show="!objs.addWFtype" class="form-control" placeholder="filter" ng-model="filter.txtFilterProject">
+                                    <input type="text" ng-show="!objs.addWFtype" class="form-control"
+                                        placeholder="filter" ng-model="filter.txtFilterProject">
                                 </div>
                                 <div class="col-md-3">
                                     <div class="align-right">
                                         <input type="button" class="btn btn-purple-color" value="New"
-                                        ng-click="objs.addProjectName = true" ng-show="!objs.addProjectName">        
+                                            ng-click="objs.addProjectName = true" ng-show="!objs.addProjectName">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <br>
 
@@ -290,13 +298,14 @@
                             <div ng-if="objs.addProjectName">
                                 <br>
                                 <div class="row">
-                                  
+
                                     <div class="col-md-12">
                                         <input type="text" ng-model="objs.projectname.projectnametext"
                                             class="form-control">
                                         <br>
                                         <input type="button" class="btn btn-sm btn-purple-color"
-                                            ng-click="save_project_name()" placeholder="project name" ng-disabled = "objs.projectname.projectnametext.length < 3" value="Save">
+                                            ng-click="save_project_name()" placeholder="project name"
+                                            ng-disabled="objs.projectname.projectnametext.length < 3" value="Save">
                                         <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
                                             ng-click="objs.addProjectName = false">
                                     </div>
@@ -307,7 +316,7 @@
                     </div>
                     <br>
                     <div class="row" ng-if="!objs.addProjectName">
-                        
+
                         <div class="col-md-12">
                             <p ng-if="objs.projectname.isLoading">
                                 ...loading
@@ -327,6 +336,407 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div id="accordion">
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapse_category">
+                        CATEGORY
+                    </a>
+                </div>
+                <div id="collapse_category" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="settings-div">
+                                    <div class="title-div">
+                                        <div class="title">
+                                            CATEGORY ({{objs.worktype.data.length}})
+                                        </div>
+                                        <br>
+                                        <div class="title-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label ng-show="!objs.addWFtype">Filter: </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" ng-show="!objs.addWFtype" class="form-control"
+                                                        placeholder="filter" ng-model="filter.txtFilterCategory">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="align-right">
+                                                        <input type="button" class="btn btn-purple-color" value="New"
+                                                            ng-click="objs.addWFtype = true" ng-show="!objs.addWFtype">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div ng-if="objs.addWFtype">
+                                        <br>
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <input type="text" ng-model="objs.worktype.worktypetext"
+                                                    class="form-control" placeholder="Category">
+                                                <br>
+                                                <input type="button" class="btn btn-sm btn-purple-color"
+                                                    ng-Disabled="objs.worktype.worktypetext.length < 3"
+                                                    ng-click="save_work_type()" value="Save">
+                                                <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                                    ng-click="objs.addWFtype = false">
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <p ng-if="objs.worktype.isLoading">
+                                                ...loading
+                                            </p>
+                                            <ul ng-if="!objs.addWFtype" class="list-group "
+                                                ng-if="!objs.worktype.isLoading"
+                                                ng-repeat="worktype in objs.worktype.data | filter: filter.txtFilterCategory">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                                    {{worktype.description}}
+                                                    <div style="text-align:right">
+                                                        <button ng-if="false" class="btn btn-sm btn-primary"
+                                                            ng-click="remove_work_type(worktype, 'edit')"><i
+                                                                class="far fa-edit"></i></button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                            ng-click="remove_work_type(worktype)"><i
+                                                                class="fas fa-minus-circle"></i></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="settings-div">
+
+                                    <div class="title-div">
+                                        <div class="title">
+                                            LINKS
+                                        </div>
+                                        <br>
+                                        <div class="title-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label>Filter: </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" placeholder="filter"
+                                                        ng-model="filters.txtFilterLinks">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="align-right">
+                                                        <input type="button" class="btn btn-purple-color" value="New"
+                                                            data-toggle="modal" data-target="#linkCategorisModal">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="list-group " ng-if="!objs.categorylinks.isLoading"
+                                                ng-repeat="link in objs.categorylinks.data | filter:filters.txtFilterLinks">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                                    ({{link.worktype}}) - {{link.category}}
+                                                    <div style="text-align:right">
+
+                                                        <button class="btn btn-sm btn-danger"
+                                                            ng-click="remove_link(link)"><i
+                                                                class="fas fa-minus-circle"></i></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse_sub_category">
+                        SUB CATEGORY
+                    </a>
+                </div>
+                <div id="collapse_sub_category" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="settings-div">
+
+                            <div class="title-div">
+                                <div class="title">
+                                    SUB CATEGORY({{objs.category.data.length}})
+                                </div>
+                                <br>
+                                <div class="title-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label ng-show="!objs.addSubCategory">Filter: </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" ng-show="!objs.addSubCategory" class="form-control"
+                                                placeholder="filter" ng-model="filters.txtFiltersubcat">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="align-right">
+                                                <input type="button" class="btn btn-purple-color" value="New"
+                                                    ng-click="objs.addSubCategory = true"
+                                                    ng-show="!objs.addSubCategory">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+                            <div ng-if="objs.addSubCategory">
+                                <br>
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <input type="text" ng-model="objs.category.categorytext" class="form-control"
+                                            placeholder="sub category">
+                                        <br>
+                                        <input type="button" class="btn btn-sm btn-purple-color"
+                                            ng-Disabled="objs.category.categorytext.length < 3"
+                                            ng-click="save_category()" value="Save">
+                                        <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                            ng-click="objs.addSubCategory = false">
+                                    </div>
+
+                                </div>
+                                <hr>
+                            </div>
+                            <br>
+
+                            <div class="row" ng-if="!objs.addSubCategory">
+
+                                <div class="col-md-12">
+                                    <p ng-if="objs.category.isLoading">
+                                        ...loading
+                                    </p>
+                                    <ul class="list-group" ng-if="!objs.category.isLoading"
+                                        ng-repeat="category in objs.category.data | filter:filters.txtFiltersubcat">
+                                        <li
+                                            class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                            {{category.description}}
+                                            <div style="text-align:right">
+
+                                                <button class="btn btn-sm btn-danger"
+                                                    ng-click="remove_subCategory(category)"><i
+                                                        class="fas fa-minus-circle"></i></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse_project_name">
+                        PROJECT NAME
+                    </a>
+                </div>
+                <div id="collapse_project_name" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="settings-div">
+
+                            <div class="title-div">
+                                <div class="title">
+                                    PROJECT NAME: ({{objs.category.data.length}}):
+                                </div>
+                                <br>
+                                <div class="title-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label ng-show="!objs.addWFtype">Filter: </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" ng-show="!objs.addWFtype" class="form-control"
+                                                placeholder="filter" ng-model="filter.txtFilterProject">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="align-right">
+                                                <input type="button" class="btn btn-purple-color" value="New"
+                                                    ng-click="objs.addProjectName = true"
+                                                    ng-show="!objs.addProjectName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-if="objs.addProjectName">
+                                        <br>
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <input type="text" ng-model="objs.projectname.projectnametext"
+                                                    class="form-control">
+                                                <br>
+                                                <input type="button" class="btn btn-sm btn-purple-color"
+                                                    ng-click="save_project_name()" placeholder="project name"
+                                                    ng-disabled="objs.projectname.projectnametext.length < 3"
+                                                    value="Save">
+                                                <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                                    ng-click="objs.addProjectName = false">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" ng-if="!objs.addProjectName">
+
+                                <div class="col-md-12">
+                                    <p ng-if="objs.projectname.isLoading">
+                                        ...loading
+                                    </p>
+                                    <ul class="list-group" ng-if="!objs.projectname.isLoading">
+                                        <li ng-repeat="projectname in objs.projectname.data | filter : filter.txtFilterProject"
+                                            class="list-group-item d-flex justify-content-between align-items-center no-border list-group-settings">
+                                            {{projectname.description}}
+                                            <div style="text-align:right">
+                                                <button class="btn btn-sm btn-danger"
+                                                    ng-click="remove_project_name(projectname)"><i
+                                                        class="fas fa-minus-circle"></i></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse_reporting">
+                        EMAIL REPORTING
+                    </a>
+                </div>
+                <div id="collapse_reporting" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="settings-div">
+
+                            <div class="title-div">
+                                <div class="title">
+                                    EMAIL REPORTING
+                                </div>
+                                <br>
+                                <div class="title-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <!-- <label ng-show="!objs.addWFtype">Filter: </label> -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- <input type="text" ng-show="!objs.addWFtype" class="form-control"
+                                                placeholder="filter" ng-model="filter.txtFilterProject"> -->
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="align-right">
+                                                <input type="button" class="btn btn-purple-color" value="New"
+                                                    ng-click="objs.addProjectName = true"
+                                                    ng-show="!objs.addProjectName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-if="objs.addProjectName">
+                                        <br>
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <input type="text" ng-model="objs.projectname.projectnametext"
+                                                    class="form-control">
+                                                <br>
+                                                <input type="button" class="btn btn-sm btn-purple-color"
+                                                    ng-click="save_project_name()" placeholder="project name"
+                                                    ng-disabled="objs.projectname.projectnametext.length < 3"
+                                                    value="Save">
+                                                <input type="button" class="btn btn-sm btn btn-danger" value="Cancel"
+                                                    ng-click="objs.addProjectName = false">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" ng-if="!objs.addProjectName">
+
+                                <div class="col-md-12">
+                                    <p ng-if="objs.projectname.isLoading">
+                                        ...loading
+                                    </p>
+                                    <div >
+                                        <div class="form-group">
+                                            <label for="pwd">Email Address:</label>
+                                            <input type="text" ng-model="objs.emailObj.emailAddresses" class="form-control" id="pwd" name="emailAddresses">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Subject:</label>
+                                            <input type="text" ng-model="objs.emailObj.emailSubject" class="form-control" id="pwd" name="emailSubject">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Body:</label>
+                                            <textarea class="form-control" ng-model="objs.emailObj.emailBody" rows="5" id="comment"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

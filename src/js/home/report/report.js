@@ -15,7 +15,8 @@ var reportCtr = function ($scope,$http, $state) {
     }
 
     $scope.uiForm = {}
-    var url = 'http://10.29.103.101:';
+    //var url = 'http://10.29.103.101:';
+    var url = 'http://localhost:';
     $scope.reportingObj = {
         totalNormal: 0
     }

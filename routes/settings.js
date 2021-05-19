@@ -439,6 +439,21 @@ router.get('/getAllLinkedCats', (req, res) => {
 
 })
 
+router.get('/getEmailSettings', (req, res) => {
+    var query = "SELECT `id`, `subject`, `emailAddresses`, `emailBody` FROM `config_emails_report`";
+
+    mysql.query(query, function (err, result) {             
+        if(err) {
+           throw err;
+        }
+        else{
+            //result
+            res.status(200).send(result);
+        }
+    });   
+
+})
+
 
 router.get('/addLinkedCat/:workflowid/:categoryid', (req, res) => {
 

@@ -38,8 +38,13 @@ var settingsCtr = function ($scope, $http, $state) {
         addWFtype: false,
         addProjectName: false,
         addCategory: false,
-        addSubCategory: false
-
+        addSubCategory: false,
+        emailObj : {
+            emailAddresses : "",
+            emailSubject : "",
+            emailBody : ""
+        }
+//objs.emailObj.emailAddresses
     }
 
     function loadAll() {
@@ -51,6 +56,7 @@ var settingsCtr = function ($scope, $http, $state) {
     }
 
     loadAll();
+    loadEmailSettings();
 
     function loadData_allLinks(){
         //
@@ -64,6 +70,22 @@ var settingsCtr = function ($scope, $http, $state) {
                 $scope.objs.categorylinks.data = lst;
 
             })
+    }
+
+    function loadEmailSettings() {
+        
+        $http.get('/settings/getEmailSettings')
+        .then((res) => {
+          //  $scope.objs.categorylinks.isLoading = false;
+
+            //var lst = _.orderBy(res.data, ['worktype'], ['asc']);
+            $scope.objs.emailObj.emailAddresses = res.data[0].emailAddresses;
+            $scope.objs.emailObj.emailBody = res.data[0].emailBody;
+            $scope.objs.emailObj.emailSubject = res.data[0].subject;
+            
+        })
+
+
     }
 
     $scope.add_link = (id_category)=>{

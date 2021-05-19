@@ -48,7 +48,7 @@ var homeContr = function ($scope, $state, $http, $cookies) {
         console.log("user:", $scope.obj.username.username)
         $scope.enableCalandar = true;
 
-        $('.login-div').hide();
+        $('.login-div').hide(); 
 
         $state.go("home.calendar", { username: $scope.obj.username.username })
         

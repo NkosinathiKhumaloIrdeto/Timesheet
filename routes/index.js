@@ -7,6 +7,7 @@ let usersModal = require('../modals/users');
 let moment = require('moment');
 let Json2csvParser = require('json2csv').Parser;
 let fs = require('fs-extra');
+let mysql = require("./mysql");
 
 router.get('/getAll/:username', (req, res) => {
 
@@ -37,6 +38,61 @@ router.get('/getAll/:username', (req, res) => {
 
 })
 
+
+router.get('/getByNameReport/:username', (req, res) => {
+
+    var startDate, endDate;
+
+    startDate = getAdjustedStartDate()
+
+    endDate = getAdjustedEndDate()
+
+    startDate.set({ h: 00, m: 00 });
+    endDate.set({ h: 23, m: 59 });
+
+    var searchQuery = {
+        employee: new RegExp("^" + req.params.username),
+        startDate: { $gte: startDate, $lte: endDate }
+    }
+
+    logModal.find(searchQuery).sort('startDate').exec((err, data) => {
+
+        if (err) {
+
+            res.status(500).send({ 'status': 500, 'msg': err });
+            return; 
+        }
+
+        let total_hours = calHours(data)
+
+        if (total_hours < 130){
+
+            console.log("Incomplete timesheets for: " + req.params.username + ". Total hours: " + total_hours );
+
+        }
+
+        res.send({"total" : total_hours, "message" : "Incomplete timesheets for " + req.params.username + ". Total hours: " + total_hours });
+
+    })
+
+})
+function getAdjustedStartDate(){
+
+    //get current for the past
+    let start_date = moment().subtract(1, "months").date(24);
+    
+    return start_date;
+  
+  }
+  
+  function getAdjustedEndDate(){
+  
+    //get current for the past
+    let end_date = moment().date(24);
+    
+    return end_date;
+  
+  }
 
 
 router.get('/get', (req, res) => {
@@ -464,6 +520,30 @@ function updateTime(data) {
     }
 
     return data
+
+}
+
+function calHours(data) {
+
+    let hrs_total = 0;
+    let hours = 0;
+
+    for (var i = 0; i < data.length; i++) {
+
+        hours =  parseFloat(data[i].hours)
+
+        //console.log(hours)
+       /* if (hours.length > 3) {
+            hours = parseFloat(timeToDecimal(hours))
+        } else {
+            hours = parseFloat(hours).toFixed(2)
+        }*/       
+
+        hrs_total += hours;
+
+    }
+
+    return hrs_total
 
 }
 
