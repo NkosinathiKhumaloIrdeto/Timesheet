@@ -65,13 +65,15 @@ router.get('/getByNameReport/:username', (req, res) => {
 
         let total_hours = calHours(data)
 
+        let status = 0
+
         if (total_hours < 130){
 
             console.log("Incomplete timesheets for: " + req.params.username + ". Total hours: " + total_hours );
 
-        }
+        } else {status = 1;}
 
-        res.send({"total" : total_hours, "message" : "Incomplete timesheets for " + req.params.username + ". Total hours: " + total_hours });
+        res.send({"total" : total_hours, "status" : status, "message" : "Incomplete timesheets for " + req.params.username + ". Total hours: " + total_hours });
 
     })
 
