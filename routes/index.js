@@ -7,7 +7,7 @@ let usersModal = require('../modals/users');
 let moment = require('moment');
 let Json2csvParser = require('json2csv').Parser;
 let fs = require('fs-extra');
-let mysql = require("./mysql");
+//let mysql = require("./mysql");
 
 router.get('/getAll/:username', (req, res) => {
 

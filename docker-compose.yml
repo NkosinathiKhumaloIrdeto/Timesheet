@@ -1,17 +1,33 @@
 version: '3'
-services: 
-    timesheets: #container 1
+services:
+    timesheets:
+        #container 1 - timesheets
         container_name: timesheet_container
         restart: always
         build: . #build from local dockerfile
+        env_file: ./.env
         ports:
-            - "8020:8020"
-        links: 
+            - ${TIMESHEET_PORTS_MAPPING}
+        depends_on:
             - mongodb
-    mongodb: #container 2
+            - mysqldb
+    mongodb:
+        #container 2 - mondodb
         container_name: mongodb_container
         image: mongo:latest
         ports:
-            - "27016:27017"
-        volumes: 
-            - "/root/docker/mongodb/data:/data/db"
+            - ${MONGO_PORTS_MAPPING}
+        volumes:
+            - "${MONGO_VOLUME}"
+        restart: unless-stopped
+    mysqldb:
+        image: mysql:5.7
+        env_file: ./.env
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MY_SQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MY_SQL_DATABASE}
+        ports:
+            - ${MY_SQL_PORT}
+        volumes:
+            - ${MY_SQL_VOLUME}

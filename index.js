@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -8,6 +10,8 @@ var mongoose = require('mongoose');
 let morgan = require('morgan');
 let jira = require("./routes/jira");
 
+const PORT = process.env.NODE_DOCKER_PORT || 8019;
+
 app.use(bodyParser.json());
 app.use(express.static('src'))
 app.use('/data', routes);
@@ -17,11 +21,11 @@ app.use('/jira', jira);
 app.use(morgan('dev'));
 
 //setup
-let mongodb_dev = "mongodb://localhost:27017/Timesheets";
-let mongodb_live = "mongodb://172.27.1.101:27017/Timesheets";
+let mongodb_dev = "mongodb://" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.Timesheets; // "mongodb://localhost:27017/Timesheets";
+
 mongoose.connect(mongodb_dev)
     .then(() => console.log('Connection succesful'))
     .catch((err) => console.error(err));
 
-app.listen("8019");
-console.log("App running on 8019...");
+app.listen(PORT);
+console.log("App running on ...http://localhost:" + PORT);
