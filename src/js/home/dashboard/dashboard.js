@@ -1,7 +1,5 @@
 var dashboardCtr = function ($scope, $http, $state) {
 
-    //$scope.obj = { username: $state.params.username };
-    console.log("working");
     $scope.uiObj = {
         userSelectd: false,
         username: $state.params.username,

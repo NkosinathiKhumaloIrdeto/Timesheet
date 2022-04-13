@@ -13,21 +13,28 @@ services:
             - mysqldb
     mongodb:
         #container 2 - mondodb
-        container_name: mongodb_container
+        container_name: mongodb
         image: mongo:latest
         ports:
             - ${MONGO_PORTS_MAPPING}
+        expose:
+            - ${MONGO_PORT}
         volumes:
             - "${MONGO_VOLUME}"
         restart: unless-stopped
-    mysqldb:
-        image: mysql:5.7
+    mysqldb: 
+        #container 3 - mysql
+        container_name: mysqldb_container
+        image: mysql:latest
         env_file: ./.env
         restart: unless-stopped
+        command: --default-authentication-plugin=mysql_native_password
         environment:
             MYSQL_ROOT_PASSWORD: ${MY_SQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MY_SQL_DATABASE}
-        ports:
+        expose:
             - ${MY_SQL_PORT}
+        ports:
+            - ${MY_SQL_PORTS_MAPPING}
         volumes:
             - ${MY_SQL_VOLUME}

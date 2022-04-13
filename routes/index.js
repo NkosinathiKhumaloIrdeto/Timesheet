@@ -1,6 +1,5 @@
 let express = require('express');
 let router = express.Router();
-let mongoose = require('mongoose');
 let _ = require('lodash');
 let logModal = require('../modals/log');
 let usersModal = require('../modals/users');
@@ -60,41 +59,41 @@ router.get('/getByNameReport/:username', (req, res) => {
         if (err) {
 
             res.status(500).send({ 'status': 500, 'msg': err });
-            return; 
+            return;
         }
 
         let total_hours = calHours(data)
 
         let status = 0
 
-        if (total_hours < 130){
+        if (total_hours < 130) {
 
-            console.log("Incomplete timesheets for: " + req.params.username + ". Total hours: " + total_hours );
+            console.log("Incomplete timesheets for: " + req.params.username + ". Total hours: " + total_hours);
 
-        } else {status = 1;}
+        } else { status = 1; }
 
-        res.send({"total" : total_hours, "status" : status, "message" : "Incomplete timesheets for " + req.params.username + ". Total hours: " + total_hours });
+        res.send({ "total": total_hours, "status": status, "message": "Incomplete timesheets for " + req.params.username + ". Total hours: " + total_hours });
 
     })
 
 })
-function getAdjustedStartDate(){
+function getAdjustedStartDate() {
 
     //get current for the past
     let start_date = moment().subtract(1, "months").date(24);
-    
+
     return start_date;
-  
-  }
-  
-  function getAdjustedEndDate(){
-  
+
+}
+
+function getAdjustedEndDate() {
+
     //get current for the past
     let end_date = moment().date(24);
-    
+
     return end_date;
-  
-  }
+
+}
 
 
 router.get('/get', (req, res) => {
@@ -127,7 +126,7 @@ router.get('/get', (req, res) => {
 
         const csv = parser.parse(myData);
 
-        fs.writeFile(fullname, csv, 'utf8', function(err) {
+        fs.writeFile(fullname, csv, 'utf8', function (err) {
 
             if (err) {
 
@@ -155,10 +154,10 @@ router.get('/get', (req, res) => {
 
 
 router.post('/log', (req, res) => {
-console.log("req",req.body);
+    console.log("req", req.body);
     var newLogModal = new logModal(req.body);
 
-    newLogModal.save(function(err) {
+    newLogModal.save(function (err) {
 
         if (err) { throw err; }
 
@@ -181,7 +180,7 @@ router.post('/updateLogResize', (req, res) => {
 
     var _id = req.body._id
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
 
         if (err) throw err;
 
@@ -205,7 +204,7 @@ router.post('/updateLogMove', (req, res) => {
 
     var _id = req.body._id
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
 
         if (err) throw err;
 
@@ -223,7 +222,7 @@ router.post('/updateLogDetail', (req, res) => {
 
     delete updatedObj._id; //just so we don't overwrite the existing record
 
-    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function(err, updatedObj) {
+    logModal.findByIdAndUpdate(_id, { $set: updatedObj }, { new: true }, function (err, updatedObj) {
 
         if (err) return err
 
@@ -291,7 +290,7 @@ router.get('/getBy/:fromDate/:toDate/:username', (req, res) => {
         "startDate": { $gte: startDate, $lte: endDate },
         employee: new RegExp("^" + req.params.username),
         "title": new RegExp(req.query.filterBy, 'i') // {$regex: "/.*" + req.query.filterBy + "./", $options:"i"} 
-            //"title":new RegExp("/" + req.query.filterBy + "/i")
+        //"title":new RegExp("/" + req.query.filterBy + "/i")
     };
 
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
@@ -368,7 +367,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
     //endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate } };
-    
+
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
@@ -385,7 +384,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
         //var fields = ['worktype', 'employee', 'category', "start", "projectname", "hours", "title", "jiranumber"]
         //var fields = ['worktype','category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
         var fields = ['category', 'employee', "start", "end", "projectname", "hours", "title", "jiranumber"]
-        
+
         var opts = { fields, delimiter: ",", quote: '' };
 
         try {
@@ -394,7 +393,7 @@ router.get('/exportAllCSV/:fromDate/:toDate', (req, res) => {
 
             const csv = parser.parse(data);
 
-            fs.writeFile(fullname, csv, 'utf8', function(err) {
+            fs.writeFile(fullname, csv, 'utf8', function (err) {
 
                 if (err) {
 
@@ -447,7 +446,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
     endDate.add(1, 'days');
 
     var searchQuery = { "startDate": { $gte: startDate, $lte: endDate }, employee: new RegExp("^" + req.params.username) };
-    
+
     logModal.find(searchQuery).sort('startDate').exec((err, data) => {
 
         if (err) {
@@ -471,7 +470,7 @@ router.get('/exportCSV/:fromDate/:toDate/:username', (req, res) => {
 
             const csv = parser.parse(data);
 
-            fs.writeFile(fullname, csv, 'utf8', function(err) {
+            fs.writeFile(fullname, csv, 'utf8', function (err) {
 
                 if (err) {
 
@@ -512,7 +511,7 @@ function updateTime(data) {
         var start = data[i].start.split('T')[0]
         data[i].start = start // data[i].start
         data[i].end = end
-           
+
         if (hours.length > 3) {
             data[i].hours = timeToDecimal(hours)
         } else {
@@ -532,14 +531,14 @@ function calHours(data) {
 
     for (var i = 0; i < data.length; i++) {
 
-        hours =  parseFloat(data[i].hours)
+        hours = parseFloat(data[i].hours)
 
         //console.log(hours)
-       /* if (hours.length > 3) {
-            hours = parseFloat(timeToDecimal(hours))
-        } else {
-            hours = parseFloat(hours).toFixed(2)
-        }*/       
+        /* if (hours.length > 3) {
+             hours = parseFloat(timeToDecimal(hours))
+         } else {
+             hours = parseFloat(hours).toFixed(2)
+         }*/
 
         hrs_total += hours;
 

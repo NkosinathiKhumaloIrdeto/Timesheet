@@ -9,6 +9,8 @@ let config_category = require('../modals/settings.config_category');
 let config_worktype = require('../modals/settings.config_worktype');
 let config_worktype_category = require('../modals/settings.config_worktype_category');
 
+
+
 //================================ WORK FLOW TYPE
 
 //Add worktype - addWorkflowType
@@ -24,11 +26,11 @@ router.post('/addWorkType/:description', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,values, function (err) {
+    mysql.connection.query(query, values, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
@@ -42,48 +44,48 @@ router.post('/removeWorkType/:id', (req, res) => {
     var values = [id];
 
     //1st query if linked already
-    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.workflowtypeId = ?";   
+    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.workflowtypeId = ?";
     var delete_links_query = "DELETE FROM config_worktype_category WHERE workflowtypeId = ?";
     var query = "DELETE FROM config_worktype WHERE id = ?";
 
-    mysql.query(query_check,id, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query_check, id, function (err, result) {
+        if (err) {
+            throw err;
         }
         else {
             //result            
-            
-            if (result.length != 0){
+
+            if (result.length != 0) {
 
                 //delete links
 
                 console.log('deleting links');
 
-                mysql.query(delete_links_query,id, function (err) {
+                mysql.connection.query(delete_links_query, id, function (err) {
 
                     if (err) { throw err; }
 
                     //delete category
-                    mysql.query(query,id, function (err) {
+                    mysql.connection.query(query, id, function (err) {
 
                         if (err) { throw err; }
-                
-                        res.status(200).send({ "message": "Removed successfully"})
-                
+
+                        res.status(200).send({ "message": "Removed successfully" })
+
                     })
-                
+
 
                 })
 
             } else {
 
                 //delete category
-                mysql.query(query,id, function (err) {
+                mysql.connection.query(query, id, function (err) {
 
                     if (err) { throw err; }
-            
-                    res.status(200).send({ "message": "Removed successfully"})
-            
+
+                    res.status(200).send({ "message": "Removed successfully" })
+
                 })
 
             }
@@ -91,7 +93,7 @@ router.post('/removeWorkType/:id', (req, res) => {
     }
     )
 
-    
+
 })
 
 //Get worktype
@@ -99,17 +101,17 @@ router.get('/getAllWorktype', (req, res) => {
 
     var query = "SELECT * FROM config_worktype order by description asc";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    }); 
+    });
 
-   
+
 })
 
 
@@ -129,11 +131,11 @@ router.post('/addProjectName/:description', (req, res) => {
     var query = "INSERT INTO config_project_name (id, description) VALUES (?,?)";
 
 
-    mysql.query(query,values, function (err) {
+    mysql.connection.query(query, values, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
@@ -150,11 +152,11 @@ router.post('/removeProjectName/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,id, function (err) {
+    mysql.connection.query(query, id, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Removed successfully"})
+        res.status(200).send({ "message": "Removed successfully" })
 
     })
 
@@ -166,48 +168,48 @@ router.post('/removeCategory/:id', (req, res) => {
     var id = req.params.id;
 
     //1st query if linked already
-    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.categoryId = ?";   
+    var query_check = "SELECT cc.id FROM config_worktype_category cc WHERE cc.categoryId = ?";
     var delete_links_query = "DELETE FROM config_worktype_category WHERE categoryId = ?";
     var query = "DELETE FROM config_category WHERE id = ?";
 
-    mysql.query(query_check,id, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query_check, id, function (err, result) {
+        if (err) {
+            throw err;
         }
         else {
             //result            
-            
-            if (result.length != 0){
+
+            if (result.length != 0) {
 
                 //delete links
 
                 console.log('deleting links');
 
-                mysql.query(delete_links_query,id, function (err) {
+                mysql.connection.query(delete_links_query, id, function (err) {
 
                     if (err) { throw err; }
 
                     //delete category
-                    mysql.query(query,id, function (err) {
+                    mysql.connection.query(query, id, function (err) {
 
                         if (err) { throw err; }
-                
-                        res.status(200).send({ "message": "Removed successfully"})
-                
+
+                        res.status(200).send({ "message": "Removed successfully" })
+
                     })
-                
+
 
                 })
 
             } else {
 
                 //delete projec
-                mysql.query(query,id, function (err) {
+                mysql.connection.query(query, id, function (err) {
 
                     if (err) { throw err; }
-            
-                    res.status(200).send({ "message": "Removed successfully"})
-            
+
+                    res.status(200).send({ "message": "Removed successfully" })
+
                 })
 
             }
@@ -215,7 +217,7 @@ router.post('/removeCategory/:id', (req, res) => {
     }
     )
 
-    
+
 })
 
 
@@ -224,17 +226,17 @@ router.get('/getAllProjectName', (req, res) => {
 
     var query = "SELECT * FROM config_project_name order by description asc";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    }); 
+    });
 
-   
+
 })
 
 //================================ project type
@@ -253,11 +255,11 @@ router.post('/addCategory/:description', (req, res) => {
 
     var query = "INSERT INTO config_category(id, description) VALUES (?,?)";
 
-    mysql.query(query,values, function (err) {
+    mysql.connection.query(query, values, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
@@ -274,11 +276,11 @@ router.post('/removeCategory1/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,id, function (err) {
+    mysql.connection.query(query, id, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Removed successfully"})
+        res.status(200).send({ "message": "Removed successfully" })
 
     })
 
@@ -294,11 +296,11 @@ router.post('/removeLink/:id', (req, res) => {
 
     console.log(values);
 
-    mysql.query(query,id, function (err) {
+    mysql.connection.query(query, id, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Removed successfully"})
+        res.status(200).send({ "message": "Removed successfully" })
 
     })
 
@@ -311,23 +313,23 @@ router.get('/getAllCategory', (req, res) => {
 
     var query = "SELECT * FROM config_category order by description asc";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    }); 
+    });
 
-   
+
 })
 
 //================================ CATEGORY
 
 
-function create_id(){
+function create_id() {
     return Math.floor((Math.random() * 999999) + 1);
 }
 
@@ -336,13 +338,11 @@ function create_id(){
 //Add category
 router.get('/addCategory', (req, res) => {
 
-    console.log(req.body);
-
     config_category.create(req.body, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
@@ -353,15 +353,15 @@ router.get('/getAllCategory', (req, res) => {
 
     var query = "SELECT * FROM config_category";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    }); 
+    });
 
 })
 
@@ -371,13 +371,11 @@ router.get('/getAllCategory', (req, res) => {
 //Add Project Name
 router.get('/addProjectName', (req, res) => {
 
-    console.log(req.body);
-
     config_category.create(req.body, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
@@ -388,15 +386,15 @@ router.get('/getAllProjectNames', (req, res) => {
 
     var query = "SELECT * FROM config_project_name";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    }); 
+    });
 
 })
 
@@ -410,15 +408,15 @@ router.get('/getAllLinkedCat/:workflowid/', (req, res) => {
 
     var query = "SELECT cc.* FROM config_worktype_category cwc JOIN config_worktype cw on cw.id = cwc.workflowtypeId JOIN config_category cc on cc.id = cwc.categoryId WHERE cwc.workflowtypeId = ?";
 
-    mysql.query(query,id, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, id, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    });   
+    });
 
 })
 
@@ -427,30 +425,30 @@ router.get('/getAllLinkedCat/:workflowid/', (req, res) => {
 router.get('/getAllLinkedCats', (req, res) => {
     var query = "SELECT cwc.id, cw.description as worktype, cc.description as category FROM config_worktype_category cwc JOIN config_worktype cw on cw.id = cwc.workflowtypeId JOIN config_category cc on cc.id = cwc.categoryId";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    });   
+    });
 
 })
 
 router.get('/getEmailSettings', (req, res) => {
     var query = "SELECT `id`, `subject`, `emailAddresses`, `emailBody` FROM `config_emails_report`";
 
-    mysql.query(query, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
             res.status(200).send(result);
         }
-    });   
+    });
 
 })
 
@@ -464,34 +462,34 @@ router.get('/addLinkedCat/:workflowid/:categoryid', (req, res) => {
     //1st query if linked already
     var query_check = "SELECT cc.* FROM config_worktype_category cc WHERE cc.workflowtypeId = ? AND cc.categoryId = ?";
 
-    mysql.query(query_check,data_check, function (err, result) {             
-        if(err) {
-           throw err;
+    mysql.connection.query(query_check, data_check, function (err, result) {
+        if (err) {
+            throw err;
         }
-        else{
+        else {
             //result
-            
-            
-            if (result.length == 0){
+
+
+            if (result.length == 0) {
 
                 var query = "INSERT INTO config_worktype_category (id, workflowtypeId, categoryId) VALUES (?,?,?)";
-            
-                mysql.query(query,data, function (err, result) {             
-                    if(err) {
-                       throw err;
+
+                mysql.connection.query(query, data, function (err, result) {
+                    if (err) {
+                        throw err;
                     }
-                    else{
+                    else {
                         //result
                         res.status(200).send(result);
                     }
-                });   
+                });
             } else {
-                 res.status(500).send({"status":"500", "message" : "Category link exists, please try another category."});
+                res.status(500).send({ "status": "500", "message": "Category link exists, please try another category." });
             }
 
-           
+
         }
-    });   
+    });
 
     /*
     var data = [id, req.params.workflowid, req.params.categoryid]
@@ -517,13 +515,11 @@ router.get('/addLinkedCat/:workflowid/:categoryid', (req, res) => {
 //Add category
 router.get('/addWorktypeCategory', (req, res) => {
 
-    console.log(req.body);
-
     config_worktype_category.create(req.body, function (err) {
 
         if (err) { throw err; }
 
-        res.status(200).send({ "message": "Added successfully"})
+        res.status(200).send({ "message": "Added successfully" })
 
     })
 
