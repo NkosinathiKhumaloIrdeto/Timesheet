@@ -16,7 +16,7 @@ var reportCtr = function ($scope,$http, $state) {
 
     $scope.uiForm = {}
     
-    const url = "";//window.location.host; 
+    const url = "";//bugwindow.location.host; 
 
     $scope.reportingObj = {
         totalNormal: 0
