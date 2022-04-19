@@ -16,7 +16,8 @@ var reportCtr = function ($scope,$http, $state) {
 
     $scope.uiForm = {}
     
-    const url = window.location.host; 
+    const url = "";//window.location.host; 
+
     $scope.reportingObj = {
         totalNormal: 0
     }
@@ -91,7 +92,9 @@ var reportCtr = function ($scope,$http, $state) {
         $('#first').css("display", "block");
 
         $('#first').css("display", "none");
-        
+
+        console.log('Export_exportCSV: ' + url);
+
         window.open(url + "/data/exportCSV/" + from + "/" + to + "/" + $state.params.username); 
        
         return;
@@ -129,8 +132,11 @@ var reportCtr = function ($scope,$http, $state) {
 
         //alert("This will open in a new window.");
         
+        console.log('Export_exportAllCSV: ' + url);
+
         $('#first').css("display", "none");
-        window.open(url + "8019/data/exportAllCSV/" + from + "/" + to); 
+
+        window.open(url +"/data/exportAllCSV/" + from + "/" + to); 
         
 return
         $http.get('/data/exportAllCSV/' + from + "/" + to)
