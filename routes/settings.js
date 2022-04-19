@@ -526,5 +526,41 @@ router.get('/addWorktypeCategory', (req, res) => {
 })
 
 
+//======================= setup app - create mysql tables
+router.post('/init', (req, res) => {
+
+   
+    /*var query = "CREATE TABLE IF NOT EXISTS `config_category` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+    query += "CREATE TABLE IF NOT EXISTS `config_emails_report` (`id` varchar(30) NOT NULL, `subject` varchar(300) NOT NULL, `emailAddresses` varchar(300) NOT NULL, `emailBody` varchar(500) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;"
+    query += "CREATE TABLE IF NOT EXISTS `config_project_name` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;"
+    query += "CREATE TABLE IF NOT EXISTS `config_worktype` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;"
+    query += "CREATE TABLE IF NOT EXISTS `config_worktype_category` (`id` varchar(50) NOT NULL, `workflowtypeId` varchar(50) NOT NULL, `categoryId` varchar(50) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;"; */
+    
+const sql_queries = [
+    "CREATE TABLE IF NOT EXISTS `config_category` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;",
+    "CREATE TABLE IF NOT EXISTS `config_emails_report` (`id` varchar(30) NOT NULL, `subject` varchar(300) NOT NULL, `emailAddresses` varchar(300) NOT NULL, `emailBody` varchar(500) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;",
+    "CREATE TABLE IF NOT EXISTS `config_project_name` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;",
+    "CREATE TABLE IF NOT EXISTS `config_worktype` (`id` varchar(50) NOT NULL,`description` varchar(150) NOT NULL ) ENGINE=MyISAM DEFAULT CHARSET=latin1;",
+    "CREATE TABLE IF NOT EXISTS `config_worktype_category` (`id` varchar(50) NOT NULL, `workflowtypeId` varchar(50) NOT NULL, `categoryId` varchar(50) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;"
+]
+
+    console.log('Query',sql_queries);
+
+    sql_queries.forEach((query, index)=>{
+
+        mysql.connection.query(query, function (err) {
+
+            if (err) { throw err; }
+            //res.status(200).send({ "message": "Tables created successfully" })
+    
+        })
+
+    })
+
+    res.status(200).send({ "message": "Tables created successfully" })
+
+   
+
+})
 
 module.exports = router;
