@@ -26,10 +26,6 @@ console.log("Start running app...");
 //setup
 let mongodb_dev = "mongodb://" + (process.env.ENV == 'DEV' ? "localhost" : process.env.MONGO_HOST) + ":" + (process.env.ENV == 'DEV' ? "27017" : process.env.MONGO_PORT) + "/" + process.env.MONGO_DB; // "mongodb://localhost:27017/Timesheets";
 
-/*mongoose.connect(mongodb_dev)
-    .then(() => console.log('Mongo DB Connection succesful'))
-    .catch((err) => console.error(err)); */
-
 mysqllib.createConnection();
 mongoDbLib.createConnection(mongodb_dev);
 
