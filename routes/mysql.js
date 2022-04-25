@@ -3,11 +3,11 @@
 var mysql = require('mysql');
 
 const connectin_config = {
-    host: process.env.ENV == 'DEV' ? 'localhost' : process.env.MY_SQL_HOST,
+    host: process.env.MY_SQL_HOST,
     user: process.env.MY_SQL_USER,
-    password: process.env.ENV == 'DEV' ? '' : process.env.MY_SQL_ROOT_PASSWORD,
+    password: process.env.MY_SQL_ROOT_PASSWORD,
     database: process.env.MY_SQL_DATABASE,
-    port: process.env.ENV == 'DEV' ? '3306' : process.env.MY_SQL_APP_PORT
+    port: process.env.MY_SQL_APP_PORT
 }
 
 let retry_config = process.env.MY_SQL_RETRY;
